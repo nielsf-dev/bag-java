@@ -1,13 +1,63 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>B.A.G. Architecten</title>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="../static/css/maurocio-assets.min.css" th:href="@{/css/maurocio-assets.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
 <h1>stappie terug?</h1>
 <div th:replace="fragments/footer :: footer">&copy; 2017 The Static Templates</div>
 
 <p th:text="'Hello, ' + ${name} + '!'">Je moerrr</p>
+
+<section class="page-banner-section"
+         style="background: #111 url('../static/upload/portfolio/CityGarden/citygardenavond.jpg') center center; padding: 200px 0 150px; background-size: cover; text-align: center;"
+         th:style="'background: #111 url('+ @{/upload/portfolio/CityGarden/citygardenavond.jpg} +') center center; padding: 200px 0 150px; background-size: cover; text-align: center;'">
+    <%----%>
+    <div class="container">
+        <h1>Citygarden</h1>
+    </div>
+</section>
+<section id="content-section">
+    <div class="container">
+
+        <!-- single-project -->
+        <div class="single-project">
+            <div class="row">
+                <div class="col-md-6 col-lg-7">
+                    <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" th:src="@{/upload/portfolio/CityGarden/citygardenkop.jpg}" />
+                    <img src="../static/upload/portfolio/CityGarden/citygardentuin.jpg" th:src="@{/upload/portfolio/CityGarden/citygardentuin.jpg}" />
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="project-details">
+                        <p>Yisheng group te Amstelveen is vanaf de initiatief fase door B.A.G. geadviseerd en
+                            begeleid bij de ontwikkeling van dit project.
+                            B.A.G. is een samenwerking aangegaan met Mulderblauw en deze combinatie is
+                            ook de architect geworden voor het plan.
+                            Het betreft een gebouw met 77 appartementen in de vrije sector, een hotel met in
+                            aanvang 140 kamers en een commerciele plint. Totaal BVO is 25.000 m2.</p>
+
+                        <div class="project-list-box">
+
+                        </div>
+                        <div class="share-box">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End single-project -->
+
+    </div>
+</section>
+
 </body>
 </html>
