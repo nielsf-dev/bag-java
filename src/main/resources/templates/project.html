@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
+<head>
+    <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <h1>stappie terug?</h1>
-<img src="../static/citygardenavond.jpg" th:src="@{/citygardenavond.jpg}"/>
+<div th:replace="fragments/footer :: footer">&copy; 2017 The Static Templates</div>
+
 <p th:text="'Hello, ' + ${name} + '!'">Je moerrr</p>
 </body>
 </html>
