@@ -7,8 +7,11 @@ import org.bag.dto.FrontendProject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Maakt een FrontendProject aan obv een Project
+ */
 public class FrontendProjectAssembler {
-    Project project;
+    private Project project;
 
     public FrontendProjectAssembler(Project project) {
         this.project = project;

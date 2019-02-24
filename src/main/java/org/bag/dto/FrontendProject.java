@@ -7,12 +7,12 @@ import java.util.List;
  * De image voor de frontpage moet er wel in zitten.
  */
 public class FrontendProject {
-    int id;
-    String title;
-    String location;
-    String bannerImageUrl;
-    String frontPageImageUrl;
-    List<String> projectImageUrls;
+    private int id;
+    private String title;
+    private String location;
+    private String bannerImageUrl;
+    private String frontPageImageUrl;
+    private List<String> projectImageUrls;
 
     public FrontendProject(int id, String title, String location, String bannerImageUrl, String frontPageImageUrl, List<String> projectImageUrls) throws Exception {
         this.id = id;
