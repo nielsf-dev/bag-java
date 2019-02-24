@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>B.A.G. Architecten</title>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="../static/css/maurocio-assets.min.css" th:href="@{/css/maurocio-assets.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div id="container">
+    <div th:replace="fragments/header :: header">Menu header</div>
+
+    <!-- home-section
+        ================================================== -->
+    <section id="home-section">
+
+        <div class="slider-text">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="slider-caption">
+                            <p>Welkom bij B.A.G.</p>
+                            <br>
+                            <!-- <p>Our template come with all packed pages</p> <br> -->
+                        </div>
+                    </li>
+                    <%--<li>
+                    <div class="slider-caption">
+                        <h1>Architectuur die past</h1>
+                        <p>Voor ieder wat wils</p> <br>
+                        <!-- <p>There was never easier.</p> <br> -->
+                    </div>
+                </li>--%>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+    <!-- End home section -->
+
+    <!-- about-section
+			================================================== -->
+    <section id="about-section">
+        <div class="container">
+
+            <div class="about-box">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <img src="../static/upload/portfolio/WoonwerkGebouw/IMG0047.jpg" th:src="@{upload/portfolio/WoonwerkGebouw/IMG0047.jpg}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <h2>Wie zijn wij?</h2>
+                            <p>
+                                B.A.G. Architecten is opgericht in 1991.
+                                Met een hecht team maken wij ontwerpen op het gebied van architectuur,
+                                stedenbouw en interieur.
+                            </p>
+                            <br />
+                            <h2>Onze missie</h2>
+                            <p>
+                                Heldere, frisse en goed functionerende duurzame gebouwen maken waarbij gebruikers zich goed
+                                en veilig voelen.
+                                Gebouwen die passen in hun omgeving en daar positief aan bijdragen door hun verschijning.
+                                B.A.G. heeft veel ervaring met duurzaam bouwen. Al in 2001 zijn door ons nul energie woningen gemaakt in Amstelveen.
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+</section>
+
+<!-- portfolio-section
+        ================================================== -->
+<section id="portfolio-section">
+    <div class="container">
+        <div class="title-section">
+            <span></span>
+            <p>B.A.G. heeft circa 80 projecten gerealiseerd. Een selectie</p>
+        </div>
+
+        <div class="portfolio-box iso-call">
+            <div th:each="project : ${projects}" class="project-item design">
+                <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" alt="">
+                <div class="hover-box">
+                    <div class="inner-hover">
+                        <h2><a href="CityGarden.html">City Garden</a></h2>
+                        <p>Amstelveen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End portfolio section -->
+
+<!-- banner-section
+        ================================================== -->
+<section class="banner-section">
+    <div class="container">
+
+    </div>
+</section>
+<!-- End banner section -->
+
+<!-- services-section
+        ================================================== -->
+<section id="services-section">
+    <div class="container">
+        <div class="title-section">
+            <span></span>
+            <h1>Onze diensten</h1>
+            <p>Wat kunnen wij voor u doen ?</p>
+        </div>
+
+        <div class="services-box">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="ser-image">
+                        <img src="upload/others/DSCF9671.JPG" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="services-post right-post">
+                        <h2>Ontwerp</h2>
+                        <p>
+                            B.A.G. stelt de context altijd voorop.
+                            In Amstelveen moet Amstelveens gebouw worden.
+                            Bij elke opgave wordt een passende metafoor gezocht. Vervolgens wordt op een eigentijdse duurzame manier vorm gegeven aan de gebouwde omgeving. Stedenbouw en Architectuur gaan bij ons altijd hand in hand.
+                            Het belang van de gebruiker staat daarbij altijd voorop.
+                        </p>
+                    </div>
+                    <div class="services-post right-post">
+                        <h2>Bouwtechniek</h2>
+                        <p>
+                            B.A.G. beschikt over specifieke expertise op het gebied van bouwtechniek.
+                            Daarom zijn onze gebouwen niet alleen duurzaam, maar ook functioneel en onderhoudsarm.
+                        </p>
+                    </div>
+                    <div class="services-post right-post">
+                        <h2>Ontwikkeling</h2>
+                        <p>
+                            B.A.G. is in voorkomende gevallen een ontwikkelende architect. Onze
+                            96 starterswoningen op basis van MGE (maatschappelijk gebonden eigendom) ontwikkeld voor de gemeente Amstelveen zijn daarvan een uitstekend voorbeeld.
+                            Ook hebben wij Yisheng geadviseerd bij de ontwikkeling van de City Garden.
+                            Als u een optimaal rendement wilt op uw grondpositie, bent u bij ons aan het juiste adres.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End services section -->
+
+<!-- contact-section
+        ================================================== -->
+<section id="contact-section">
+
+    <div class="contact-info-box">
+        <div class="container">
+            <div class="contact-box">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div id="contact-form">
+                            <h2>Schrijf ons een bericht</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="name" runat="server" placeHolder="Name"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="mail" runat="server" placeHolder="Your e-mail"></asp:TextBox>
+                                </div>
+                            </div>
+                            <asp:TextBox ID="comment" runat="server" TextMode="MultiLine" placeHolder="Message"></asp:TextBox>
+
+                            <asp:Button ID="submit" runat="server" Text="send message" CssClass="my-button" OnClick="submit_OnClick" />
+                            <asp:Label runat="server" ID="Label1"></asp:Label>
+                            <div id="msg" class="message"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="contact-info">
+                            <ul class="contact-list">
+                                <li>
+                                    <span><i class="fa fa-info"></i></span>
+                                    <p>
+                                        Adres &amp;
+                                        <br>
+                                        Contact informatie
+                                    </p>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-map-marker"></i></span>
+                                    <p>
+                                        Maria Snelplantsoen 1,
+                                        <br>
+                                        1106 WN Amsterdam
+                                    </p>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-phone"></i></span>
+                                    <p>020-6968001</p>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-envelope-o"></i></span>
+                                    <p>info@bagarchitecten.nl</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <div th:replace="fragments/footer :: footer">Footer</div>
+</div>
+<div class="preloader">
+    <img alt="" src="../../static/images/loader.gif">
+</div>
+
+<script src="../../static/js/maurocio-plugins.min.js" th:src="@{/js/maurocio-plugins.min.js}"></script>
+<script src="../../static/js/popper.js" th:src="@{/js/popper.js}"></script>
+<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyCiqrIen8rWQrvJsu-7f4rOta0fmI5r2SI&amp;sensor=false&amp;language=en"></script>
+<script src="../../static/js/gmap3.min.js" th:src="@{/js/gmap3.min.js}"></script>
+<script src="../../static/js/jquery.countTo.js" th:src="@{/js/jquery.countTo.js}"></script>
+<script src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
+</body>
+</html>

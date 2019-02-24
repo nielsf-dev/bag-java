@@ -19,8 +19,8 @@ public class Project {
         this.locatie = locatie;
         this.images = images;
 
-        bannerImage = validateAndGet(images, bannerImageIndex);
-        frontPageImage = validateAndGet(images, frontPageImageIndex);
+        this.bannerImage = validateAndGet(images, bannerImageIndex);
+        this.frontPageImage = validateAndGet(images, frontPageImageIndex);
     }
 
     private ProjectImage validateAndGet(List<ProjectImage> images, int index) throws Exception {

@@ -14,7 +14,7 @@ public class FrontendProjectAssembler {
         this.project = project;
     }
 
-    public FrontendProject assemble(){
+    public FrontendProject assemble() throws Exception {
         return new FrontendProject(project.id(),
                 project.title(),
                 project.locatie(),

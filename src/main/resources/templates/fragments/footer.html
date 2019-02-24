@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
 <head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <title>B.A.G. Architecten</title>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="../../static/css/maurocio-assets.min.css" th:href="@{/css/maurocio-assets.min.css}">
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <!--/*  Multiple fragments may be defined in one file */-->
-    <div th:fragment="footer" th:align="center">
-    <span>King niels aan de macht</span>
-    </div>
-    <div th:fragment="footer-admin" th:align="center">
-        &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
-        <span>My Awesome App </span><span th:text="${@environment.getProperty('app.version')}"></span>
-    </div>
+<!-- Container -->
+<div id="container">
+
+    <footer th:fragment="footer">
+        <div class="container">
+
+            <p>B.A.G. Architecten ©2018. All rights reserved</p>
+        </div>
+    </footer>
+</div>
+<div class="preloader">
+    <img alt="" src="../../static/images/loader.gif">
+</div>
+
+<script src="../../static/js/maurocio-plugins.min.js"></script>
+<script src="../../static/js/popper.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyCiqrIen8rWQrvJsu-7f4rOta0fmI5r2SI&amp;sensor=false&amp;language=en"></script>
+<script src="../../static/js/gmap3.min.js"></script>
+<script src="../../static/js/jquery.countTo.js"></script>
+<script src="../../static/js/script.js"></script>
 </body>
 </html>
-

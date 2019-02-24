@@ -17,7 +17,7 @@ public class ProjectController {
         FrontendProjectService service = new FrontendProjectService();
         FrontendProject project = service.getProject(-1);
         model.addAttribute("project",project);
-        return "project";
+        return "index";
     }
 
 }

@@ -6,6 +6,7 @@ import org.bag.dto.FrontendProject;
 import org.bag.dto.assemblers.FrontendProjectAssembler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FrontendProjectService {
     public FrontendProject getProject(int id) throws Exception {
@@ -19,5 +20,9 @@ public class FrontendProjectService {
 
         FrontendProjectAssembler assembler = new FrontendProjectAssembler(project);
         return assembler.assemble();
+    }
+
+    public List<FrontendProject> getAllProjects(){
+        return new ArrayList<>();
     }
 }
