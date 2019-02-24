@@ -18,7 +18,7 @@
              style="background: #111 url('../static/upload/portfolio/CityGarden/citygardenavond.jpg') center center; padding: 200px 0 150px; background-size: cover; text-align: center;"
              th:style="'background: #111 url('+ ${project.bannerImageUrl} +') center center; padding: 200px 0 150px; background-size: cover; text-align: center;'">
         <div class="container">
-            <h1>Citygarden</h1>
+            <h1 th:text="${project.title}">Citygarden</h1>
         </div>
     </section>
     <section id="content-section">
