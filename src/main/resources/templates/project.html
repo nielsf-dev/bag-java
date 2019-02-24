@@ -9,17 +9,12 @@
 
     <link rel="stylesheet" href="../static/css/maurocio-assets.min.css" th:href="@{/css/maurocio-assets.min.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
-</head>
+</head>-
 <body>
-<h1>stappie terug?</h1>
-<div th:replace="fragments/footer :: footer">&copy; 2017 The Static Templates</div>
-
-<p th:text="'Hello, ' + ${name} + '!'">Je moerrr</p>
 
 <section class="page-banner-section"
          style="background: #111 url('../static/upload/portfolio/CityGarden/citygardenavond.jpg') center center; padding: 200px 0 150px; background-size: cover; text-align: center;"
-         th:style="'background: #111 url('+ @{/upload/portfolio/CityGarden/citygardenavond.jpg} +') center center; padding: 200px 0 150px; background-size: cover; text-align: center;'">
-    <%----%>
+         th:style="'background: #111 url('+ ${project.bannerImageUrl} +') center center; padding: 200px 0 150px; background-size: cover; text-align: center;'">
     <div class="container">
         <h1>Citygarden</h1>
     </div>
@@ -31,8 +26,11 @@
         <div class="single-project">
             <div class="row">
                 <div class="col-md-6 col-lg-7">
-                    <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" th:src="@{/upload/portfolio/CityGarden/citygardenkop.jpg}" />
-                    <img src="../static/upload/portfolio/CityGarden/citygardentuin.jpg" th:src="@{/upload/portfolio/CityGarden/citygardentuin.jpg}" />
+                    <th:block th:each="projectImageUrl : ${project.projectImageUrls}">
+                        <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" th:src="${projectImageUrl}" />
+                    </th:block>
+                </div>
+                <div>
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="project-details">
