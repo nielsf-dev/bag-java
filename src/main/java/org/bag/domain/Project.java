@@ -15,6 +15,11 @@ public class Project {
     ProjectImage frontPageImage;
 
     public Project(String titel, String locatie, List<ProjectImage> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
+        this(0,titel,locatie,images,bannerImageIndex,frontPageImageIndex);
+    }
+
+    public Project(Integer id, String titel, String locatie, List<ProjectImage> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
+        this.id = id;
         this.titel = titel;
         this.locatie = locatie;
         this.images = images;

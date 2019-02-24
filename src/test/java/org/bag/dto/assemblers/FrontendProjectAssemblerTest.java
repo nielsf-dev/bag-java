@@ -21,6 +21,6 @@ public class FrontendProjectAssemblerTest {
 
         FrontendProjectAssembler projectAssembler = new FrontendProjectAssembler(project);
         FrontendProject frontendProject = projectAssembler.assemble();
-        Assert.assertEquals("banner images moet uit de images",1,frontendProject.getProjectImageUrls().size());
+        Assert.assertEquals("images moeten omgezetn worden",2,frontendProject.getProjectImageUrls().size());
     }
 }

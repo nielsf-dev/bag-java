@@ -22,8 +22,8 @@ public class FrontendProject {
         this.frontPageImageUrl = frontPageImageUrl;
         this.projectImageUrls = projectImageUrls;
 
-        if(projectImageUrls.contains(bannerImageUrl))
-            throw new Exception("Banner image mag niet tussen images");
+        if(!projectImageUrls.contains(bannerImageUrl))
+            throw new Exception("Banner image moet tussen images");
         if(!projectImageUrls.contains(frontPageImageUrl))
             throw new Exception("Frontpage image moet tussen images");
     }

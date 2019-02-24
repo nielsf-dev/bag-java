@@ -28,13 +28,6 @@
                             <!-- <p>Our template come with all packed pages</p> <br> -->
                         </div>
                     </li>
-                    <%--<li>
-                    <div class="slider-caption">
-                        <h1>Architectuur die past</h1>
-                        <p>Voor ieder wat wils</p> <br>
-                        <!-- <p>There was never easier.</p> <br> -->
-                    </div>
-                </li>--%>
                 </ul>
             </div>
         </div>
@@ -89,11 +82,11 @@
 
         <div class="portfolio-box iso-call">
             <div th:each="project : ${projects}" class="project-item design">
-                <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" alt="">
+                <img src="../static/upload/portfolio/CityGarden/citygardenkop.jpg" th:src="${project.frontPageImageUrl}" alt="">
                 <div class="hover-box">
                     <div class="inner-hover">
-                        <h2><a href="CityGarden.html">City Garden</a></h2>
-                        <p>Amstelveen</p>
+                        <h2><a href="CityGarden.html" th:text="${project.title}" th:href="${'/project?id=' + project.id}">City Garden</a></h2>
+                        <p th:text="${project.location}">Amstelveen</p>
                     </div>
                 </div>
             </div>
@@ -232,7 +225,7 @@
     <div th:replace="fragments/footer :: footer">Footer</div>
 </div>
 <div class="preloader">
-    <img alt="" src="../../static/images/loader.gif">
+    <img alt="" src="../../static/images/loader.gif" th:src="@{/images/loader.gif}">
 </div>
 
 <script src="../../static/js/maurocio-plugins.min.js" th:src="@{/js/maurocio-plugins.min.js}"></script>

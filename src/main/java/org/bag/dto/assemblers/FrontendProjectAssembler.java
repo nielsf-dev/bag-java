@@ -26,11 +26,9 @@ public class FrontendProjectAssembler {
                 getImageList(project));
     }
 
-    // de banner image moet uit de images collectie gehaald worden
     private List<String> getImageList(Project project) {
         ArrayList<String> images = new ArrayList<>();
         for (ProjectImage projectImage : project.images()) {
-            if(!projectImage.equals(project.bannerImage()))
                 images.add(projectImage.url());
         }
         return images;
