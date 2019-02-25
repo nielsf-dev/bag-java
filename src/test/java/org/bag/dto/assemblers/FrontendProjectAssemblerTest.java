@@ -1,7 +1,7 @@
 package org.bag.dto.assemblers;
 
 import org.bag.domain.Project;
-import org.bag.domain.ProjectImage;
+import org.bag.domain.Image;
 import org.bag.dto.FrontendProject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,9 +13,9 @@ public class FrontendProjectAssemblerTest {
     @Test
     public void testImages() throws Exception {
 
-        ArrayList<ProjectImage> images = new ArrayList<>();
-        images.add(new ProjectImage("image1.jpg"));
-        images.add(new ProjectImage("image2.jpg"));
+        ArrayList<Image> images = new ArrayList<>();
+        images.add(new Image("image1.jpg"));
+        images.add(new Image("image2.jpg"));
 
         Project project = new Project("detitel", "delocatei", images, 0,1);
 

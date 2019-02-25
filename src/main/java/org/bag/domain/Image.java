@@ -1,31 +1,46 @@
 package org.bag.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Plaatje behorende bij een project.
  */
-public class ProjectImage {
-    int id;
-    String imageUrl;
+@Entity
+public class Image {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    public ProjectImage(String imageUrl) {
+    private String imageUrl;
+
+    protected Image(){}
+
+    public Image(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
-    public String url() {
+    public String getUrl() {
         return imageUrl;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProjectImage that = (ProjectImage) o;
+        Image that = (Image) o;
         return imageUrl.equals(that.imageUrl);
     }
 

@@ -1,7 +1,7 @@
 package org.bag.dto.assemblers;
 
 import org.bag.domain.Project;
-import org.bag.domain.ProjectImage;
+import org.bag.domain.Image;
 import org.bag.dto.FrontendProject;
 
 import java.util.ArrayList;
@@ -18,18 +18,18 @@ public class FrontendProjectAssembler {
     }
 
     public FrontendProject assemble() throws Exception {
-        return new FrontendProject(project.id(),
-                project.title(),
-                project.locatie(),
-                project.bannerImage().url(),
-                project.frontPageImage().url(),
+        return new FrontendProject(project.getId(),
+                project.getTitle(),
+                project.getLocatie(),
+                project.getBannerImage().getUrl(),
+                project.getFrontpageImage().getUrl(),
                 getImageList(project));
     }
 
     private List<String> getImageList(Project project) {
         ArrayList<String> images = new ArrayList<>();
-        for (ProjectImage projectImage : project.images()) {
-                images.add(projectImage.url());
+        for (Image image : project.getImages()) {
+                images.add(image.getUrl());
         }
         return images;
     }

@@ -1,25 +1,41 @@
 package org.bag.domain;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Project voor de BAG Site
  */
+@Entity
 public class Project {
-    int id;
-    String titel;
-    String locatie;
-    List<ProjectImage> images;
-    ProjectImage bannerImage;
-    ProjectImage frontPageImage;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    public Project(String titel, String locatie, List<ProjectImage> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
-        this(0,titel,locatie,images,bannerImageIndex,frontPageImageIndex);
-    }
+    private String titel;
+    private String locatie;
 
-    public Project(Integer id, String titel, String locatie, List<ProjectImage> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
-        this.id = id;
+    @JoinTable
+    @OneToMany
+    private List<Image> images;
+
+    @ManyToOne
+    @JoinColumn(name = "bannerImageID")
+    private Image bannerImage;
+
+    @ManyToOne
+    @JoinColumn(name = "frontPageImageID")
+    private Image frontPageImage;
+
+    public Project(){}
+
+    /**
+     * Maakt een project aan. De banner en frontend index moeten geldig zijn mbt de images List.
+     * @throws Exception Ongeldige index opgegeven
+     */
+    public Project(String titel, String locatie, List<Image> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
+
         this.titel = titel;
         this.locatie = locatie;
         this.images = images;
@@ -28,35 +44,59 @@ public class Project {
         this.frontPageImage = validateAndGet(images, frontPageImageIndex);
     }
 
-    private ProjectImage validateAndGet(List<ProjectImage> images, int index) throws Exception {
+    private Image validateAndGet(List<Image> images, int index) throws Exception {
         if(images.isEmpty() || (index > images.size()-1))
             throw new Exception("Invalid index");
 
         return images.get(index);
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
-    public String title() {
+    public String getTitle() {
         return titel;
     }
 
-    public String locatie() {
+    public String getLocatie() {
         return locatie;
     }
 
-    public List<ProjectImage> images() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public ProjectImage bannerImage() {
+    public Image getBannerImage() {
         return bannerImage;
     }
 
-    public ProjectImage frontPageImage() {
+    public Image getFrontpageImage() {
         return frontPageImage;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitel(String titel) {
+        this.titel = titel;
+    }
+
+    public void setLocatie(String locatie) {
+        this.locatie = locatie;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void setBannerImage(Image bannerImage) {
+        this.bannerImage = bannerImage;
+    }
+
+    public void setFrontPageImage(Image frontPageImage) {
+        this.frontPageImage = frontPageImage;
     }
 
     @Override
