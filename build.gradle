@@ -20,14 +20,6 @@ bootJar {
     version =  '0.1.0'
 }
 
-task executeCommandLine(type:Exec) {
-    commandLine 'ls -al'
-    standardOutput = new ByteSequence.ByteArrayStream()
-    ext.output = {
-        return standardOutput.toString()
-    }
-}
-
 repositories {
     mavenCentral()
 }
