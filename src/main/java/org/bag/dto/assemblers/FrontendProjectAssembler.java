@@ -18,18 +18,18 @@ public class FrontendProjectAssembler {
     }
 
     public FrontendProject assemble() throws Exception {
-        return new FrontendProject(project.getId(),
-                project.getTitle(),
-                project.getLocatie(),
-                project.getBannerImage().getUrl(),
-                project.getFrontpageImage().getUrl(),
+        return new FrontendProject(project.id(),
+                project.title(),
+                project.locatie(),
+                project.bannerImage().url(),
+                project.frontPageImage().url(),
                 getImageList(project));
     }
 
     private List<String> getImageList(Project project) {
         ArrayList<String> images = new ArrayList<>();
-        for (Image image : project.getImages()) {
-                images.add(image.getUrl());
+        for (Image image : project.images()) {
+                images.add(image.url());
         }
         return images;
     }

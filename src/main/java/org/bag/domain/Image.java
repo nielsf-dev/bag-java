@@ -11,7 +11,6 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private String imageUrl;
 
     protected Image(){}
@@ -20,20 +19,12 @@ public class Image {
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public String getUrl() {
+    public String url() {
         return imageUrl;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     @Override

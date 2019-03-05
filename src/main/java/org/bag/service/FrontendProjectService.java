@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class FrontendProjectService {
@@ -25,7 +26,11 @@ public class FrontendProjectService {
     }
 
     public FrontendProject getProject(int id) throws Exception {
-        Project project = projectRepository.findById(id).get();
+        Optional<Project> optionalProject = projectRepository.findById(id);
+        if(!optionalProject.isPresent())
+            return null;
+
+        Project project = optionalProject.get();
         return new FrontendProjectAssembler(project).assemble();
     }
 

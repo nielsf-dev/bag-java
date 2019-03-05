@@ -37,6 +37,9 @@ public class ProjectController {
     @GetMapping("/project")
     public String getProject(@RequestParam(name="id") Integer id, Model model) throws Exception {
         FrontendProject project = frontendProjectService.getProject(id);
+        if(project == null)
+            return "error";
+
         model.addAttribute("project",project);
         return "project";
     }

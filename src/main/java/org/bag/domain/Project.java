@@ -21,14 +21,14 @@ public class Project {
     private List<Image> images;
 
     @ManyToOne
-    @JoinColumn(name = "bannerImageID")
+    @JoinColumn
     private Image bannerImage;
 
     @ManyToOne
-    @JoinColumn(name = "frontPageImageID")
+    @JoinColumn
     private Image frontPageImage;
 
-    public Project(){}
+    protected Project(){}
 
     /**
      * Maakt een project aan. De banner en frontend index moeten geldig zijn mbt de images List.
@@ -51,52 +51,28 @@ public class Project {
         return images.get(index);
     }
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public String getTitle() {
+    public String title() {
         return titel;
     }
 
-    public String getLocatie() {
+    public String locatie() {
         return locatie;
     }
 
-    public List<Image> getImages() {
+    public List<Image> images() {
         return images;
     }
 
-    public Image getBannerImage() {
+    public Image bannerImage() {
         return bannerImage;
     }
 
-    public Image getFrontpageImage() {
+    public Image frontPageImage() {
         return frontPageImage;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public void setLocatie(String locatie) {
-        this.locatie = locatie;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    public void setBannerImage(Image bannerImage) {
-        this.bannerImage = bannerImage;
-    }
-
-    public void setFrontPageImage(Image frontPageImage) {
-        this.frontPageImage = frontPageImage;
     }
 
     @Override

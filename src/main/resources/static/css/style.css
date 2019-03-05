@@ -1756,3 +1756,11 @@ footer {
       text-align: center; }
   .contact-info-box ul.contact-list li {
     width: 100%; } }
+
+.flag-container {
+  text-align: right;
+}
+
+.flag-container-images{
+  width: 250px;
+}
