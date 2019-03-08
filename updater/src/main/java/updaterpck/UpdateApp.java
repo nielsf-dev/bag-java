@@ -14,9 +14,16 @@ public class UpdateApp
         Project p = new Project("test","locatie","", images,0,0);
         System.out.println(p.getTitle("nl"));
 
-        UIManager.setLookAndFeel(new DarculaLaf());
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setVisible(true);
+        JFrame jFrame = new JFrame();
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setSize(400, 400);
+        MainPanel panel = new MainPanel();
+        jFrame.setContentPane(panel);
+        jFrame.setVisible(true);
+
+//        UIManager.setLookAndFeel(new DarculaLaf());
+//        MainFrame mainFrame = new MainFrame();
+//        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        mainFrame.setVisible(true);
     }
 }

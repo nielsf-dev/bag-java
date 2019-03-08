@@ -13,6 +13,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+// 60, 63, 65
 bootJar {
     baseName = 'gs-multi-module-application'
     version = '0.0.1-SNAPSHOT'
@@ -24,6 +25,7 @@ repositories { mavenCentral() }
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
     compile project(':website')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
