@@ -18,6 +18,11 @@ import java.util.Locale;
 public class Application implements WebMvcConfigurer {
 
     public static void main(String[] args) {
+        Locale.Builder builder = new Locale.Builder().setLanguage("nl").setRegion("US");
+        Locale locale1 = builder.build();
+        String iso3Country = locale1.getISO3Country();
+        String iso3Language = locale1.getISO3Language();
+
         SpringApplication.run(Application.class, args);
     }
 

@@ -13,8 +13,13 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String titel;
-    private String locatie;
+    private String titel_nl;
+    private String titel_us;
+    private String titel_ch;
+
+    private String locatie_nl;
+    private String locatie_us;
+    private String locatie_ch;
 
     @JoinTable
     @OneToMany
@@ -36,8 +41,8 @@ public class Project {
      */
     public Project(String titel, String locatie, List<Image> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
 
-        this.titel = titel;
-        this.locatie = locatie;
+        this.titel_nl = titel;
+        this.locatie_nl = locatie;
         this.images = images;
 
         this.bannerImage = validateAndGet(images, bannerImageIndex);
@@ -55,12 +60,20 @@ public class Project {
         return id;
     }
 
-    public String title() {
-        return titel;
+    public String getTitle(){
+        return getTitle("nl");
+    }
+
+    public String getTitle(String locale) {
+        if(locale == "nl")
+            return titel_nl;
+        else if(locale == "us")
+            return titel_us;
+        else return titel_ch;
     }
 
     public String locatie() {
-        return locatie;
+        return locatie_nl;
     }
 
     public List<Image> images() {
@@ -80,8 +93,8 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return titel.equals(project.titel) &&
-                locatie.equals(project.locatie) &&
+        return titel_nl.equals(project.titel_nl) &&
+                locatie_nl.equals(project.locatie_nl) &&
                 images.equals(project.images) &&
                 bannerImage.equals(project.bannerImage) &&
                 frontPageImage.equals(project.frontPageImage);
@@ -89,6 +102,6 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(titel, locatie, images, bannerImage, frontPageImage);
+        return Objects.hash(titel_nl, locatie_nl, images, bannerImage, frontPageImage);
     }
 }

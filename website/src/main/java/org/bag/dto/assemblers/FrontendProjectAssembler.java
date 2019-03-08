@@ -19,7 +19,7 @@ public class FrontendProjectAssembler {
 
     public FrontendProject assemble() throws Exception {
         return new FrontendProject(project.id(),
-                project.title(),
+                project.getTitle(),
                 project.locatie(),
                 project.bannerImage().url(),
                 project.frontPageImage().url(),
