@@ -32,19 +32,21 @@ public class ProjectController {
     }
 
     @GetMapping("/")
-    public String index(Model model) throws Exception {
-        List<FrontendProject> allProjects = frontendProjectService.getAllProjects();
+    public String index(Model model, HttpServletRequest request) throws Exception {
+        RequestContext ctx = new RequestContext(request);
+        Locale locale = ctx.getLocale();
+
+        List<FrontendProject> allProjects = frontendProjectService.getAllProjects(locale);
         model.addAttribute("projects", allProjects);
         return "index";
     }
 
     @GetMapping("/project")
     public String getProject(@RequestParam(name="id") Integer id, Model model, HttpServletRequest request) throws Exception {
-        //Locale locale = RequestContextUtils.getLocale(request);
         RequestContext ctx = new RequestContext(request);
         Locale locale = ctx.getLocale();
 
-        FrontendProject project = frontendProjectService.getProject(id);
+        FrontendProject project = frontendProjectService.getProject(id, locale);
         if(project == null)
             return "error";
 

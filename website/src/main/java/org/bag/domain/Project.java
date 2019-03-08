@@ -14,12 +14,16 @@ public class Project {
     private int id;
 
     private String titel_nl;
-    private String titel_us;
-    private String titel_ch;
+    private String titel_en;
+    private String titel_zh;
 
     private String locatie_nl;
-    private String locatie_us;
-    private String locatie_ch;
+    private String locatie_en;
+    private String locatie_zh;
+
+    private String text_nl;
+    private String text_en;
+    private String text_zh;
 
     @JoinTable
     @OneToMany
@@ -33,18 +37,30 @@ public class Project {
     @JoinColumn
     private Image frontPageImage;
 
-    protected Project(){}
+    private Project(){}
+
+    private enum SupportedLanguages {
+        Chinese("zh"),
+        English("en"),
+        Dutch("nl");
+
+        private final String text;
+
+        SupportedLanguages(final String text) {
+            this.text = text;
+        }
+    }
 
     /**
      * Maakt een project aan. De banner en frontend index moeten geldig zijn mbt de images List.
      * @throws Exception Ongeldige index opgegeven
      */
-    public Project(String titel, String locatie, List<Image> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
-
+    public Project(String titel, String locatie, String text, List<Image> images, int bannerImageIndex, int frontPageImageIndex) throws Exception {
         this.titel_nl = titel;
         this.locatie_nl = locatie;
-        this.images = images;
+        this.text_nl = text;
 
+        this.images = images;
         this.bannerImage = validateAndGet(images, bannerImageIndex);
         this.frontPageImage = validateAndGet(images, frontPageImageIndex);
     }
@@ -60,20 +76,31 @@ public class Project {
         return id;
     }
 
-    public String getTitle(){
-        return getTitle("nl");
-    }
-
-    public String getTitle(String locale) {
-        if(locale == "nl")
+    public String getTitle(String lang) {
+        if(lang == SupportedLanguages.English.text)
+            return titel_en;
+        else if(lang == SupportedLanguages.Chinese.text)
+            return titel_zh;
+        else
             return titel_nl;
-        else if(locale == "us")
-            return titel_us;
-        else return titel_ch;
     }
 
-    public String locatie() {
-        return locatie_nl;
+    public String getLocatie(String lang) {
+        if(lang == SupportedLanguages.English.text)
+            return locatie_en;
+        else if(lang == SupportedLanguages.Chinese.text)
+            return locatie_zh;
+        else
+            return locatie_nl;
+    }
+
+    public String getText(String lang) {
+        if(lang == SupportedLanguages.English.text)
+            return text_en;
+        else if(lang == SupportedLanguages.Chinese.text)
+            return text_zh;
+        else
+            return text_nl;
     }
 
     public List<Image> images() {
@@ -86,6 +113,78 @@ public class Project {
 
     public Image frontPageImage() {
         return frontPageImage;
+    }
+
+    public String getTitel_nl() {
+        return titel_nl;
+    }
+
+    public void setTitel_nl(String titel_nl) {
+        this.titel_nl = titel_nl;
+    }
+
+    public String getTitel_en() {
+        return titel_en;
+    }
+
+    public void setTitel_en(String titel_en) {
+        this.titel_en = titel_en;
+    }
+
+    public String getTitel_zh() {
+        return titel_zh;
+    }
+
+    public void setTitel_zh(String titel_zh) {
+        this.titel_zh = titel_zh;
+    }
+
+    public String getLocatie_nl() {
+        return locatie_nl;
+    }
+
+    public void setLocatie_nl(String locatie_nl) {
+        this.locatie_nl = locatie_nl;
+    }
+
+    public String getLocatie_en() {
+        return locatie_en;
+    }
+
+    public void setLocatie_en(String locatie_en) {
+        this.locatie_en = locatie_en;
+    }
+
+    public String getLocatie_zh() {
+        return locatie_zh;
+    }
+
+    public void setLocatie_zh(String locatie_zh) {
+        this.locatie_zh = locatie_zh;
+    }
+
+    public String getText_nl() {
+        return text_nl;
+    }
+
+    public void setText_nl(String text_nl) {
+        this.text_nl = text_nl;
+    }
+
+    public String getText_en() {
+        return text_en;
+    }
+
+    public void setText_en(String text_en) {
+        this.text_en = text_en;
+    }
+
+    public String getText_zh() {
+        return text_zh;
+    }
+
+    public void setText_zh(String text_zh) {
+        this.text_zh = text_zh;
     }
 
     @Override

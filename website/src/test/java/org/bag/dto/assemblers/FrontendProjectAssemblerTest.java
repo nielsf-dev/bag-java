@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class FrontendProjectAssemblerTest {
 
@@ -17,10 +18,10 @@ public class FrontendProjectAssemblerTest {
         images.add(new Image("image1.jpg"));
         images.add(new Image("image2.jpg"));
 
-        Project project = new Project("detitel", "delocatei", images, 0,1);
+        Project project = new Project("detitel", "delocatei", "", images, 0,1);
 
         FrontendProjectAssembler projectAssembler = new FrontendProjectAssembler(project);
-        FrontendProject frontendProject = projectAssembler.assemble();
+        FrontendProject frontendProject = projectAssembler.assemble(new Locale("maakt dus niks uit default naar NL"));
         Assert.assertEquals("images moeten omgezetn worden",2,frontendProject.getProjectImageUrls().size());
     }
 }
