@@ -1,5 +1,7 @@
-allprojects{
+allprojects {
     repositories {
         mavenCentral()
     }
+}
+dependencies {
 }
