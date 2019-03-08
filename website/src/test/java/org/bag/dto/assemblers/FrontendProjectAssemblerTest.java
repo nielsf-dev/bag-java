@@ -19,9 +19,12 @@ public class FrontendProjectAssemblerTest {
         images.add(new Image("image2.jpg"));
 
         Project project = new Project("detitel", "delocatei", "", images, 0,1);
+        project.setTitel_en("The title");
 
         FrontendProjectAssembler projectAssembler = new FrontendProjectAssembler(project);
-        FrontendProject frontendProject = projectAssembler.assemble(new Locale("maakt dus niks uit default naar NL"));
+        Locale locale = new Locale("en", "US");
+        FrontendProject frontendProject = projectAssembler.assemble(locale);
+        Assert.assertEquals("Title in juiste taal", "The title", project.getTitle(locale.getLanguage()));
         Assert.assertEquals("images moeten omgezetn worden",2,frontendProject.getProjectImageUrls().size());
     }
 }
