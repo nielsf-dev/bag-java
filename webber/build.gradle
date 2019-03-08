@@ -1,24 +1,23 @@
 buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
-    }
+    repositories { mavenCentral() }
 }
+
+plugins { id "io.spring.dependency-management" version "1.0.5.RELEASE" }
+
+ext { springBootVersion = '2.0.5.RELEASE' }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'idea'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
 
-bootJar {
-   launchScript()
-}
+//bootJar {
+//    launchScript()
+//}
 
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
+repositories { mavenCentral() }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -30,7 +29,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
     compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
-    
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
