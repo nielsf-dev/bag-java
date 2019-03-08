@@ -10,14 +10,16 @@ public class FrontendProject {
     private int id;
     private String title;
     private String location;
+    private String text;
     private String bannerImageUrl;
     private String frontPageImageUrl;
     private List<String> projectImageUrls;
 
-    public FrontendProject(int id, String title, String location, String bannerImageUrl, String frontPageImageUrl, List<String> projectImageUrls) throws Exception {
+    public FrontendProject(int id, String title, String location, String text, String bannerImageUrl, String frontPageImageUrl, List<String> projectImageUrls) throws Exception {
         this.id = id;
         this.title = title;
         this.location = location;
+        this.text = text;
         this.bannerImageUrl = bannerImageUrl;
         this.frontPageImageUrl = frontPageImageUrl;
         this.projectImageUrls = projectImageUrls;
@@ -38,6 +40,10 @@ public class FrontendProject {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public String getBannerImageUrl() {

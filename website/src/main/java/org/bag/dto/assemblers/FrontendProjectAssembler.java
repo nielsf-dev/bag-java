@@ -19,9 +19,11 @@ public class FrontendProjectAssembler {
     }
 
     public FrontendProject assemble(Locale locale) throws Exception {
+        String langCode = locale.getLanguage();
         return new FrontendProject(project.id(),
-                project.getTitle(locale.getLanguage()),
-                project.getLocatie(locale.getLanguage()),
+                project.getTitle(langCode),
+                project.getLocatie(langCode),
+                project.getText(langCode),
                 project.bannerImage().url(),
                 project.frontPageImage().url(),
                 getImageList(project));
