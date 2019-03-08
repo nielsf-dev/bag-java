@@ -20,12 +20,18 @@ bootJar {
 }
 sourceCompatibility = 1.8
 
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
     compile project(':website')
+    compile (name:'darcula', ext:'jar')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
