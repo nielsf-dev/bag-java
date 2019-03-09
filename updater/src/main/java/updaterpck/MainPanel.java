@@ -19,12 +19,14 @@ public class MainPanel extends JPanel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
+        button3 = new JButton();
+        button2 = new JButton();
         scrollPane1 = new JScrollPane();
         list1 = new JList<>();
-        button1 = new JButton();
 
         //======== this ========
-        setBackground(new Color(255, 102, 204));
+        setPreferredSize(new Dimension(600, 500));
+        setMinimumSize(new Dimension(600, 500));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -36,10 +38,23 @@ public class MainPanel extends JPanel {
         setLayout(new MigLayout(
             "filly,hidemode 3",
             // columns
-            "[223,fill]" +
-            "[fill]",
+            "[fill]" +
+            "[221:188,fill]" +
+            "[308,fill]",
             // rows
+            "[min!,top]" +
             "[]"));
+
+        //---- button3 ----
+        button3.setText("Project toevoegen");
+        button3.setIcon(new ImageIcon("C:\\work\\bag-java\\updater\\src\\main\\resources\\add.png"));
+        add(button3, "cell 0 0,align left top,grow 0 0");
+
+        //---- button2 ----
+        button2.setText("Synchroniseren");
+        button2.setIcon(new ImageIcon("C:\\work\\bag-java\\updater\\src\\main\\resources\\refresh.png"));
+        button2.setEnabled(false);
+        add(button2, "cell 1 0,align left top,grow 0 0");
 
         //======== scrollPane1 ========
         {
@@ -60,20 +75,15 @@ public class MainPanel extends JPanel {
             });
             scrollPane1.setViewportView(list1);
         }
-        add(scrollPane1, "cell 0 0,growy");
-
-        //---- button1 ----
-        button1.setText("text");
-        button1.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/plus.png"));
-        button1.setPreferredSize(new Dimension(20, 134));
-        add(button1, "cell 1 0");
+        add(scrollPane1, "cell 0 1 2 1,growy");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
+    private JButton button3;
+    private JButton button2;
     private JScrollPane scrollPane1;
     private JList<String> list1;
-    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -5,11 +5,27 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "filly,hidemode 3"
-			"$columnConstraints": "[223,fill][fill]"
-			"$rowConstraints": "[]"
+			"$columnConstraints": "[fill][221:188,fill][308,fill]"
+			"$rowConstraints": "[min!,top][]"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 255, 102, 204, 255 )
+			"preferredSize": new java.awt.Dimension( 600, 500 )
+			"minimumSize": new java.awt.Dimension( 600, 500 )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Project toevoegen"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\work\\bag-java\\updater\\src\\main\\resources\\add.png" )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0,align left top,grow 0 0"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Synchroniseren"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\work\\bag-java\\updater\\src\\main\\resources\\refresh.png" )
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 0,align left top,grow 0 0"
+			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JList" ) {
@@ -23,19 +39,11 @@ new FormModel {
 					}
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 0,growy"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "text"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/niels/src/bag-java/updater/src/main/resources/plus.png" )
-				"preferredSize": new java.awt.Dimension( 20, 134 )
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 0"
+				"value": "cell 0 1 2 1,growy"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 730, 350 )
 		} )
 	}
 }
