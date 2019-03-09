@@ -6,6 +6,7 @@ package updaterpck;
 
 import java.awt.*;
 import javax.swing.*;
+import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
 
 /**
@@ -21,14 +22,14 @@ public class MainPanel extends JPanel {
         // Generated using JFormDesigner Evaluation license - Niels
         button3 = new JButton();
         button2 = new JButton();
-        scrollPane1 = new JScrollPane();
-        list1 = new JList<>();
         panel1 = new JPanel();
         label1 = new JLabel();
         separator1 = new JSeparator();
         textField2 = new JTextField();
         textField3 = new JTextField();
         textField4 = new JTextField();
+        scrollPane1 = new JScrollPane();
+        list1 = new JList<>();
 
         //======== this ========
         setPreferredSize(new Dimension(600, 500));
@@ -46,7 +47,7 @@ public class MainPanel extends JPanel {
             // columns
             "[fill]" +
             "[221:188,fill]" +
-            "[308,fill]",
+            "[221:267,fill]",
             // rows
             "[min!,top]" +
             "[]"));
@@ -60,6 +61,31 @@ public class MainPanel extends JPanel {
         button2.setText("Synchroniseren");
         button2.setIcon(new ImageIcon("C:\\work\\bag-java\\updater\\src\\main\\resources\\refresh.png"));
         add(button2, "cell 1 0,align left top,grow 0 0");
+
+        //======== panel1 ========
+        {
+            panel1.setLayout(new MigLayout(
+                "fill,insets 0,hidemode 3,gap 0 0",
+                // columns
+                "[min!,fill]" +
+                "[208:34,fill]",
+                // rows
+                "[min!]2" +
+                "[30:30:30]2" +
+                "[30:30:30]2" +
+                "[30:30:30]2" +
+                "[30:30:30]2" +
+                "[30:30:30]"));
+
+            //---- label1 ----
+            label1.setText("Titel");
+            panel1.add(label1, "cell 0 0");
+            panel1.add(separator1, "cell 1 0");
+            panel1.add(textField2, "cell 0 1 2 1");
+            panel1.add(textField3, "cell 0 2 2 1");
+            panel1.add(textField4, "cell 0 3 2 1");
+        }
+        add(panel1, "cell 2 0 1 2,gapx null 0,gapy 0");
 
         //======== scrollPane1 ========
         {
@@ -81,31 +107,6 @@ public class MainPanel extends JPanel {
             scrollPane1.setViewportView(list1);
         }
         add(scrollPane1, "cell 0 1 2 1,growy");
-
-        //======== panel1 ========
-        {
-            panel1.setLayout(new MigLayout(
-                "fill,hidemode 3,gap 0 0",
-                // columns
-                "[min!,fill]" +
-                "[208:34,fill]",
-                // rows
-                "[min!]2" +
-                "[30:30:30]2" +
-                "[30:30:30]2" +
-                "[30:30:30]2" +
-                "[30:30:30]2" +
-                "[30:30:30]"));
-
-            //---- label1 ----
-            label1.setText("Titel");
-            panel1.add(label1, "cell 0 0");
-            panel1.add(separator1, "cell 1 0");
-            panel1.add(textField2, "cell 0 1 2 1");
-            panel1.add(textField3, "cell 0 2 2 1");
-            panel1.add(textField4, "cell 0 3 2 1");
-        }
-        add(panel1, "cell 2 1,align left top,grow 0 0,gapx null 0,gapy 0");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -113,13 +114,13 @@ public class MainPanel extends JPanel {
     // Generated using JFormDesigner Evaluation license - Niels
     private JButton button3;
     private JButton button2;
-    private JScrollPane scrollPane1;
-    private JList<String> list1;
     private JPanel panel1;
     private JLabel label1;
     private JSeparator separator1;
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
+    private JScrollPane scrollPane1;
+    private JList<String> list1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
