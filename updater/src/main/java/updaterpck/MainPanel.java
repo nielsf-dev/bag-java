@@ -21,6 +21,7 @@ public class MainPanel extends JPanel {
         // Generated using JFormDesigner Evaluation license - Niels
         scrollPane1 = new JScrollPane();
         list1 = new JList<>();
+        button1 = new JButton();
 
         //======== this ========
         setBackground(new Color(255, 102, 204));
@@ -60,6 +61,12 @@ public class MainPanel extends JPanel {
             scrollPane1.setViewportView(list1);
         }
         add(scrollPane1, "cell 0 0,growy");
+
+        //---- button1 ----
+        button1.setText("text");
+        button1.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/plus.png"));
+        button1.setPreferredSize(new Dimension(20, 134));
+        add(button1, "cell 1 0");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -67,5 +74,6 @@ public class MainPanel extends JPanel {
     // Generated using JFormDesigner Evaluation license - Niels
     private JScrollPane scrollPane1;
     private JList<String> list1;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
