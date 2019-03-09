@@ -19,7 +19,7 @@ public class UpdateApp
 
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setSize(400, 400);
+        jFrame.setSize(1024, 800);
         MainPanel panel = new MainPanel();
         jFrame.setContentPane(panel);
         jFrame.setVisible(true);
