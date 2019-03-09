@@ -69,12 +69,13 @@ public class MainPanel extends JPanel {
 
         //---- button3 ----
         button3.setText("Project toevoegen");
-        button3.setIcon(new ImageIcon("C:\\work\\bag-java\\updater\\src\\main\\resources\\add.png"));
+        button3.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/add.png"));
         add(button3, "cell 0 0,align left top,grow 0 0");
 
         //---- button2 ----
         button2.setText("Synchroniseren");
-        button2.setIcon(new ImageIcon("C:\\work\\bag-java\\updater\\src\\main\\resources\\refresh.png"));
+        button2.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/refresh.png"));
+        button2.setEnabled(false);
         add(button2, "cell 1 0,align left top,grow 0 0");
 
         //---- separator2 ----
