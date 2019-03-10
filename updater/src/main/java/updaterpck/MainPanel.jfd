@@ -37,7 +37,7 @@ new FormModel {
 				"$columnConstraints": "[min!,fill]10[208:34,fill]"
 				"$rowConstraints": "[min!][][][][30:30:30][min!][][][][30:30:30][min!][][][][30:30:30][min!][]"
 			} ) {
-				name: "panel1"
+				name: "formPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"text": "Titel"
@@ -132,6 +132,13 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 16 2 1,growx"
 				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "addButton"
+					"text": "Add"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addButtonMouseClicked", true ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 16 2 1"
+				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 3 0 1 2,gapx null 0,gapy 0"
 			} )
@@ -154,7 +161,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 830, 710 )
+			"size": new java.awt.Dimension( 830, 765 )
 		} )
 	}
 }

@@ -5,6 +5,7 @@
 package updaterpck;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
@@ -17,13 +18,19 @@ public class MainPanel extends JPanel {
         initComponents();
     }
 
+    private void addButtonMouseClicked(MouseEvent e) {
+        // TODO add your code here
+        LayoutManager layout = formPanel.getLayout();
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
         button3 = new JButton();
         button2 = new JButton();
         separator2 = new JSeparator();
-        panel1 = new JPanel();
+        formPanel = new JPanel();
         label1 = new JLabel();
         separator1 = new JSeparator();
         textField2 = new JTextField();
@@ -42,6 +49,7 @@ public class MainPanel extends JPanel {
         label4 = new JLabel();
         separator5 = new JSeparator();
         textField11 = new JTextField();
+        addButton = new JButton();
         scrollPane1 = new JScrollPane();
         list1 = new JList<>();
 
@@ -82,9 +90,9 @@ public class MainPanel extends JPanel {
         separator2.setOrientation(SwingConstants.VERTICAL);
         add(separator2, "cell 2 0 1 2,growy");
 
-        //======== panel1 ========
+        //======== formPanel ========
         {
-            panel1.setLayout(new MigLayout(
+            formPanel.setLayout(new MigLayout(
                 "fill,insets 0,hidemode 3,gap 8 8",
                 // columns
                 "[min!,fill]10" +
@@ -110,35 +118,45 @@ public class MainPanel extends JPanel {
 
             //---- label1 ----
             label1.setText("Titel");
-            panel1.add(label1, "cell 0 0");
-            panel1.add(separator1, "cell 1 0");
-            panel1.add(textField2, "cell 0 1 2 1");
-            panel1.add(textField3, "cell 0 2 2 1");
-            panel1.add(textField4, "cell 0 3 2 1,growx");
+            formPanel.add(label1, "cell 0 0");
+            formPanel.add(separator1, "cell 1 0");
+            formPanel.add(textField2, "cell 0 1 2 1");
+            formPanel.add(textField3, "cell 0 2 2 1");
+            formPanel.add(textField4, "cell 0 3 2 1,growx");
 
             //---- label2 ----
             label2.setText("Locatie");
-            panel1.add(label2, "cell 0 5");
-            panel1.add(separator3, "cell 1 5,growx");
-            panel1.add(textField5, "cell 0 6 2 1,growx");
-            panel1.add(textField6, "cell 0 7 2 1,growx");
-            panel1.add(textField7, "cell 0 8 2 1,growx");
+            formPanel.add(label2, "cell 0 5");
+            formPanel.add(separator3, "cell 1 5,growx");
+            formPanel.add(textField5, "cell 0 6 2 1,growx");
+            formPanel.add(textField6, "cell 0 7 2 1,growx");
+            formPanel.add(textField7, "cell 0 8 2 1,growx");
 
             //---- label3 ----
             label3.setText("Text");
-            panel1.add(label3, "cell 0 10");
-            panel1.add(separator4, "cell 1 10,growx");
-            panel1.add(textField8, "cell 0 11 2 1,growx");
-            panel1.add(textField9, "cell 0 12 2 1,growx");
-            panel1.add(textField10, "cell 0 13 2 1,growx");
+            formPanel.add(label3, "cell 0 10");
+            formPanel.add(separator4, "cell 1 10,growx");
+            formPanel.add(textField8, "cell 0 11 2 1,growx");
+            formPanel.add(textField9, "cell 0 12 2 1,growx");
+            formPanel.add(textField10, "cell 0 13 2 1,growx");
 
             //---- label4 ----
             label4.setText("Plaatjes");
-            panel1.add(label4, "cell 0 15");
-            panel1.add(separator5, "cell 1 15,growx");
-            panel1.add(textField11, "cell 0 16 2 1,growx");
+            formPanel.add(label4, "cell 0 15");
+            formPanel.add(separator5, "cell 1 15,growx");
+            formPanel.add(textField11, "cell 0 16 2 1,growx");
+
+            //---- addButton ----
+            addButton.setText("Add");
+            addButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    addButtonMouseClicked(e);
+                }
+            });
+            formPanel.add(addButton, "cell 0 16 2 1");
         }
-        add(panel1, "cell 3 0 1 2,gapx null 0,gapy 0");
+        add(formPanel, "cell 3 0 1 2,gapx null 0,gapy 0");
 
         //======== scrollPane1 ========
         {
@@ -170,7 +188,7 @@ public class MainPanel extends JPanel {
     private JButton button3;
     private JButton button2;
     private JSeparator separator2;
-    private JPanel panel1;
+    private JPanel formPanel;
     private JLabel label1;
     private JSeparator separator1;
     private JTextField textField2;
@@ -189,6 +207,7 @@ public class MainPanel extends JPanel {
     private JLabel label4;
     private JSeparator separator5;
     private JTextField textField11;
+    private JButton addButton;
     private JScrollPane scrollPane1;
     private JList<String> list1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
