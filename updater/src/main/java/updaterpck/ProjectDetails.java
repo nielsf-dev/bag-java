@@ -4,6 +4,7 @@
 
 package updaterpck;
 
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -24,7 +25,6 @@ public class ProjectDetails extends JPanel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
-        formPanel = new JPanel();
         label1 = new JLabel();
         separator1 = new JSeparator();
         textField2 = new JTextField();
@@ -46,7 +46,7 @@ public class ProjectDetails extends JPanel {
         addButton = new JButton();
 
         //======== this ========
-        setBorder(new TitledBorder("Details"));
+        setBackground(new Color(80, 79, 79));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -56,85 +56,73 @@ public class ProjectDetails extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "insets 0,hidemode 3,gap 0 0",
+            "fill,insets 0,hidemode 3,gap 8 8",
             // columns
-            "[fill]",
+            "[min!,fill]10" +
+            "[208:34,fill]",
             // rows
+            "[min!]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[30:30:30]" +
+            "[min!]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[30:30:30]" +
+            "[min!]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[30:30:30]" +
+            "[min!]" +
             "[]"));
 
-        //======== formPanel ========
-        {
-            formPanel.setLayout(new MigLayout(
-                "fill,insets 0,hidemode 3,gap 8 8",
-                // columns
-                "[min!,fill]10" +
-                "[208:34,fill]",
-                // rows
-                "[min!]" +
-                "[]" +
-                "[]" +
-                "[]" +
-                "[30:30:30]" +
-                "[min!]" +
-                "[]" +
-                "[]" +
-                "[]" +
-                "[30:30:30]" +
-                "[min!]" +
-                "[]" +
-                "[]" +
-                "[]" +
-                "[30:30:30]" +
-                "[min!]" +
-                "[]"));
+        //---- label1 ----
+        label1.setText("Titel");
+        add(label1, "cell 0 0");
+        add(separator1, "cell 1 0");
+        add(textField2, "cell 0 1 2 1");
+        add(textField3, "cell 0 2 2 1");
+        add(textField4, "cell 0 3 2 1,growx");
 
-            //---- label1 ----
-            label1.setText("Titel");
-            formPanel.add(label1, "cell 0 0");
-            formPanel.add(separator1, "cell 1 0");
-            formPanel.add(textField2, "cell 0 1 2 1");
-            formPanel.add(textField3, "cell 0 2 2 1");
-            formPanel.add(textField4, "cell 0 3 2 1,growx");
+        //---- label2 ----
+        label2.setText("Locatie");
+        add(label2, "cell 0 5");
+        add(separator3, "cell 1 5,growx");
+        add(textField5, "cell 0 6 2 1,growx");
+        add(textField6, "cell 0 7 2 1,growx");
+        add(textField7, "cell 0 8 2 1,growx");
 
-            //---- label2 ----
-            label2.setText("Locatie");
-            formPanel.add(label2, "cell 0 5");
-            formPanel.add(separator3, "cell 1 5,growx");
-            formPanel.add(textField5, "cell 0 6 2 1,growx");
-            formPanel.add(textField6, "cell 0 7 2 1,growx");
-            formPanel.add(textField7, "cell 0 8 2 1,growx");
+        //---- label3 ----
+        label3.setText("Text");
+        add(label3, "cell 0 10");
+        add(separator4, "cell 1 10,growx");
+        add(textField8, "cell 0 11 2 1,growx");
+        add(textField9, "cell 0 12 2 1,growx");
+        add(textField10, "cell 0 13 2 1,growx");
 
-            //---- label3 ----
-            label3.setText("Text");
-            formPanel.add(label3, "cell 0 10");
-            formPanel.add(separator4, "cell 1 10,growx");
-            formPanel.add(textField8, "cell 0 11 2 1,growx");
-            formPanel.add(textField9, "cell 0 12 2 1,growx");
-            formPanel.add(textField10, "cell 0 13 2 1,growx");
+        //---- label4 ----
+        label4.setText("Plaatjes");
+        add(label4, "cell 0 15");
+        add(separator5, "cell 1 15,growx");
+        add(textField11, "cell 0 16 2 1,growx");
 
-            //---- label4 ----
-            label4.setText("Plaatjes");
-            formPanel.add(label4, "cell 0 15");
-            formPanel.add(separator5, "cell 1 15,growx");
-            formPanel.add(textField11, "cell 0 16 2 1,growx");
-
-            //---- addButton ----
-            addButton.setText("Add");
-            addButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    addButtonMouseClicked(e);
-                }
-            });
-            formPanel.add(addButton, "cell 0 16 2 1");
-        }
-        add(formPanel, "cell 0 0,gapx null 0,gapy 0");
+        //---- addButton ----
+        addButton.setText("Add");
+        addButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                addButtonMouseClicked(e);
+            }
+        });
+        add(addButton, "cell 0 16 2 1");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
-    private JPanel formPanel;
     private JLabel label1;
     private JSeparator separator1;
     private JTextField textField2;

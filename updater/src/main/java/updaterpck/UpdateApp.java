@@ -29,10 +29,10 @@ public class UpdateApp
                 "[min!][fill]",
                 "[]");
         JPanel mainPanel = new JPanel(migLayout);
-        mainPanel.setBorder(new LineBorder(Color.black, 1));
         mainPanel.add(new ProjectList(),"growy, gapright 0");
 
         JScrollPane scrollPane = new JScrollPane(new ProjectDetails());
+        scrollPane.setBorder(null);
         mainPanel.add(scrollPane,"growx, growy");
 
         JFrame jFrame = new JFrame();
