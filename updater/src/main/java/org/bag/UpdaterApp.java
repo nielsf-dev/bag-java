@@ -1,4 +1,4 @@
-package updaterpck;
+package org.bag;
 
 import com.bulenkov.iconloader.IconLoader;
 import net.miginfocom.swing.MigLayout;
@@ -10,7 +10,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class UpdateApp
+public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
         ArrayList<Image> images = new ArrayList<>();
@@ -18,11 +18,8 @@ public class UpdateApp
         Project p = new Project("test","locatie","", images,0,0);
         System.out.println(p.getTitle("nl"));
 
-       // Icon asd = IconLoader.findIcon("asd");
-
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
-
 
         setUIFont (new javax.swing.plaf.FontUIResource("Segoe UI",Font.PLAIN,13));
 

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sun Mar 10 12:04:31 CET 2019
  */
 
-package updaterpck;
+package org.bag;
 
 import java.awt.*;
 import javax.swing.*;

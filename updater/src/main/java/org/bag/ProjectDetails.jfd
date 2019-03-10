@@ -85,6 +85,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField10"
+				"text": "Chinese"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 13 2 1,growx"
 			} )
@@ -112,7 +113,7 @@ new FormModel {
 				"value": "cell 0 16 2 1"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 621 )
+			"location": new java.awt.Point( 0, 0 )
 		} )
 	}
 }

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sun Mar 10 11:54:04 CET 2019
  */
 
-package updaterpck;
+package org.bag;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -101,6 +101,9 @@ public class ProjectDetails extends JPanel {
         add(separator4, "cell 1 10,growx");
         add(textField8, "cell 0 11 2 1,growx");
         add(textField9, "cell 0 12 2 1,growx");
+
+        //---- textField10 ----
+        textField10.setText("Chinese");
         add(textField10, "cell 0 13 2 1,growx");
 
         //---- label4 ----
