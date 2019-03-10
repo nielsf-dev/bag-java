@@ -5,8 +5,8 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "fill,hidemode 3"
-			"$columnConstraints": "[min!][190!][min!][fill]"
-			"$rowConstraints": "[min!,top][]"
+			"$columnConstraints": "[min!]"
+			"$rowConstraints": "[min!,top][min!][]"
 		} ) {
 			name: "this"
 			"preferredSize": new java.awt.Dimension( 600, 500 )
@@ -24,123 +24,12 @@ new FormModel {
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/niels/src/bag-java/updater/src/main/resources/refresh.png" )
 				"enabled": false
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 0,align left top,grow 0 0"
+				"value": "cell 0 0"
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
-				name: "separator2"
-				"orientation": 1
+				name: "separator1"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 0 1 2,growy"
-			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-				"$layoutConstraints": "fill,insets 0,hidemode 3,gap 8 8"
-				"$columnConstraints": "[min!,fill]10[208:34,fill]"
-				"$rowConstraints": "[min!][][][][30:30:30][min!][][][][30:30:30][min!][][][][30:30:30][min!][]"
-			} ) {
-				name: "formPanel"
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"text": "Titel"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 0"
-				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator1"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 0"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField2"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 1 2 1"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField3"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 2 2 1"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField4"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 3 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label2"
-					"text": "Locatie"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 5"
-				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator3"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 5,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField5"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 6 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField6"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 7 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField7"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 8 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label3"
-					"text": "Text"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 10"
-				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator4"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 10,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField8"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 11 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField9"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 12 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField10"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 13 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label4"
-					"text": "Plaatjes"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 15"
-				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator5"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 15,growx"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField11"
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 16 2 1,growx"
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "addButton"
-					"text": "Add"
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addButtonMouseClicked", true ) )
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 16 2 1"
-				} )
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 3 0 1 2,gapx null 0,gapy 0"
+				"value": "cell 0 1,growx"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
@@ -157,11 +46,11 @@ new FormModel {
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 1 2 1,grow"
+				"value": "cell 0 2,grow"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 830, 765 )
+			"size": new java.awt.Dimension( 315, 765 )
 		} )
 	}
 }

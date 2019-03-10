@@ -1,6 +1,7 @@
 package updaterpck;
 
 import com.bulenkov.iconloader.IconLoader;
+import net.miginfocom.swing.MigLayout;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
 import com.bulenkov.darcula.DarculaLaf;
