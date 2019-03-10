@@ -37,7 +37,7 @@ public class ProjectList extends JPanel {
         setPreferredSize(null);
         setMinimumSize(null);
         setMaximumSize(null);
-        setBorder(LineBorder.createBlackLineBorder());
+        setBorder(null);
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -49,7 +49,7 @@ public class ProjectList extends JPanel {
         setLayout(new MigLayout(
             "filly,insets 0,hidemode 3",
             // columns
-            "[min!]",
+            "[342:min:min]",
             // rows
             "[min!,top]" +
             "[min!]" +

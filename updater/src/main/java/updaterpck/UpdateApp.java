@@ -31,7 +31,9 @@ public class UpdateApp
         JPanel mainPanel = new JPanel(migLayout);
         mainPanel.setBorder(new LineBorder(Color.black, 1));
         mainPanel.add(new ProjectList(),"growy, gapright 0");
-        mainPanel.add(new TestFiller(),"growx, growy");
+
+        JScrollPane scrollPane = new JScrollPane(new ProjectDetails());
+        mainPanel.add(scrollPane,"growx, growy");
 
         JFrame jFrame = new JFrame();
       //  Font font = jFrame.getFont();

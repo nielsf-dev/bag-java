@@ -6,6 +6,7 @@ package updaterpck;
 
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import net.miginfocom.swing.*;
 
 /**
@@ -45,6 +46,7 @@ public class ProjectDetails extends JPanel {
         addButton = new JButton();
 
         //======== this ========
+        setBorder(new TitledBorder("Details"));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(

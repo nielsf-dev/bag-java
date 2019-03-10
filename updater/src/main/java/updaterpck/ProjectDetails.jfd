@@ -9,6 +9,7 @@ new FormModel {
 			"$rowConstraints": "[]"
 		} ) {
 			name: "this"
+			"border": new javax.swing.border.TitledBorder( "Details" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "fill,insets 0,hidemode 3,gap 8 8"
 				"$columnConstraints": "[min!,fill]10[208:34,fill]"
@@ -121,7 +122,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"size": new java.awt.Dimension( 400, 605 )
 		} )
 	}
 }
