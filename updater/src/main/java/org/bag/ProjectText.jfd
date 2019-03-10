@@ -29,11 +29,13 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea2"
+				"border": new javax.swing.border.LineBorder( new java.awt.Color( 108, 108, 108, 255 ), 1, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 2 2 1,growx"
 			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea3"
+				"border": new javax.swing.border.LineBorder( new java.awt.Color( 108, 108, 108, 255 ), 1, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3 2 1,growx"
 			} )

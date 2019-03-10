@@ -77,7 +77,13 @@ public class ProjectText extends JPanel {
         //---- textArea1 ----
         textArea1.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea1, "cell 0 1 2 1,growx");
+
+        //---- textArea2 ----
+        textArea2.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea2, "cell 0 2 2 1,growx");
+
+        //---- textArea3 ----
+        textArea3.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea3, "cell 0 3 2 1,growx");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
