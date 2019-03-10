@@ -4,24 +4,26 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-			"$layoutConstraints": "fillx,hidemode 3,aligny top"
+			"$layoutConstraints": "fillx,hidemode 3,aligny top,gapy 10"
 			"$columnConstraints": "[min!][fill]"
 			"$rowConstraints": "[][][][]"
 		} ) {
 			name: "this"
+			"background": new java.awt.Color( 76, 76, 76, 255 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "projectTextLabel"
-				"text": "text"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0"
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "separator1"
+				"border": new javax.swing.border.EtchedBorder( 1, null, null )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 1 0"
 			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea1"
+				"border": new javax.swing.border.LineBorder( new java.awt.Color( 108, 108, 108, 255 ), 1, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 1 2 1,growx"
 			} )

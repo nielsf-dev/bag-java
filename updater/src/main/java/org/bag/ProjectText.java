@@ -6,6 +6,7 @@ package org.bag;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
 
@@ -30,7 +31,7 @@ public class ProjectText extends JPanel {
             this.projectTextLabel.setText("Title");
         else if(projectTextType == ProjectTextType.Location)
             this.projectTextLabel.setText("Location");
-        else
+        else if(projectTextType == ProjectTextType.Text)
             this.projectTextLabel.setText("Text");
     }
 
@@ -48,6 +49,7 @@ public class ProjectText extends JPanel {
         textArea3 = new JTextArea();
 
         //======== this ========
+        setBackground(new Color(76, 76, 76));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -57,7 +59,7 @@ public class ProjectText extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "fillx,hidemode 3,aligny top",
+            "fillx,hidemode 3,aligny top,gapy 10",
             // columns
             "[min!]" +
             "[fill]",
@@ -66,11 +68,14 @@ public class ProjectText extends JPanel {
             "[]" +
             "[]" +
             "[]"));
-
-        //---- projectTextLabel ----
-        projectTextLabel.setText("text");
         add(projectTextLabel, "cell 0 0");
+
+        //---- separator1 ----
+        separator1.setBorder(new EtchedBorder());
         add(separator1, "cell 1 0");
+
+        //---- textArea1 ----
+        textArea1.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea1, "cell 0 1 2 1,growx");
         add(textArea2, "cell 0 2 2 1,growx");
         add(textArea3, "cell 0 3 2 1,growx");

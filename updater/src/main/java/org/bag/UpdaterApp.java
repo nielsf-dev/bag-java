@@ -3,8 +3,12 @@ package org.bag;
 import com.bulenkov.iconloader.IconLoader;
 import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
+import org.bag.domain.Image;
+import org.bag.domain.Project;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UpdaterApp
 {
@@ -22,7 +26,11 @@ public class UpdaterApp
         mainPanel.add(new ProjectList(),"growy, gapright 0");
 
         // Project details scrollable
-        JScrollPane scrollPane = new JScrollPane(new ProjectDetails());
+        ProjectDetails projectDetails = new ProjectDetails();
+        Project project = new Project("detitel", "tekst", "", createImages(), 0,1);
+        projectDetails.setProject(project);
+
+        JScrollPane scrollPane = new JScrollPane(projectDetails);
         scrollPane.setBorder(null);
         mainPanel.add(scrollPane,"growx, growy");
 
@@ -32,6 +40,14 @@ public class UpdaterApp
         jFrame.setSize(1024, 800);
         jFrame.setContentPane(mainPanel);
         jFrame.setVisible(true);
+    }
+
+
+    private static ArrayList<org.bag.domain.Image> createImages() {
+        ArrayList<org.bag.domain.Image> images = new ArrayList<>();
+        images.add(new org.bag.domain.Image("image1.jpg"));
+        images.add(new Image("image2.jpg"));
+        return images;
     }
 
     public static void setUIFont (javax.swing.plaf.FontUIResource f){
