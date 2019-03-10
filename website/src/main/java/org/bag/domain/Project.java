@@ -39,18 +39,6 @@ public class Project {
 
     private Project(){}
 
-    private enum SupportedLanguages {
-        Chinese("zh"),
-        English("en"),
-        Dutch("nl");
-
-        private final String text;
-
-        SupportedLanguages(final String text) {
-            this.text = text;
-        }
-    }
-
     /**
      * Maakt een project aan. De banner en frontend index moeten geldig zijn mbt de images List.
      * @throws Exception Ongeldige index opgegeven
@@ -77,27 +65,27 @@ public class Project {
     }
 
     public String getTitle(String lang) {
-        if(lang == SupportedLanguages.English.text)
+        if(lang == SupportedProjectLanguage.English.text)
             return titel_en;
-        else if(lang == SupportedLanguages.Chinese.text)
+        else if(lang == SupportedProjectLanguage.Chinese.text)
             return titel_zh;
         else
             return titel_nl;
     }
 
     public String getLocatie(String lang) {
-        if(lang == SupportedLanguages.English.text)
+        if(lang == SupportedProjectLanguage.English.text)
             return locatie_en;
-        else if(lang == SupportedLanguages.Chinese.text)
+        else if(lang == SupportedProjectLanguage.Chinese.text)
             return locatie_zh;
         else
             return locatie_nl;
     }
 
     public String getText(String lang) {
-        if(lang == SupportedLanguages.English.text)
+        if(lang == SupportedProjectLanguage.English.text)
             return text_en;
-        else if(lang == SupportedLanguages.Chinese.text)
+        else if(lang == SupportedProjectLanguage.Chinese.text)
             return text_zh;
         else
             return text_nl;
@@ -204,3 +192,6 @@ public class Project {
         return Objects.hash(titel_nl, locatie_nl, images, bannerImage, frontPageImage);
     }
 }
+
+
+

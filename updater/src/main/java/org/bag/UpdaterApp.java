@@ -2,39 +2,32 @@ package org.bag;
 
 import com.bulenkov.iconloader.IconLoader;
 import net.miginfocom.swing.MigLayout;
-import org.bag.domain.Image;
-import org.bag.domain.Project;
 import com.bulenkov.darcula.DarculaLaf;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
-        ArrayList<Image> images = new ArrayList<>();
-        images.add(new Image("test.png"));
-        Project p = new Project("test","locatie","", images,0,0);
-        System.out.println(p.getTitle("nl"));
-
+        // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
-
         setUIFont (new javax.swing.plaf.FontUIResource("Segoe UI",Font.PLAIN,13));
 
+        // Main mig layout
         MigLayout migLayout = new MigLayout("fill, insets 0, gap 0 0",
                 "[min!][fill]",
                 "[]");
         JPanel mainPanel = new JPanel(migLayout);
         mainPanel.add(new ProjectList(),"growy, gapright 0");
 
+        // Project details scrollable
         JScrollPane scrollPane = new JScrollPane(new ProjectDetails());
         scrollPane.setBorder(null);
         mainPanel.add(scrollPane,"growx, growy");
 
+        // Main frame
         JFrame jFrame = new JFrame();
-
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
         jFrame.setContentPane(mainPanel);
