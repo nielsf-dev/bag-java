@@ -23,6 +23,7 @@ public class UpdateApp
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
 
+
         setUIFont (new javax.swing.plaf.FontUIResource("Segoe UI",Font.PLAIN,13));
 
         MigLayout migLayout = new MigLayout("fill, insets 0, gap 0 0",

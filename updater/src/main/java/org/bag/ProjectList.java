@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Mar 08 23:27:44 CET 2019
  */
 
-package updaterpck;
+package org.bag;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -57,12 +57,12 @@ public class ProjectList extends JPanel {
 
         //---- button3 ----
         button3.setText("Project toevoegen");
-        button3.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/add.png"));
+        button3.setIcon(new ImageIcon(getClass().getResource("/add.png")));
         add(button3, "cell 0 0,align left top,grow 0 0");
 
         //---- button2 ----
         button2.setText("Synchroniseren");
-        button2.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/refresh.png"));
+        button2.setIcon(new ImageIcon(getClass().getResource("/refresh.png")));
         add(button2, "cell 0 0");
         add(separator1, "cell 0 1,growx");
 
