@@ -13,8 +13,8 @@ import net.miginfocom.swing.*;
 /**
  * @author Niels
  */
-public class MainPanel extends JPanel {
-    public MainPanel() {
+public class ProjectList extends JPanel {
+    public ProjectList() {
         initComponents();
     }
 
@@ -60,7 +60,6 @@ public class MainPanel extends JPanel {
         //---- button2 ----
         button2.setText("Synchroniseren");
         button2.setIcon(new ImageIcon("/home/niels/src/bag-java/updater/src/main/resources/refresh.png"));
-        button2.setEnabled(false);
         add(button2, "cell 0 0");
         add(separator1, "cell 0 1,growx");
 

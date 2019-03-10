@@ -1,7 +1,6 @@
 package updaterpck;
 
 import com.bulenkov.iconloader.IconLoader;
-import net.miginfocom.swing.MigLayout;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
 import com.bulenkov.darcula.DarculaLaf;
@@ -24,12 +23,13 @@ public class UpdateApp
 
         setUIFont (new javax.swing.plaf.FontUIResource("Segoe UI",Font.PLAIN,13));
 
+
         JFrame jFrame = new JFrame();
       //  Font font = jFrame.getFont();
     //    jFrame.setFont(new Font("Arial",0,12));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
-        MainPanel panel = new MainPanel();
+        ProjectList panel = new ProjectList();
         jFrame.setContentPane(panel);
         jFrame.setVisible(true);
 

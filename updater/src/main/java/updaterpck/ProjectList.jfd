@@ -22,7 +22,6 @@ new FormModel {
 				name: "button2"
 				"text": "Synchroniseren"
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/niels/src/bag-java/updater/src/main/resources/refresh.png" )
-				"enabled": false
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0"
 			} )
