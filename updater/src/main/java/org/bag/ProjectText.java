@@ -27,12 +27,24 @@ public class ProjectText extends JPanel {
         this();
         this.project = project;
         this.projectTextType = projectTextType;
-        if(projectTextType == ProjectTextType.Title)
-            this.projectTextLabel.setText("Title");
-        else if(projectTextType == ProjectTextType.Location)
-            this.projectTextLabel.setText("Location");
-        else if(projectTextType == ProjectTextType.Text)
-            this.projectTextLabel.setText("Text");
+        if(projectTextType == ProjectTextType.Title) {
+            this.projectTextLabel.setText("Titel");
+            this.textArea1.setText(project.getTitel_nl());
+            this.textArea2.setText(project.getTitel_en());
+            this.textArea3.setText(project.getTitel_zh());
+        }
+        else if(projectTextType == ProjectTextType.Location) {
+            this.projectTextLabel.setText("Locatie");
+            this.textArea1.setText(project.getLocatie_nl());
+            this.textArea2.setText(project.getLocatie_en());
+            this.textArea3.setText(project.getLocatie_zh());
+        }
+        else if(projectTextType == ProjectTextType.Text) {
+            this.projectTextLabel.setText("Tekst");
+            this.textArea1.setText(project.getText_nl());
+            this.textArea2.setText(project.getText_nl());
+            this.textArea3.setText(project.getText_zh());
+        }
     }
 
     public ProjectText() {
