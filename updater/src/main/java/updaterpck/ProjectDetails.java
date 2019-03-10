@@ -54,7 +54,7 @@ public class ProjectDetails extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "hidemode 3",
+            "insets 0,hidemode 3,gap 0 0",
             // columns
             "[fill]",
             // rows

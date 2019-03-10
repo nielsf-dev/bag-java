@@ -4,12 +4,12 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-			"$layoutConstraints": "fill,hidemode 3"
+			"$layoutConstraints": "fill,insets 0,hidemode 3"
 			"$columnConstraints": "[fill]"
 			"$rowConstraints": "[]"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 88, 88, 88, 255 )
+			"background": new java.awt.Color( 80, 79, 79, 255 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "text"

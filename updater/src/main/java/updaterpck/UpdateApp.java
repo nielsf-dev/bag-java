@@ -6,6 +6,7 @@ import org.bag.domain.Image;
 import org.bag.domain.Project;
 import com.bulenkov.darcula.DarculaLaf;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -24,12 +25,12 @@ public class UpdateApp
 
         setUIFont (new javax.swing.plaf.FontUIResource("Segoe UI",Font.PLAIN,13));
 
-
-        MigLayout migLayout = new MigLayout("fill",
+        MigLayout migLayout = new MigLayout("fill, insets 0, gap 0 0",
                 "[min!][fill]",
                 "[]");
         JPanel mainPanel = new JPanel(migLayout);
-        mainPanel.add(new ProjectList(),"growy");
+        mainPanel.setBorder(new LineBorder(Color.black, 1));
+        mainPanel.add(new ProjectList(),"growy, gapright 0");
         mainPanel.add(new TestFiller(),"growx, growy");
 
         JFrame jFrame = new JFrame();

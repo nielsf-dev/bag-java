@@ -4,13 +4,15 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-			"$layoutConstraints": "fill,hidemode 3"
+			"$layoutConstraints": "filly,insets 0,hidemode 3"
 			"$columnConstraints": "[min!]"
 			"$rowConstraints": "[min!,top][min!][]"
 		} ) {
 			name: "this"
-			"preferredSize": new java.awt.Dimension( 600, 500 )
-			"minimumSize": new java.awt.Dimension( 600, 500 )
+			"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			"maximumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
 				"text": "Project toevoegen"
@@ -49,7 +51,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 315, 765 )
+			"size": new java.awt.Dimension( 310, 765 )
 		} )
 	}
 }

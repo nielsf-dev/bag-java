@@ -7,6 +7,7 @@ package updaterpck;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
 
@@ -33,8 +34,10 @@ public class ProjectList extends JPanel {
         list1 = new JList<>();
 
         //======== this ========
-        setPreferredSize(new Dimension(600, 500));
-        setMinimumSize(new Dimension(600, 500));
+        setPreferredSize(null);
+        setMinimumSize(null);
+        setMaximumSize(null);
+        setBorder(LineBorder.createBlackLineBorder());
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -44,7 +47,7 @@ public class ProjectList extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "fill,hidemode 3",
+            "filly,insets 0,hidemode 3",
             // columns
             "[min!]",
             // rows

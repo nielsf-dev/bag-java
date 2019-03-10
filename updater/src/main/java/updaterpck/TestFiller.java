@@ -22,7 +22,7 @@ public class TestFiller extends JPanel {
         button1 = new JButton();
 
         //======== this ========
-        setBackground(new Color(88, 88, 88));
+        setBackground(new Color(80, 79, 79));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -32,7 +32,7 @@ public class TestFiller extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "fill,hidemode 3",
+            "fill,insets 0,hidemode 3",
             // columns
             "[fill]",
             // rows
