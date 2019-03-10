@@ -34,16 +34,11 @@ public class UpdaterApp
         mainPanel.add(scrollPane,"growx, growy");
 
         JFrame jFrame = new JFrame();
-      //  Font font = jFrame.getFont();
-    //    jFrame.setFont(new Font("Arial",0,12));
+
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
         jFrame.setContentPane(mainPanel);
         jFrame.setVisible(true);
-
-//        MainFrame mainFrame = new MainFrame();
-//        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        mainFrame.setVisible(true);
     }
 
     public static void setUIFont (javax.swing.plaf.FontUIResource f){

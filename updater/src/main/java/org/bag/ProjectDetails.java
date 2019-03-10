@@ -7,18 +7,45 @@ package org.bag;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
+
 import net.miginfocom.swing.*;
+import org.bag.domain.Project;
+
 
 /**
  * @author Niels
  */
 public class ProjectDetails extends JPanel {
+    private Project project;
     public ProjectDetails() {
         initComponents();
+
+      //  this.project = project;
+    }
+
+    class ProjectTextField extends JTextField{
+        private Project project;
+
+        public ProjectTextField(int arg, Project project) {
+            super(arg);
+            this.project = project;
+            addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusLost(FocusEvent e) {
+                    System.out.println("focus lost");
+                    writeToModel();
+                }
+            });
+        }
+
+        public void writeToModel() {
+        }
     }
 
     private void addButtonMouseClicked(MouseEvent e) {
+    }
+
+    private void textField2FocusLost(FocusEvent e) {
         // TODO add your code here
     }
 
@@ -56,7 +83,7 @@ public class ProjectDetails extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "fill,insets 0,hidemode 3,gap 8 8",
+            "fill,insets 0,hidemode 3,align left top,gap 8 8",
             // columns
             "[min!,fill]10" +
             "[208:34,fill]",
@@ -83,6 +110,14 @@ public class ProjectDetails extends JPanel {
         label1.setText("Titel");
         add(label1, "cell 0 0");
         add(separator1, "cell 1 0");
+
+        //---- textField2 ----
+        textField2.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                textField2FocusLost(e);
+            }
+        });
         add(textField2, "cell 0 1 2 1");
         add(textField3, "cell 0 2 2 1");
         add(textField4, "cell 0 3 2 1,growx");
