@@ -18,6 +18,9 @@ public class ProjectImage extends JPanel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
+        imageDrawer1 = new ImageDrawer();
+        checkBox1 = new JCheckBox();
+        checkBox2 = new JCheckBox();
 
         //======== this ========
 
@@ -29,19 +32,28 @@ public class ProjectImage extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "hidemode 3",
+            "fill,hidemode 3",
             // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]",
+            "[200!]",
             // rows
-            "[]" +
-            "[]"));
+            "[200!]" +
+            "[min!]"));
+        add(imageDrawer1, "cell 0 0,grow");
+
+        //---- checkBox1 ----
+        checkBox1.setText("Voorpagina");
+        add(checkBox1, "cell 0 1");
+
+        //---- checkBox2 ----
+        checkBox2.setText("Banner");
+        add(checkBox2, "cell 0 1");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
+    private ImageDrawer imageDrawer1;
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
