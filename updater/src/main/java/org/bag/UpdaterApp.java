@@ -18,6 +18,7 @@ public class UpdaterApp
     public static void main(String[] args) throws Exception {
         URL resource = UpdaterApp.class.getResource("/add.png");
         BufferedImage read = ImageIO.read(resource);
+        System.out.println(new TestBean());
 
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
