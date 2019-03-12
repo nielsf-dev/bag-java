@@ -6,13 +6,19 @@ import com.bulenkov.darcula.DarculaLaf;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
+        URL resource = UpdaterApp.class.getResource("/add.png");
+        BufferedImage read = ImageIO.read(resource);
+
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
