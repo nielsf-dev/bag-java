@@ -11,21 +11,25 @@ import java.net.URL;
 
 @BeanInfo(description = "My bean")
 public class ImageDrawer extends JComponent {
-    @Override
-    public void paint(Graphics g) {
+
+    BufferedImage outputImage;
+    public ImageDrawer() {
         URL resource = UpdaterApp.class.getResource("/citygardenavond.jpg");
         try {
             BufferedImage read = ImageIO.read(resource);
+            outputImage = new BufferedImage(100, 100, read.getType());
 
-            BufferedImage outputImage = new BufferedImage(100, 100, read.getType());
-
-            // scales the input image to the output image
             Graphics2D g2d = outputImage.createGraphics();
             g2d.drawImage(read, 0, 0, 100, 100, null);
             g2d.dispose();
-            g.drawImage(outputImage,0,0,this);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.drawImage(outputImage,0,0,this);
     }
 }
