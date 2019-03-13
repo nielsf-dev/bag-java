@@ -15,6 +15,7 @@ apply plugin: 'io.spring.dependency-management'
 
 // 60, 63, 65
 // border 108, 108, 108
+// todo https://tips4java.wordpress.com/2008/11/06/wrap-layout/
 bootJar {
     baseName = 'gs-multi-module-application'
     version = '0.0.1-SNAPSHOT'
@@ -34,5 +35,6 @@ dependencies {
     compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
     compile project(':website')
     compile (name:'darcula', ext:'jar')
+    compile (name:'jfd-annotations', ext:'jar')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

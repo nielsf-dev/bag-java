@@ -36,7 +36,7 @@ public class ProjectImage extends JPanel {
             // columns
             "[200!]",
             // rows
-            "[200!]" +
+            "[100!]" +
             "[min!]"));
         add(imageDrawer1, "cell 0 0,grow");
 

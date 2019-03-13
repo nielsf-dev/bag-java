@@ -39,13 +39,16 @@ public class UpdaterApp
 
         JScrollPane scrollPane = new JScrollPane(projectDetails);
         scrollPane.setBorder(null);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainPanel.add(scrollPane,"growx, growy");
 
         // Main frame
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
+        jFrame.setResizable(false);
         jFrame.setContentPane(mainPanel);
+
         jFrame.setVisible(true);
     }
 
