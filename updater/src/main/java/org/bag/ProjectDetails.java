@@ -40,6 +40,8 @@ public class ProjectDetails extends JPanel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
+        label1 = new JLabel();
+        separator1 = new JSeparator();
         plaatjesLayout = new JPanel();
         button1 = new JButton();
         button2 = new JButton();
@@ -63,32 +65,41 @@ public class ProjectDetails extends JPanel {
             "[]" +
             "[]" +
             "[]" +
+            "[]" +
             "[grow]" +
             "[]"));
 
+        //---- label1 ----
+        label1.setText("Plaatjes");
+        add(label1, "cell 0 3,alignx left,growx 0,gapx 10");
+        add(separator1, "cell 0 3,growx");
+
         //======== plaatjesLayout ========
         {
+            plaatjesLayout.setBackground(new Color(76, 76, 76));
             plaatjesLayout.setLayout(new FlowLayout());
         }
-        add(plaatjesLayout, "cell 0 3,grow");
+        add(plaatjesLayout, "cell 0 4,grow");
 
         //---- button1 ----
         button1.setText("Plaatje toevoegen");
         button1.addActionListener(e -> button1ActionPerformed(e));
-        add(button1, "cell 0 4,alignx left,growx 0");
+        add(button1, "cell 0 5,alignx left,growx 0");
 
         //---- button2 ----
         button2.setText("Opslaan");
-        add(button2, "cell 0 4");
+        add(button2, "cell 0 5");
 
         //---- button3 ----
         button3.setText("Annuleren");
-        add(button3, "cell 0 4");
+        add(button3, "cell 0 5");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
+    private JLabel label1;
+    private JSeparator separator1;
     private JPanel plaatjesLayout;
     private JButton button1;
     private JButton button2;

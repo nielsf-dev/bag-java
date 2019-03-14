@@ -21,6 +21,7 @@ public class ProjectImage extends JPanel {
         imageDrawer1 = new ImageDrawer();
         checkBox1 = new JCheckBox();
         checkBox2 = new JCheckBox();
+        checkBox3 = new JCheckBox();
 
         //======== this ========
 
@@ -34,10 +35,12 @@ public class ProjectImage extends JPanel {
         setLayout(new MigLayout(
             "fill,hidemode 3",
             // columns
-            "[200!]",
+            "[min!]",
             // rows
             "[100!]" +
-            "[min!]"));
+            "[min!]" +
+            "[]" +
+            "[]"));
         add(imageDrawer1, "cell 0 0,grow");
 
         //---- checkBox1 ----
@@ -46,7 +49,11 @@ public class ProjectImage extends JPanel {
 
         //---- checkBox2 ----
         checkBox2.setText("Banner");
-        add(checkBox2, "cell 0 1");
+        add(checkBox2, "cell 0 2");
+
+        //---- checkBox3 ----
+        checkBox3.setText("Hidden");
+        add(checkBox3, "cell 0 3");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -55,5 +62,6 @@ public class ProjectImage extends JPanel {
     private ImageDrawer imageDrawer1;
     private JCheckBox checkBox1;
     private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

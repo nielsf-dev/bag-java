@@ -5,8 +5,8 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "fill,hidemode 3"
-			"$columnConstraints": "[200!]"
-			"$rowConstraints": "[100!][min!]"
+			"$columnConstraints": "[min!]"
+			"$rowConstraints": "[100!][min!][][]"
 		} ) {
 			name: "this"
 			add( new FormComponent( "org.bag.ImageDrawer" ) {
@@ -24,11 +24,17 @@ new FormModel {
 				name: "checkBox2"
 				"text": "Banner"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 1"
+				"value": "cell 0 2"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox3"
+				"text": "Hidden"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 3"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 210, 130 )
+			"size": new java.awt.Dimension( 100, 200 )
 		} )
 	}
 }
