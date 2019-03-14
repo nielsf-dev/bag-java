@@ -18,6 +18,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "separator1"
+				"border": new javax.swing.border.EtchedBorder( 1, null, null )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3,growx"
 			} )

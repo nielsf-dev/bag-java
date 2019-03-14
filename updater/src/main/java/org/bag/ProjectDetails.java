@@ -7,6 +7,7 @@ package org.bag;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
@@ -72,6 +73,9 @@ public class ProjectDetails extends JPanel {
         //---- label1 ----
         label1.setText("Plaatjes");
         add(label1, "cell 0 3,alignx left,growx 0,gapx 10");
+
+        //---- separator1 ----
+        separator1.setBorder(new EtchedBorder());
         add(separator1, "cell 0 3,growx");
 
         //======== plaatjesLayout ========
