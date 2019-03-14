@@ -4,7 +4,9 @@
 
 package org.bag;
 
+import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 import net.miginfocom.swing.*;
 
 /**
@@ -15,13 +17,32 @@ public class ProjectImage extends JPanel {
         initComponents();
     }
 
+    private void frontpageActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        Object source = e.getSource();
+        JCheckBox checkBox = (JCheckBox)source;
+        System.out.println("action" + checkBox.isSelected());
+    }
+
+    public void setFrontPageChecked(Boolean checked){
+        frontpage.setSelected(checked);
+    }
+
+    public void setBannerChecked(Boolean checked){
+        banner.setSelected(checked);
+    }
+
+    public void setHiddenChecked(Boolean checked){
+        hidden.setSelected(checked);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
         imageDrawer1 = new ImageDrawer();
-        checkBox1 = new JCheckBox();
-        checkBox2 = new JCheckBox();
-        checkBox3 = new JCheckBox();
+        frontpage = new JCheckBox();
+        banner = new JCheckBox();
+        hidden = new JCheckBox();
 
         //======== this ========
 
@@ -43,25 +64,26 @@ public class ProjectImage extends JPanel {
             "[]"));
         add(imageDrawer1, "cell 0 0,grow");
 
-        //---- checkBox1 ----
-        checkBox1.setText("Voorpagina");
-        add(checkBox1, "cell 0 1");
+        //---- frontpage ----
+        frontpage.setText("Voorpagina");
+        frontpage.addActionListener(e -> frontpageActionPerformed(e));
+        add(frontpage, "cell 0 1");
 
-        //---- checkBox2 ----
-        checkBox2.setText("Banner");
-        add(checkBox2, "cell 0 2");
+        //---- banner ----
+        banner.setText("Banner");
+        add(banner, "cell 0 2");
 
-        //---- checkBox3 ----
-        checkBox3.setText("Hidden");
-        add(checkBox3, "cell 0 3");
+        //---- hidden ----
+        hidden.setText("Hidden");
+        add(hidden, "cell 0 3");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
     private ImageDrawer imageDrawer1;
-    private JCheckBox checkBox1;
-    private JCheckBox checkBox2;
-    private JCheckBox checkBox3;
+    private JCheckBox frontpage;
+    private JCheckBox banner;
+    private JCheckBox hidden;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

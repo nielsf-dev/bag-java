@@ -15,19 +15,20 @@ new FormModel {
 				"value": "cell 0 0,grow"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
-				name: "checkBox1"
+				name: "frontpage"
 				"text": "Voorpagina"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "frontpageActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
-				name: "checkBox2"
+				name: "banner"
 				"text": "Banner"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 2"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
-				name: "checkBox3"
+				name: "hidden"
 				"text": "Hidden"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3"

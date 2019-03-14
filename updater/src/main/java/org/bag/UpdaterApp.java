@@ -46,8 +46,8 @@ public class UpdaterApp
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
-        jFrame.setResizable(false);
         jFrame.setContentPane(mainPanel);
+        jFrame.setResizable(false);
 
         jFrame.setVisible(true);
     }

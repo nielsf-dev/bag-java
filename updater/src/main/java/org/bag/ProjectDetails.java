@@ -30,12 +30,6 @@ public class ProjectDetails extends JPanel {
     private void button1ActionPerformed(ActionEvent e) {
         this.plaatjesLayout.add(new ProjectImage());
         this.plaatjesLayout.revalidate();
-
-        if(this.plaatjesLayout.getComponents().length == 1){
-            Dimension currentSize = this.plaatjesLayout.getSize();
-            Dimension maximumSize = this.plaatjesLayout.getMaximumSize();
-            this.plaatjesLayout.setMaximumSize(new Dimension(currentSize.width, maximumSize.height));
-        }
     }
 
     private void initComponents() {
