@@ -10,9 +10,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 76, 76, 76, 255 )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
-				"axis": 1
-			} ) {
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
 				name: "plaatjesLayout"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3,grow"

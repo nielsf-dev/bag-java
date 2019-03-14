@@ -17,6 +17,7 @@ import org.bag.domain.Project;
 public class ProjectDetails extends JPanel {
     public ProjectDetails() {
         initComponents();
+        plaatjesLayout.setLayout(new WrapLayout());
     }
 
     public void setProject(Project project){
@@ -30,9 +31,9 @@ public class ProjectDetails extends JPanel {
         this.plaatjesLayout.revalidate();
 
         if(this.plaatjesLayout.getComponents().length == 1){
-          //  Dimension currentSize = this.plaatjesLayout.getSize();
-          //  Dimension maximumSize = this.plaatjesLayout.getMaximumSize();
-          //  this.plaatjesLayout.setMaximumSize(new Dimension(currentSize.width, maximumSize.height));
+            Dimension currentSize = this.plaatjesLayout.getSize();
+            Dimension maximumSize = this.plaatjesLayout.getMaximumSize();
+            this.plaatjesLayout.setMaximumSize(new Dimension(currentSize.width, maximumSize.height));
         }
     }
 
@@ -67,7 +68,7 @@ public class ProjectDetails extends JPanel {
 
         //======== plaatjesLayout ========
         {
-            plaatjesLayout.setLayout(new BoxLayout(plaatjesLayout, BoxLayout.Y_AXIS));
+            plaatjesLayout.setLayout(new FlowLayout());
         }
         add(plaatjesLayout, "cell 0 3,grow");
 
