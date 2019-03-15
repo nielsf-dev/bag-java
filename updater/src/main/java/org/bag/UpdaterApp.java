@@ -3,8 +3,8 @@ package org.bag;
 import com.bulenkov.iconloader.IconLoader;
 import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
-import domain.Image;
-import domain.Project;
+import org.bag.domain.Image;
+import org.bag.domain.Project;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
