@@ -36,19 +36,13 @@ open class Application : WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry?) {
         registry!!.addInterceptor(localeChangeInterceptor())
     }
+}
 
-    companion object {
+fun main(args: Array<String>) {
+    val builder = Locale.Builder().setLanguage("nl").setRegion("US")
+    val locale1 = builder.build()
 
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val builder = Locale.Builder().setLanguage("nl").setRegion("US")
-            val locale1 = builder.build()
-            val iso3Country = locale1.isO3Country
-            val iso3Language = locale1.isO3Language
-
-            SpringApplication.run(Application::class.java, *args)
-        }
-    }
+    SpringApplication.run(Application::class.java, *args)
 }
 
 

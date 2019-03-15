@@ -7,28 +7,28 @@ import java.util.Objects
  * Plaatje behorende bij een project.
  */
 @Entity
-class Image {
+class Image(val url: String) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Int = 0
 
-    val url: String
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
 
-    constructor(imageUrl: String) {
-        this.url = imageUrl
-    }
+        other as Image
 
-    override fun equals(o: Any?): Boolean {
-        if (this === o) return true
-        val that = o as Image?
-        return url == that!!.url
+        if (url != other.url) return false
+        if (id != other.id) return false
+
+        return true
     }
 
     override fun hashCode(): Int {
-        return Objects.hash(url)
+        var result = url.hashCode()
+        result = 31 * result + id
+        return result
     }
 
-    private constructor(){
-        this.url = ""
-    }
+
 }

@@ -1,37 +1,32 @@
 package org.bag.domain
 
-import java.util.*
 import javax.persistence.*
 
-/**
- * Project voor de BAG Site
- */
+/** Project voor de BAG Site */
 @Entity
-class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Int = 0
+class Project(
 
-    var titel_nl: String
-    var titel_en: String
-    var titel_zh: String
+        /** de titel in het nederlands */
+        var titel_nl: String,
 
-    var locatie_nl: String
-    var locatie_en: String
-    var locatie_zh: String
+        /** De locatie in het nederlands */
+        var locatie_nl: String,
 
-    var text_nl: String
-    var text_en: String
-    var text_zh: String
+        /** De tekst in het nederlands */
+        var text_nl: String,
 
-    @JoinTable
-    @OneToMany
-    val images: List<Image>
+        /** De lijst met plaatjes */
+        @JoinTable
+        @OneToMany
+        val images: List<Image>)
+{
 
+    /** De image op de banner */
     @ManyToOne
     @JoinColumn
     private var bannerImage: Image
 
+    /** De images op de frontend */
     @ManyToOne
     @JoinColumn
     private var frontPageImage: Image
@@ -40,26 +35,43 @@ class Project {
      * Maakt een project aan. De [bannerImageIndex] en [frontPageImageIndex] moeten geldig zijn mbt de [images].
      * @throws Exception Ongeldige index opgegeven
      */
-    constructor(titel: String, locatie: String, text: String, images: List<Image>, bannerImageIndex: Int, frontPageImageIndex: Int) {
-        this.titel_nl = titel
-        this.titel_en = ""
-        this.titel_zh = ""
-
-        this.locatie_nl = locatie
-        this.locatie_en = ""
-        this.locatie_zh = ""
-
-        this.text_nl = text
-        this.text_en = ""
-        this.text_zh = ""
-
-        this.images = images
-        this.bannerImage = validateAndGet(bannerImageIndex)
-        this.frontPageImage = validateAndGet(frontPageImageIndex)
+    constructor(titel: String, locatie: String, text: String, images: List<Image>, bannerImageIndex: Int, frontPageImageIndex: Int) : this(titel, locatie, text, images) {
+        this.bannerImage = validateAndGetFromImages(bannerImageIndex)
+        this.frontPageImage = validateAndGetFromImages(frontPageImageIndex)
     }
 
-    private fun validateAndGet(index: Int): Image {
-        if (images.isEmpty() || index > images.size - 1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: Int = 0
+
+    /** de titel in het engels */
+    var titel_en: String = ""
+
+    /** de titel in het chinees */
+    var titel_zh: String = ""
+
+    /** De locatie in het engels */
+    var locatie_en: String = ""
+
+    /** De locatie in het chinees */
+    var locatie_zh: String = ""
+
+    /** De tekst in het engels */
+    var text_en: String = ""
+
+    /** De tekst in het chinees */
+    var text_zh: String = ""
+
+    init {
+        bannerImage = validateAndGetFromImages(0)
+        frontPageImage = validateAndGetFromImages(0)
+    }
+
+    private fun validateAndGetFromImages(index: Int): Image {
+        if (images.isEmpty())
+            throw Exception("No images")
+
+        if(index > images.size - 1)
             throw Exception("Invalid index")
 
         return images[index]
@@ -98,20 +110,24 @@ class Project {
         }
     }
 
+    /** De banner images */
     fun getBannerImage() : Image {
         return bannerImage
     }
 
+    /** Set de banner op [imageIndex] */
     fun setBannerImage(imageIndex: Int){
-        bannerImage = validateAndGet(imageIndex)
+        bannerImage = validateAndGetFromImages(imageIndex)
     }
 
+    /** De frontend image */
     fun getFrontendImage() : Image {
         return frontPageImage
     }
 
+    /** Set de frontendimage op [imageIndex] */
     fun setFrontendImage(imageIndex: Int){
-        frontPageImage = validateAndGet(imageIndex)
+        frontPageImage = validateAndGetFromImages(imageIndex)
     }
 }
 
