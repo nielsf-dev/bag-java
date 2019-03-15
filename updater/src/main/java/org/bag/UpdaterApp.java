@@ -3,8 +3,8 @@ package org.bag;
 import com.bulenkov.iconloader.IconLoader;
 import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
-import org.bag.domain.Image;
-import org.bag.domain.Project;
+import domain.Image;
+import domain.Project;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,9 +53,9 @@ public class UpdaterApp
     }
 
 
-    private static ArrayList<org.bag.domain.Image> createImages() {
-        ArrayList<org.bag.domain.Image> images = new ArrayList<>();
-        images.add(new org.bag.domain.Image("image1.jpg"));
+    private static ArrayList<Image> createImages() {
+        ArrayList<Image> images = new ArrayList<>();
+        images.add(new Image("image1.jpg"));
         images.add(new Image("image2.jpg"));
         return images;
     }

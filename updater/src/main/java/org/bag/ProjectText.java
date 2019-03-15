@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import net.miginfocom.swing.*;
-import org.bag.domain.Project;
+import domain.Project;
 
 /**
  * @author Niels

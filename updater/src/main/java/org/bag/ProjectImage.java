@@ -13,15 +13,24 @@ import net.miginfocom.swing.*;
  * @author Niels
  */
 public class ProjectImage extends JPanel {
+    private Boolean frontpageSelected;
+    private Boolean bannerselected;
     public ProjectImage() {
         initComponents();
+        frontpageSelected = false;
+        bannerselected = false;
     }
 
     private void frontpageActionPerformed(ActionEvent e) {
-        // TODO add your code here
-        Object source = e.getSource();
-        JCheckBox checkBox = (JCheckBox)source;
-        System.out.println("action" + checkBox.isSelected());
+        if(isSelected(e)){
+            frontpageSelected = true;
+            hidden.setEnabled(true);
+        }
+        else {
+            frontpageSelected = false;
+            if(!bannerselected)
+                hidden.setEnabled(false);
+        }
     }
 
     public void setFrontPageChecked(Boolean checked){
@@ -34,6 +43,24 @@ public class ProjectImage extends JPanel {
 
     public void setHiddenChecked(Boolean checked){
         hidden.setSelected(checked);
+    }
+
+    private void bannerActionPerformed(ActionEvent e) {
+        if(isSelected(e)){
+            bannerselected = true;
+            hidden.setEnabled(true);
+        }
+        else {
+            bannerselected = false;
+            if(!frontpageSelected)
+                hidden.setEnabled(false);
+        }
+    }
+
+    private boolean isSelected(ActionEvent e) {
+        Object source = e.getSource();
+        JCheckBox checkBox = (JCheckBox)source;
+        return checkBox.isSelected();
     }
 
     private void initComponents() {
@@ -71,10 +98,12 @@ public class ProjectImage extends JPanel {
 
         //---- banner ----
         banner.setText("Banner");
+        banner.addActionListener(e -> bannerActionPerformed(e));
         add(banner, "cell 0 2");
 
         //---- hidden ----
         hidden.setText("Hidden");
+        hidden.setEnabled(false);
         add(hidden, "cell 0 3");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

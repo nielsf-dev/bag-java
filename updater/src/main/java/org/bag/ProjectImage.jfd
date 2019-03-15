@@ -24,12 +24,14 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "banner"
 				"text": "Banner"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bannerActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 2"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "hidden"
 				"text": "Hidden"
+				"enabled": false
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3"
 			} )
