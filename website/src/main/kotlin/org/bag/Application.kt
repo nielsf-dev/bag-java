@@ -1,5 +1,7 @@
 package org.bag
 
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
@@ -10,8 +12,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import org.springframework.web.servlet.i18n.SessionLocaleResolver
+import java.sql.SQLException
 
 import java.util.Locale
+import javax.sql.DataSource
 
 @SpringBootApplication
 @ComponentScans(
@@ -31,6 +35,15 @@ open class Application : WebMvcConfigurer {
         val lci = LocaleChangeInterceptor()
         lci.paramName = "lang"
         return lci
+    }
+
+    @Bean
+    open fun dataSource(): DataSource {
+        val config = HikariConfig()
+        config.jdbcUrl = "jdbc:postgresql://192.168.63.81:5432/bag-java"
+        config.username = "postgres"
+        config.password = "toor"
+        return HikariDataSource(config)
     }
 
     override fun addInterceptors(registry: InterceptorRegistry?) {

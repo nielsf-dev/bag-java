@@ -41,7 +41,7 @@ class Project(
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 
     /** de titel in het engels */
