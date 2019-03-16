@@ -1,26 +1,14 @@
 buildscript {
-    ext { springBootVersion = '2.0.5.RELEASE' }
-    repositories { mavenCentral() }
-    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
-}
-
-plugins {
-    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    repositories {
+        mavenCentral()
+    }
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 // 60, 63, 65
 // border 108, 108, 108
 // todo https://tips4java.wordpress.com/2008/11/06/wrap-layout/
-bootJar {
-    baseName = 'gs-multi-module-application'
-    version = '0.0.1-SNAPSHOT'
-}
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -30,11 +18,8 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
-    compile project(':website')
+    compile project (':domain')
     compile (name:'darcula', ext:'jar')
     compile (name:'jfd-annotations', ext:'jar')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
