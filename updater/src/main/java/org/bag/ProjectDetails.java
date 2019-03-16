@@ -7,10 +7,10 @@ package org.bag;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
-
 
 /**
  * @author Niels
@@ -18,6 +18,7 @@ import org.bag.domain.Project;
 public class ProjectDetails extends JPanel {
     public ProjectDetails() {
         initComponents();
+        plaatjesLayout.setLayout(new WrapLayout());
     }
 
     public void setProject(Project project){
@@ -26,9 +27,20 @@ public class ProjectDetails extends JPanel {
         this.add(new ProjectText(project, ProjectText.ProjectTextType.Text), "cell 0 2, growx");
     }
 
+    private void button1ActionPerformed(ActionEvent e) {
+        this.plaatjesLayout.add(new ProjectImage());
+        this.plaatjesLayout.revalidate();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
+        label1 = new JLabel();
+        separator1 = new JSeparator();
+        plaatjesLayout = new JPanel();
+        button1 = new JButton();
+        button2 = new JButton();
+        button3 = new JButton();
 
         //======== this ========
         setBackground(new Color(76, 76, 76));
@@ -47,11 +59,48 @@ public class ProjectDetails extends JPanel {
             // rows
             "[]" +
             "[]" +
+            "[]" +
+            "[]" +
+            "[grow]" +
             "[]"));
+
+        //---- label1 ----
+        label1.setText("Plaatjes");
+        add(label1, "cell 0 3,alignx left,growx 0,gapx 10");
+
+        //---- separator1 ----
+        separator1.setBorder(new EtchedBorder());
+        add(separator1, "cell 0 3,growx");
+
+        //======== plaatjesLayout ========
+        {
+            plaatjesLayout.setBackground(new Color(76, 76, 76));
+            plaatjesLayout.setLayout(new FlowLayout());
+        }
+        add(plaatjesLayout, "cell 0 4,grow");
+
+        //---- button1 ----
+        button1.setText("Plaatje toevoegen");
+        button1.addActionListener(e -> button1ActionPerformed(e));
+        add(button1, "cell 0 5,alignx left,growx 0");
+
+        //---- button2 ----
+        button2.setText("Opslaan");
+        add(button2, "cell 0 5");
+
+        //---- button3 ----
+        button3.setText("Annuleren");
+        add(button3, "cell 0 5");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
+    private JLabel label1;
+    private JSeparator separator1;
+    private JPanel plaatjesLayout;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

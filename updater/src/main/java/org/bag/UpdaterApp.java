@@ -6,13 +6,20 @@ import com.bulenkov.darcula.DarculaLaf;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
+        URL resource = UpdaterApp.class.getResource("/add.png");
+        BufferedImage read = ImageIO.read(resource);
+        System.out.println(new ImageDrawer());
+
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
@@ -32,6 +39,7 @@ public class UpdaterApp
 
         JScrollPane scrollPane = new JScrollPane(projectDetails);
         scrollPane.setBorder(null);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainPanel.add(scrollPane,"growx, growy");
 
         // Main frame
@@ -39,13 +47,15 @@ public class UpdaterApp
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1024, 800);
         jFrame.setContentPane(mainPanel);
+        jFrame.setResizable(false);
+
         jFrame.setVisible(true);
     }
 
 
-    private static ArrayList<org.bag.domain.Image> createImages() {
-        ArrayList<org.bag.domain.Image> images = new ArrayList<>();
-        images.add(new org.bag.domain.Image("image1.jpg"));
+    private static ArrayList<Image> createImages() {
+        ArrayList<Image> images = new ArrayList<>();
+        images.add(new Image("image1.jpg"));
         images.add(new Image("image2.jpg"));
         return images;
     }

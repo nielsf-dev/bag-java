@@ -1,5 +1,6 @@
 package org.bag.dto.assemblers;
 
+import org.bag.dto.assemblers.FrontendProjectAssembler;
 import org.bag.domain.Project;
 import org.bag.domain.Image;
 import org.bag.dto.FrontendProject;
