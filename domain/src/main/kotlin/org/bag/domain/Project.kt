@@ -1,5 +1,6 @@
 package org.bag.domain
 
+import org.slf4j.LoggerFactory
 import javax.persistence.*
 
 /** Project voor de BAG Site */
@@ -81,6 +82,7 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getTitle(lang: String): String {
+        logger.debug("getting title for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> titel_en
             lang === SupportedProjectLanguage.Chinese.text -> titel_zh
@@ -92,6 +94,7 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getLocatie(lang: String): String {
+        logger.debug("getting locatie for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> locatie_en
             lang === SupportedProjectLanguage.Chinese.text -> locatie_zh
@@ -103,6 +106,7 @@ class Project(
      * Haal de text op in de juiste [lang]
      */
     fun getText(lang: String): String {
+        logger.debug("getting text for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> text_en
             lang === SupportedProjectLanguage.Chinese.text -> text_zh
@@ -128,6 +132,10 @@ class Project(
     /** Set de frontendimage op [imageIndex] */
     fun setFrontendImage(imageIndex: Int){
         frontPageImage = validateAndGetFromImages(imageIndex)
+    }
+
+    companion object {
+        private val logger= LoggerFactory.getLogger(Project::class.java)
     }
 }
 
