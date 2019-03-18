@@ -82,7 +82,7 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getTitle(lang: String): String {
-        logger.debug("getting title for $lang")
+        logger.info("getting title for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> titel_en
             lang === SupportedProjectLanguage.Chinese.text -> titel_zh
@@ -94,7 +94,7 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getLocatie(lang: String): String {
-        logger.debug("getting locatie for $lang")
+        logger.info("getting locatie for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> locatie_en
             lang === SupportedProjectLanguage.Chinese.text -> locatie_zh
@@ -106,7 +106,7 @@ class Project(
      * Haal de text op in de juiste [lang]
      */
     fun getText(lang: String): String {
-        logger.debug("getting text for $lang")
+        logger.info("getting text for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> text_en
             lang === SupportedProjectLanguage.Chinese.text -> text_zh
