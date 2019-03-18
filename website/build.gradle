@@ -24,7 +24,8 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-    launchScript()
+    mainClassName = "org.bag.ApplicationKt"
+  //  launchScript()
 }
 
 sourceCompatibility = 1.8
