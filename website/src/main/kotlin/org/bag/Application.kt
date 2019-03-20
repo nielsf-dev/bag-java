@@ -46,7 +46,7 @@ open class Application : WebMvcConfigurer {
         val config = HikariConfig()
 
         // Is er een heroku cs?
-        val connectionString: String? = System.getenv()["DATABASE_URL"]
+        val connectionString: String? = System.getenv()["JDBC_DATABASE_URL"]
         if (connectionString == null) {
             // Nee, connectie maken met kantoor
             config.jdbcUrl = "jdbc:postgresql://192.168.63.81:5432/bag-java"
