@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import org.springframework.web.servlet.i18n.SessionLocaleResolver
-import java.sql.SQLException
 
 import java.util.Locale
 import javax.sql.DataSource
@@ -39,11 +38,26 @@ open class Application : WebMvcConfigurer {
 
     @Bean
     open fun dataSource(): DataSource {
-        val config = HikariConfig()
-        config.jdbcUrl = "jdbc:postgresql://192.168.63.81:5432/bag-java"
-        config.username = "postgres"
-        config.password = "toor"
+        val config = createHikariConfig()
         return HikariDataSource(config)
+    }
+
+    private fun createHikariConfig(): HikariConfig {
+        val config = HikariConfig()
+
+        // Is er een heroku cs?
+        val connectionString: String? = System.getenv()["DATABASE_URL"]
+        if (connectionString == null) {
+            // Nee, connectie maken met kantoor
+            config.jdbcUrl = "jdbc:postgresql://192.168.63.81:5432/bag-java"
+            config.username = "postgres"
+            config.password = "toor"
+        } else {
+            // Ja, die gebruiken
+            config.jdbcUrl = connectionString
+        }
+
+        return config
     }
 
     override fun addInterceptors(registry: InterceptorRegistry?) {
