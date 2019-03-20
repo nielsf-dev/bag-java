@@ -6,11 +6,6 @@ buildscript {
 
 apply plugin: 'java'
 
-task bootJar{
-    doLast {
-        println 'Hello world!'
-    }
-}
 
 // 60, 63, 65
 // border 108, 108, 108
