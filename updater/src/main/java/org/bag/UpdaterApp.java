@@ -1,6 +1,8 @@
 package org.bag;
 
 import com.bulenkov.iconloader.IconLoader;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
 import org.bag.domain.Image;
@@ -10,15 +12,17 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
-        URL resource = UpdaterApp.class.getResource("/add.png");
-        BufferedImage read = ImageIO.read(resource);
-        System.out.println(new ImageDrawer());
+     //   uploadImageToCloudinary();
 
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
@@ -50,6 +54,25 @@ public class UpdaterApp
         jFrame.setResizable(false);
 
         jFrame.setVisible(true);
+    }
+
+    private static void uploadImageToCloudinary() {
+        String path = "/home/niels/src/bag-java/website/src/main/resources/static/images/nl.png";
+
+        Map config = new HashMap();
+        config.put("cloud_name", "bag187");
+        config.put("api_key", "926762486782314");
+        config.put("api_secret", "rG5N5fhVriWEbn1YrqmXCjPnk_A");
+        Cloudinary cloudinary = new Cloudinary(config);
+
+        File file = new File(path);
+        try {
+            Map upload = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+            Object url = upload.get("url");
+            System.out.println(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

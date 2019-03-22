@@ -23,4 +23,6 @@ dependencies {
     compile project (':domain')
     compile (name:'darcula', ext:'jar')
     compile (name:'jfd-annotations', ext:'jar')
+
+    compile 'com.cloudinary:cloudinary-http44:1.22.1'
 }
