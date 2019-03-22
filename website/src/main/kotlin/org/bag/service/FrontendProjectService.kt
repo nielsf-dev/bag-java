@@ -65,6 +65,7 @@ class FrontendProjectService @Autowired constructor (
     fun createProjects() {
         val amstelveen = createProject("City Garden", "Amstelveen", "", 0, 1,
                 "/upload/portfolio/CityGarden/citygardenavond.jpg",
+                "https://res.cloudinary.com/bag187/image/upload/v1553254071/samples/imagecon-group.jpg",
                 "/upload/portfolio/CityGarden/citygardenkop.jpg",
                 "/upload/portfolio/CityGarden/citygardentuin.jpg")
 
