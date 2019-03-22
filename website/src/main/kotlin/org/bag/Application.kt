@@ -2,6 +2,8 @@ package org.bag
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
@@ -64,6 +66,8 @@ open class Application : WebMvcConfigurer {
         registry!!.addInterceptor(localeChangeInterceptor())
     }
 }
+
+inline fun <reified T> loggerFor(): Logger = LoggerFactory.getLogger(T::class.java)
 
 fun main(args: Array<String>) {
     SpringApplication.run(Application::class.java, *args)

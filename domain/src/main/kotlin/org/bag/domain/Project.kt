@@ -37,8 +37,8 @@ class Project(
      * @throws Exception Ongeldige index opgegeven
      */
     constructor(titel: String, locatie: String, text: String, images: List<Image>, bannerImageIndex: Int, frontPageImageIndex: Int) : this(titel, locatie, text, images) {
-        this.bannerImage = validateAndGetFromImages(bannerImageIndex)
-        this.frontPageImage = validateAndGetFromImages(frontPageImageIndex)
+        setBannerImage(bannerImageIndex)
+        setFrontendImage(frontPageImageIndex)
     }
 
     @Id
@@ -82,7 +82,6 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getTitle(lang: String): String {
-        logger.info("getting title for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> titel_en
             lang === SupportedProjectLanguage.Chinese.text -> titel_zh
@@ -94,7 +93,6 @@ class Project(
      * Haal de titel op in de juiste [lang]
      */
     fun getLocatie(lang: String): String {
-        logger.info("getting locatie for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> locatie_en
             lang === SupportedProjectLanguage.Chinese.text -> locatie_zh
@@ -106,7 +104,6 @@ class Project(
      * Haal de text op in de juiste [lang]
      */
     fun getText(lang: String): String {
-        logger.info("getting text for $lang")
         return when {
             lang === SupportedProjectLanguage.English.text -> text_en
             lang === SupportedProjectLanguage.Chinese.text -> text_zh
@@ -122,6 +119,7 @@ class Project(
     /** Set de banner op [imageIndex] */
     fun setBannerImage(imageIndex: Int){
         bannerImage = validateAndGetFromImages(imageIndex)
+        logger.debug("Banner image set to ${bannerImage.url} for project '$titel_nl'")
     }
 
     /** De frontend image */
@@ -132,6 +130,7 @@ class Project(
     /** Set de frontendimage op [imageIndex] */
     fun setFrontendImage(imageIndex: Int){
         frontPageImage = validateAndGetFromImages(imageIndex)
+        logger.debug("Frontpage image set to ${frontPageImage.url} for project '$titel_nl'")
     }
 
     companion object {

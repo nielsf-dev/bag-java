@@ -66,6 +66,10 @@ public class UpdaterApp
         config.put("api_secret", "rG5N5fhVriWEbn1YrqmXCjPnk_A");
         Cloudinary cloudinary = new Cloudinary(config);
 
+        // om te deleten
+        //cloudinary.uploader().destroy("zombie", ObjectUtils.emptyMap());
+       // cloudinary.uploader().
+
         File file = new File(path);
         try {
             System.out.println("Uploading..");
