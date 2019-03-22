@@ -66,9 +66,6 @@ open class Application : WebMvcConfigurer {
 }
 
 fun main(args: Array<String>) {
-    val builder = Locale.Builder().setLanguage("nl").setRegion("US")
-    val locale1 = builder.build()
-
     SpringApplication.run(Application::class.java, *args)
 }
 
