@@ -57,8 +57,8 @@ public class UpdaterApp
     }
 
     private static void uploadImageToCloudinary() {
-        //String path = "/home/niels/src/bag-java/website/src/main/resources/static/images/nl.png";
-        String path = "/home/niels/src/bag-java/website/src/main/resources/static/upload/portfolio/CityGarden/citygardentuin.jpg";
+        String path = "/home/niels/src/bag-java/website/src/main/resources/static/images/nl.png";
+//        String path = "/home/niels/src/bag-java/website/src/main/resources/static/upload/portfolio/CityGarden/citygardentuin.jpg";
 
         Map config = new HashMap();
         config.put("cloud_name", "bag187");
@@ -69,7 +69,7 @@ public class UpdaterApp
         File file = new File(path);
         try {
             System.out.println("Uploading..");
-            Map params = ObjectUtils.asMap("public_id", "testbag/citygardentuin.jpg");
+            Map params = ObjectUtils.asMap("public_id", "mag dit ook/image met spaties");
             Map upload = cloudinary.uploader().upload(file, params);
             Object url = upload.get("url");
             System.out.println(url);

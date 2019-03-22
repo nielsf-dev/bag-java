@@ -21,7 +21,7 @@ constructor(private val frontendProjectService: FrontendProjectService) {
 
     @PostConstruct
     fun init() {
-        frontendProjectService.createProjects()
+        //frontendProjectService.createProjects()
     }
 
     @GetMapping("/")
