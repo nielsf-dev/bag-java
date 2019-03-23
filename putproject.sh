@@ -9,5 +9,6 @@ curl -i -X PUT localhost:5000/project/4 -H 'Content-Type:application/json' -d '{
   "text_en": "Cool blabla",
   "text_zh": "sjingie sjongie",
   "titel_nl": "City Garden",
-  "text_nl": "Dit is dus nieuwe sheisse vanuit putproject.sh"
+  "text_nl": "Dit is dus nieuwe sheisse vanuit putproject.sh",
+  "images": [{"url": "www.jemoer.nl"},{"url": "www.doenogmaar1.nl"}]
 }'

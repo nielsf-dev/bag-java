@@ -52,4 +52,9 @@ open class UpdaterProjectController @Autowired constructor(
         else
             throw Exception()
     }
+
+    @GetMapping("/setcomplete")
+    fun setComplete(@RequestBody project: Project) {
+
+    }
 }

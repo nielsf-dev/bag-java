@@ -32,7 +32,7 @@ class FrontendProjectService @Autowired constructor (
     }
 
     /**
-     * Alle projecten in opgegeven Locale
+     * Alle projecten in opgegeven [locale]
      */
     fun getAllProjects(locale: Locale): List<FrontendProject> {
         val frontendProjects = ArrayList<FrontendProject>()

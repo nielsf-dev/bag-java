@@ -51,7 +51,7 @@ open class Application : WebMvcConfigurer {
         val connectionString = System.getenv()["JDBC_DATABASE_URL"]
         if (connectionString == null) {
             // Nee, connectie maken met kantoor
-            config.jdbcUrl = "jdbc:postgresql://192.168.63.81:5432/bag-java"
+            config.jdbcUrl = "jdbc:postgresql://127.0.0.1:5432/bag-java"
             config.username = "postgres"
             config.password = "toor"
         } else {
