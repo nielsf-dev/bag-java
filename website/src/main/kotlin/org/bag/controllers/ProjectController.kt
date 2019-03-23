@@ -1,6 +1,6 @@
 package org.bag.controllers
 
-import org.bag.loggerFor
+import mu.KotlinLogging
 import org.bag.service.FrontendProjectService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest
 class ProjectController @Autowired constructor(
         private val frontendProjectService: FrontendProjectService) {
 
-    private val logger = loggerFor<ProjectController>()
+    private val logger = KotlinLogging.logger {}
 
     @GetMapping("/")
     fun index(model: Model, request: HttpServletRequest): String {
@@ -22,7 +22,7 @@ class ProjectController @Autowired constructor(
         val locale = ctx.locale
 
         val allProjects = frontendProjectService.getAllProjects(locale)
-        logger.info("Returning ${allProjects.size} projects for index using lang ${locale.language}")
+        logger.debug { "Returning ${allProjects.size} projects for index using lang ${locale.language}" }
         model.addAttribute("projects", allProjects)
         return "index"
     }
@@ -33,7 +33,7 @@ class ProjectController @Autowired constructor(
         val locale = ctx.locale
 
         val project = frontendProjectService.getProject(id, locale) ?: return "error"
-        logger.info("Returning ${project.title} with id $id using lang ${locale.language}")
+        logger.debug{ "Returning ${project.title} with id $id using lang ${locale.language}"}
         model.addAttribute("project", project)
         return "project"
     }

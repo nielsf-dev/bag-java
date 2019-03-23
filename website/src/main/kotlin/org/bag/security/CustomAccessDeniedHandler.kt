@@ -13,7 +13,7 @@ import java.io.IOException
 class CustomAccessDeniedHandler : AccessDeniedHandler {
 
     override fun handle(request: HttpServletRequest, response: HttpServletResponse, ex: AccessDeniedException) {
-        response.outputStream.print("Error Message Goes Here")
+        response.outputStream.print("Je moer")
         response.status = 403
         // response.sendRedirect("/my-error-page");
     }

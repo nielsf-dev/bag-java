@@ -59,6 +59,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile 'io.github.microutils:kotlin-logging:1.6.24'
     compile 'org.codehaus.groovy:groovy:2.4.7'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,7 +1,9 @@
 package org.bag.domain
 
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
 import javax.persistence.*
+
+private val logger = KotlinLogging.logger {}
 
 /** Project voor de BAG Site */
 @Entity
@@ -119,7 +121,7 @@ class Project(
     /** Set de banner op [imageIndex] */
     fun setBannerImage(imageIndex: Int){
         bannerImage = validateAndGetFromImages(imageIndex)
-        logger.debug("Banner image set to ${bannerImage.url} for project '$titel_nl'")
+        logger.info("Banner image set to ${bannerImage.url} for project '$titel_nl'")
     }
 
     /** De frontend image */
@@ -130,11 +132,7 @@ class Project(
     /** Set de frontendimage op [imageIndex] */
     fun setFrontendImage(imageIndex: Int){
         frontPageImage = validateAndGetFromImages(imageIndex)
-        logger.debug("Frontpage image set to ${frontPageImage.url} for project '$titel_nl'")
-    }
-
-    companion object {
-        private val logger= LoggerFactory.getLogger(Project::class.java)
+        logger.info("Frontpage image set to ${frontPageImage.url} for project '$titel_nl'")
     }
 }
 

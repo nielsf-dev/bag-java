@@ -15,7 +15,7 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfig : WebSecurityConfigurerAdapter() {
+open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Autowired
     private val dataSource: DataSource? = null
@@ -58,7 +58,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     }
 
     @Bean
-    fun encoder(): PasswordEncoder {
+    open fun encoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
     }
 

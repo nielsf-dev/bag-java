@@ -19,7 +19,7 @@ class RestAuthenticationEntryPoint : AuthenticationEntryPoint {
             response: HttpServletResponse,
             authException: AuthenticationException) {
 
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Mag niet")
     }
 
 }

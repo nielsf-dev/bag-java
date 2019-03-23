@@ -67,8 +67,6 @@ open class Application : WebMvcConfigurer {
     }
 }
 
-inline fun <reified T> loggerFor(): Logger = LoggerFactory.getLogger(T::class.java)
-
 fun main(args: Array<String>) {
     SpringApplication.run(Application::class.java, *args)
 }
