@@ -9,6 +9,7 @@ import org.bag.dto.assemblers.FrontendProjectAssembler
 import org.bag.repositories.ImageRepository
 import org.bag.repositories.ProjectRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Component
 import java.io.File
 
@@ -35,7 +36,7 @@ class FrontendProjectService @Autowired constructor (
      */
     fun getAllProjects(locale: Locale): List<FrontendProject> {
         val frontendProjects = ArrayList<FrontendProject>()
-        val projects = projectRepository.findAll()
+        val projects = projectRepository.findAll(Sort.by("order"))
         for (project in projects) {
             val assembler = FrontendProjectAssembler(project)
             frontendProjects.add(assembler.assemble(locale))

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-curl -i -X PUT localhost:5000/project/187 -H 'Content-Type:application/json' -d '{
-  "id": 7,
-  "titel_en": "",
-  "titel_zh": "",
-  "locatie_en": "",
-  "locatie_zh": "",
-  "text_en": "",
-  "text_zh": "",
-  "titel_nl": "KSH Kinderservice hotel",
-  "locatie_nl": "Amsterdam",
-  "text_nl": ""
+curl -i -X PUT localhost:5000/project/4 -H 'Content-Type:application/json' -d '{
+  "id": 4,
+  "titel_en": "titel engels",
+  "titel_zh": "city garden chinees",
+  "locatie_en": "Location man",
+  "locatie_nl": "Amstelveen",
+  "locatie_zh": "ook iets plaates",
+  "text_en": "Cool blabla",
+  "text_zh": "sjingie sjongie",
+  "titel_nl": "City Garden",
+  "text_nl": "Dit is dus nieuwe sheisse vanuit putproject.sh"
 }'

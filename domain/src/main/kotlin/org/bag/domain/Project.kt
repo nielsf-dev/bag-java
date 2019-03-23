@@ -47,6 +47,11 @@ class Project(
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Int = 0
 
+    /**
+     * Volgorde van het project
+     */
+    var order: Int = Int.MAX_VALUE
+
     /** de titel in het engels */
     var titel_en: String = ""
 
