@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.support.RequestContext
 import javax.servlet.http.HttpServletRequest
 
-private val logger = loggerFor<ProjectController>()
-
 @Controller
-class ProjectController @Autowired
-constructor(private val frontendProjectService: FrontendProjectService) {
+class ProjectController @Autowired constructor(
+        private val frontendProjectService: FrontendProjectService) {
+
+    private val logger = loggerFor<ProjectController>()
 
     @GetMapping("/")
     fun index(model: Model, request: HttpServletRequest): String {
