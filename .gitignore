@@ -14,6 +14,7 @@
 **/out
 *.user
 log.txt
+bag-cookie.txt
 **/packages
 *.o
 *.a
