@@ -1,4 +1,4 @@
-package org.bag;
+package org.bag.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,12 +7,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import javax.sql.DataSource;
@@ -26,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("admin").password(encoder().encode("adminPass")).roles("ADMIN")
                 .and()
-                .withUser("user").password(encoder().encode("userPass")).roles("USER");
+                .withUser("user").password(encoder().encode("onzin")).roles("USER");
     }
 
     @Autowired
