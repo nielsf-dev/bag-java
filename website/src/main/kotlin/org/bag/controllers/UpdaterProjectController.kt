@@ -46,7 +46,7 @@ open class UpdaterProjectController @Autowired constructor(
                 val updaterImage = updaterProject.images[i]
                 if(updaterImage.isFrontend)
                     frontendIndex = i
-                else if(updaterImage.isBanner)
+                if(updaterImage.isBanner)
                     bannerIndex = i
 
                 val image = Image(updaterImage.url)
@@ -79,7 +79,7 @@ open class UpdaterProjectController @Autowired constructor(
                 val updaterImage = updaterProject.images[i]
                 if(updaterImage.isFrontend)
                     frontendIndex = i
-                else if(updaterImage.isBanner)
+                if(updaterImage.isBanner)
                     bannerIndex = i
 
                 if(updaterImage.id == 0) {
@@ -97,6 +97,7 @@ open class UpdaterProjectController @Autowired constructor(
 
         projectRepository.save(project)
     }
+
     private fun updateLanguageProperties(project: Project, updaterProject: UpdaterProject) {
         project.titel_en = updaterProject.titel_en
         project.locatie_en = updaterProject.locatie_en
@@ -105,6 +106,11 @@ open class UpdaterProjectController @Autowired constructor(
         project.titel_zh = updaterProject.titel_zh
         project.locatie_zh = updaterProject.locatie_zh
         project.text_zh = updaterProject.text_zh
+    }
+
+    @GetMapping("/removeproject/{id}")
+    open fun removeProject(@PathVariable id: Int) {
+        projectRepository.deleteById(id);
     }
 
     @GetMapping("/updaterProject/{id}")

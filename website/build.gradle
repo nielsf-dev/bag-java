@@ -63,6 +63,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.7'
 
     testCompile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
+    testCompile 'com.fasterxml.jackson.module:jackson-module-kotlin'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

@@ -8,18 +8,25 @@ import com.fasterxml.jackson.databind.JsonDeserializer
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 // kennelijk als ik ze niet via de constructor doe gaat het fout met jackson?
-class UpdaterProjectImage(
-    var id: Int,
-    var url: String,
+class UpdaterProjectImage {
+    var id: Int
+    var url: String
+    var isFrontend: Boolean
+    var isBanner: Boolean
 
-    var isFrontend: Boolean,
+    constructor(){
+        println("default")
+        id = 0
+        url = ""
+        isFrontend = false
+        isBanner = false
+    }
 
-    var isBanner: Boolean)
-
-class NumericBooleanDeserializer : JsonDeserializer<Boolean>() {
-
-    @Throws(IOException::class, JsonProcessingException::class)
-    override fun deserialize(parser: JsonParser, context: DeserializationContext): Boolean? {
-        return "0" != parser.getText()
+    constructor(id:Int,url:String,isFrontend:Boolean,isBanner:Boolean){
+        this.id = id
+        this.url = url
+        this.isFrontend = isFrontend
+        this.isBanner = isBanner
     }
 }
+

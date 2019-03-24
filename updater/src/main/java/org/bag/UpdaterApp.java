@@ -7,6 +7,7 @@ import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
+import org.springframework.web.client.RestTemplate;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class UpdaterApp
 {
     public static void main(String[] args) throws Exception {
-        uploadImageToCloudinary();
+        //uploadImageToCloudinary();
 
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
