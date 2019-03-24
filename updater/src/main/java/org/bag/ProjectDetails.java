@@ -171,15 +171,9 @@ public class ProjectDetails extends JPanel {
         //======== this ========
         setBackground(new Color(76, 76, 76));
 
-        // JFormDesigner evaluation mark
-        setBorder(new javax.swing.border.CompoundBorder(
-            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
-
+                // gap zit ruimte tussen text controls
         setLayout(new MigLayout(
-            "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 0",
+            "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 10",
             // columns
             "[fill]",
             // rows
