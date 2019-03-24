@@ -4,9 +4,12 @@ import mu.KotlinLogging
 import org.bag.domain.Image
 import org.bag.domain.Project
 import org.bag.dto.UpdaterProject
+import org.bag.dto.UpdaterProjectImage
+import org.bag.dto.UpdaterProjectListItem
 import org.bag.repositories.ImageRepository
 import org.bag.repositories.ProjectRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Sort
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
@@ -17,12 +20,17 @@ open class UpdaterProjectController @Autowired constructor(
 
     private val logger = KotlinLogging.logger {  }
 
-    @GetMapping("/secret/project")
-    fun somethingSecret() : String{
-        return "muchsecret"
+    @GetMapping("/updaterProjectList")
+    open fun listProjects() : List<UpdaterProjectListItem>{
+        val projects = projectRepository.findAll(Sort.by("jemoer"))
+        val updaterProjects = ArrayList<UpdaterProjectListItem>()
+        for(project in projects){
+            updaterProjects.add(UpdaterProjectListItem(project.id,project.titel_nl))
+        }
+        return updaterProjects
     }
 
-    @PutMapping("/project")
+    @PutMapping("/updaterProject")
     @Transactional
     open fun updateProject(@RequestBody updaterProject: UpdaterProject) {
         if(updaterProject.images.size == 0)
@@ -30,6 +38,7 @@ open class UpdaterProjectController @Autowired constructor(
 
         var project: Project
         if(updaterProject.id == 0){
+            logger.info { "New project '${updaterProject.titel_nl}'" }
             val images = ArrayList<Image>()
             var frontendIndex = -1
             var bannerIndex = -1
@@ -53,6 +62,7 @@ open class UpdaterProjectController @Autowired constructor(
             updateLanguageProperties(project, updaterProject)
         }
         else {
+            logger.info { "Project update '${updaterProject.titel_nl}'" }
             val oproject = projectRepository.findById(updaterProject.id)
             if (!oproject.isPresent)
                 throw Exception()
@@ -87,26 +97,6 @@ open class UpdaterProjectController @Autowired constructor(
 
         projectRepository.save(project)
     }
-
-    fun getValidatedIndices(updaterProject: UpdaterProject): ValidatedIndices{
-        var frontendIndex = -1
-        var bannerIndex = -1
-        for(i in updaterProject.images.indices){
-            val updaterImage = updaterProject.images[i]
-            if(updaterImage.isFrontend)
-                frontendIndex = i
-            else if(updaterImage.isBanner)
-                bannerIndex = i
-        }
-
-        if(bannerIndex == -1 || frontendIndex == -1)
-            throw Exception("Geen banner of frontend image opgegeven")
-
-        return ValidatedIndices(frontendIndex, bannerIndex)
-    }
-
-    class ValidatedIndices(val frontendIndex:Int, val bannerIndex:Int)
-
     private fun updateLanguageProperties(project: Project, updaterProject: UpdaterProject) {
         project.titel_en = updaterProject.titel_en
         project.locatie_en = updaterProject.locatie_en
@@ -117,13 +107,35 @@ open class UpdaterProjectController @Autowired constructor(
         project.text_zh = updaterProject.text_zh
     }
 
-    @GetMapping("/getcomplete/{id}")
-    fun getComplete(@PathVariable id: Int) : Project{
-        val project = projectRepository.findById(id)
-        if(project.isPresent)
-            return project.get()
+    @GetMapping("/updaterProject/{id}")
+    open fun getProject(@PathVariable id: Int) : UpdaterProject{
+        val oproject = projectRepository.findById(id)
+        if(oproject.isPresent) {
+            val project = oproject.get()
+            val updaterProject = UpdaterProject(
+                    project.id,
+                    project.titel_nl,
+                    project.locatie_nl,
+                    project.text_nl,
+                    project.titel_en,
+                    project.titel_zh,
+                    project.locatie_en,
+                    project.locatie_zh,
+                    project.text_en,
+                    project.text_zh
+            )
+
+            for(image in project.images){
+                val isBanner = image == project.getBannerImage()
+                val isFrontend = image == project.getFrontendImage()
+                val updaterProjectImage = UpdaterProjectImage(image.id,image.url,isFrontend,isBanner)
+                updaterProject.images.add(updaterProjectImage)
+            }
+
+            return updaterProject
+        }
         else
-            throw Exception()
+            throw Exception("project niet gevonden")
     }
 
     @GetMapping("/setcomplete")
