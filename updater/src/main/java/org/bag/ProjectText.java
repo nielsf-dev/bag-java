@@ -6,6 +6,7 @@ package org.bag;
 
 import java.awt.*;
 import java.beans.*;
+import java.net.URL;
 import javax.swing.*;
 import javax.swing.border.*;
 import net.miginfocom.swing.*;
@@ -17,7 +18,6 @@ import org.bag.dto.UpdaterProject;
  */
 public class ProjectText extends JPanel {
     private  ProjectDetails projectDetails = null;
-
 
     public enum ProjectTextType{
         Title,
@@ -48,8 +48,16 @@ public class ProjectText extends JPanel {
         else if(projectTextType == ProjectTextType.Text) {
             this.projectTextLabel.setText("Tekst");
             this.textArea1.setText(project.getText_nl());
-            this.textArea2.setText(project.getText_nl());
+            this.textArea2.setText(project.getText_en());
             this.textArea3.setText(project.getText_zh());
+        }
+
+        try {
+            nlDrawer.setUrl2(UpdaterApp.class.getResource("/nl.png"));
+            enDrawer.setUrl2(UpdaterApp.class.getResource("/uk.png"));
+            chDrawer.setUrl2(UpdaterApp.class.getResource("/ch.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -84,8 +92,11 @@ public class ProjectText extends JPanel {
         // Generated using JFormDesigner Evaluation license - Niels
         projectTextLabel = new JLabel();
         separator1 = new JSeparator();
+        nlDrawer = new ImageDrawer();
         textArea1 = new JTextArea();
+        enDrawer = new ImageDrawer();
         textArea2 = new JTextArea();
+        chDrawer = new ImageDrawer();
         textArea3 = new JTextArea();
 
         //======== this ========
@@ -113,14 +124,17 @@ public class ProjectText extends JPanel {
         //---- separator1 ----
         separator1.setBorder(new EtchedBorder());
         add(separator1, "cell 1 0");
+        add(nlDrawer, "cell 0 1 2 1,wmin 16,hmin 16");
 
         //---- textArea1 ----
         textArea1.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea1, "cell 0 1 2 1,growx");
+        add(enDrawer, "cell 0 2 2 1,wmin 16,hmin 16");
 
         //---- textArea2 ----
         textArea2.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea2, "cell 0 2 2 1,growx");
+        add(chDrawer, "cell 0 3 2 1,wmin 16,hmin 16");
 
         //---- textArea3 ----
         textArea3.setBorder(new LineBorder(new Color(108, 108, 108)));
@@ -132,8 +146,11 @@ public class ProjectText extends JPanel {
     // Generated using JFormDesigner Evaluation license - Niels
     private JLabel projectTextLabel;
     private JSeparator separator1;
+    private ImageDrawer nlDrawer;
     private JTextArea textArea1;
+    private ImageDrawer enDrawer;
     private JTextArea textArea2;
+    private ImageDrawer chDrawer;
     private JTextArea textArea3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

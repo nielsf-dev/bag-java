@@ -21,17 +21,32 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 1 0"
 			} )
+			add( new FormComponent( "org.bag.ImageDrawer" ) {
+				name: "nlDrawer"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 1 2 1,wmin 16,hmin 16"
+			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea1"
 				"border": new javax.swing.border.LineBorder( new java.awt.Color( 108, 108, 108, 255 ), 1, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 1 2 1,growx"
 			} )
+			add( new FormComponent( "org.bag.ImageDrawer" ) {
+				name: "enDrawer"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 2 2 1,wmin 16,hmin 16"
+			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea2"
 				"border": new javax.swing.border.LineBorder( new java.awt.Color( 108, 108, 108, 255 ), 1, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 2 2 1,growx"
+			} )
+			add( new FormComponent( "org.bag.ImageDrawer" ) {
+				name: "chDrawer"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 3 2 1,wmin 16,hmin 16"
 			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "textArea3"

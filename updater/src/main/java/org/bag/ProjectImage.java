@@ -5,6 +5,7 @@
 package org.bag;
 
 import java.awt.event.*;
+import java.net.URL;
 import javax.swing.*;
 import javax.swing.event.*;
 import net.miginfocom.swing.*;
@@ -21,7 +22,7 @@ public class ProjectImage extends JPanel {
         initComponents();
         this.updaterProjectImage = updaterProjectImage;
         this.projectDetails = projectDetails;
-        this.imageDrawer1.setUrl(updaterProjectImage.getUrl());
+        this.imageDrawer1.setUrl(new URL(updaterProjectImage.getUrl()));
 
         if(updaterProjectImage.isFrontend()) {
             frontpage.setSelected(true);
