@@ -11,7 +11,8 @@ class Project(
         /**
         * Volgorde van het project
         */
-        var jemoer: Int,
+        @Column(name="\"order\"")
+        var order: Int,
 
         /** de titel in het nederlands */
         var titel_nl: String,

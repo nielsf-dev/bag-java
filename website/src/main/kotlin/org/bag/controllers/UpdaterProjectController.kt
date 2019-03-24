@@ -22,7 +22,7 @@ open class UpdaterProjectController @Autowired constructor(
 
     @GetMapping("/updaterProjectList")
     open fun listProjects() : List<UpdaterProjectListItem>{
-        val projects = projectRepository.findAll(Sort.by("jemoer"))
+        val projects = projectRepository.findAll(Sort.by("order"))
         val updaterProjects = ArrayList<UpdaterProjectListItem>()
         for(project in projects){
             updaterProjects.add(UpdaterProjectListItem(project.id,project.titel_nl))
