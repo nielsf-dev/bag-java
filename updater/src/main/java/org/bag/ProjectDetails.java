@@ -163,6 +163,7 @@ public class ProjectDetails extends JPanel {
         label1 = new JLabel();
         separator1 = new JSeparator();
         plaatjesLayout = new JPanel();
+        panel1 = new JPanel();
         button1 = new JButton();
         btOpslaan = new JButton();
         button3 = new JButton();
@@ -172,22 +173,22 @@ public class ProjectDetails extends JPanel {
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
-                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-                "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 0",
-                // columns
-                "[fill]",
-                // rows
-                "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[grow]" +
-                        "[]"));
+            "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 0",
+            // columns
+            "[fill]",
+            // rows
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[grow]" +
+            "[]"));
 
         //---- label1 ----
         label1.setText("Plaatjes");
@@ -204,19 +205,26 @@ public class ProjectDetails extends JPanel {
         }
         add(plaatjesLayout, "cell 0 4,grow");
 
-        //---- button1 ----
-        button1.setText("Plaatje toevoegen");
-        button1.addActionListener(e -> button1ActionPerformed(e));
-        add(button1, "cell 0 5,alignx left,growx 0");
+        //======== panel1 ========
+        {
+            panel1.setBackground(new Color(76, 76, 76));
+            panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        //---- btOpslaan ----
-        btOpslaan.setText("Opslaan");
-        btOpslaan.addActionListener(e -> btOpslaanActionPerformed(e));
-        add(btOpslaan, "cell 0 5");
+            //---- button1 ----
+            button1.setText("Plaatje toevoegen");
+            button1.addActionListener(e -> button1ActionPerformed(e));
+            panel1.add(button1);
 
-        //---- button3 ----
-        button3.setText("Annuleren");
-        add(button3, "cell 0 5");
+            //---- btOpslaan ----
+            btOpslaan.setText("Opslaan");
+            btOpslaan.addActionListener(e -> btOpslaanActionPerformed(e));
+            panel1.add(btOpslaan);
+
+            //---- button3 ----
+            button3.setText("Annuleren");
+            panel1.add(button3);
+        }
+        add(panel1, "cell 0 5");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -225,6 +233,7 @@ public class ProjectDetails extends JPanel {
     private JLabel label1;
     private JSeparator separator1;
     private JPanel plaatjesLayout;
+    private JPanel panel1;
     private JButton button1;
     private JButton btOpslaan;
     private JButton button3;
