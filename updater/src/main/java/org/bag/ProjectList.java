@@ -11,12 +11,32 @@ import javax.swing.border.*;
 import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
 
+class ProjectListItem{
+    public int ID;
+    public String Text;
+
+    public ProjectListItem(int ID, String text) {
+        this.ID = ID;
+        Text = text;
+    }
+
+    @Override
+    public String toString() {
+        return Text;
+    }
+}
 /**
  * @author Niels
  */
 public class ProjectList extends JPanel {
+
+    private DefaultListModel<ProjectListItem> items = new DefaultListModel<>();
+
     public ProjectList() {
         initComponents();
+
+        items.addElement(new ProjectListItem(1,"Test"));
+        list1.setModel(items);
     }
 
     private void addButtonMouseClicked(MouseEvent e) {
@@ -24,14 +44,22 @@ public class ProjectList extends JPanel {
 
     }
 
+    public void refresh(){
+        String url = "https://bag-java.herokuapp.com/updaterProjectList";
+
+    }
+
+    private void btProjectToevoegenActionPerformed(ActionEvent e) {
+        items.addElement(new ProjectListItem(1,"Test2"));
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
-        button3 = new JButton();
-        button2 = new JButton();
+        btProjectToevoegen = new JButton();
         separator1 = new JSeparator();
         scrollPane1 = new JScrollPane();
-        list1 = new JList<>();
+        list1 = new JList();
 
         //======== this ========
         setPreferredSize(null);
@@ -49,21 +77,17 @@ public class ProjectList extends JPanel {
         setLayout(new MigLayout(
             "filly,insets 0,hidemode 3",
             // columns
-            "[342:min:min]",
+            "[206:307]",
             // rows
             "[min!,top]" +
             "[min!]" +
             "[]"));
 
-        //---- button3 ----
-        button3.setText("Project toevoegen");
-        button3.setIcon(new ImageIcon(getClass().getResource("/add.png")));
-        add(button3, "cell 0 0,align left top,grow 0 0");
-
-        //---- button2 ----
-        button2.setText("Synchroniseren");
-        button2.setIcon(new ImageIcon(getClass().getResource("/refresh.png")));
-        add(button2, "cell 0 0");
+        //---- btProjectToevoegen ----
+        btProjectToevoegen.setText("Project toevoegen");
+        btProjectToevoegen.setIcon(new ImageIcon(getClass().getResource("/add.png")));
+        btProjectToevoegen.addActionListener(e -> btProjectToevoegenActionPerformed(e));
+        add(btProjectToevoegen, "cell 0 0,align left top,grow 0 0");
         add(separator1, "cell 0 1,growx");
 
         //======== scrollPane1 ========
@@ -71,19 +95,6 @@ public class ProjectList extends JPanel {
             scrollPane1.setBorder(null);
 
             //---- list1 ----
-            list1.setModel(new AbstractListModel<String>() {
-                String[] values = {
-                    "AZ Stadion",
-                    "City Garden",
-                    "Xhin Zhao",
-                    "COOP",
-                    "KSH Service Hotel"
-                };
-                @Override
-                public int getSize() { return values.length; }
-                @Override
-                public String getElementAt(int i) { return values[i]; }
-            });
             list1.setBorder(null);
             scrollPane1.setViewportView(list1);
         }
@@ -93,10 +104,9 @@ public class ProjectList extends JPanel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Niels
-    private JButton button3;
-    private JButton button2;
+    private JButton btProjectToevoegen;
     private JSeparator separator1;
     private JScrollPane scrollPane1;
-    private JList<String> list1;
+    private JList list1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

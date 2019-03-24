@@ -61,26 +61,26 @@ public class UpdaterApp
         String path = "/home/niels/src/bag-java/website/src/main/resources/static/images/nl.png";
 //        String path = "/home/niels/src/bag-java/website/src/main/resources/static/upload/portfolio/CityGarden/citygardentuin.jpg";
 
-        Map config = new HashMap();
-        config.put("cloud_name", "bag187");
-        config.put("api_key", "926762486782314");
-        config.put("api_secret", "rG5N5fhVriWEbn1YrqmXCjPnk_A");
-        Cloudinary cloudinary = new Cloudinary(config);
-
-        // om te deleten
-        //cloudinary.uploader().destroy("zombie", ObjectUtils.emptyMap());
-       // cloudinary.uploader().
-
-        File file = new File(path);
-        try {
-            System.out.println("Uploading..");
-            Map params = ObjectUtils.asMap("public_id", "mag dit ook/image met spaties");
-            Map upload = cloudinary.uploader().upload(file, params);
-            Object url = upload.get("url");
-            System.out.println(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Map config = new HashMap();
+//        config.put("cloud_name", "bag187");
+//        config.put("api_key", "926762486782314");
+//        config.put("api_secret", "rG5N5fhVriWEbn1YrqmXCjPnk_A");
+//        Cloudinary cloudinary = new Cloudinary(config);
+//
+//        // om te deleten
+//        //cloudinary.uploader().destroy("zombie", ObjectUtils.emptyMap());
+//       // cloudinary.uploader().
+//
+//        File file = new File(path);
+//        try {
+//            System.out.println("Uploading..");
+//            Map params = ObjectUtils.asMap("public_id", "mag dit ook/image met spaties");
+//            Map upload = cloudinary.uploader().upload(file, params);
+//            Object url = upload.get("url");
+//            System.out.println(url);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 

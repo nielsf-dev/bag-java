@@ -6,9 +6,15 @@ package org.bag;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
 
@@ -16,8 +22,13 @@ import org.bag.domain.Project;
  * @author Niels
  */
 public class ProjectDetails extends JPanel {
+
+    final JFileChooser jFileChooser = new JFileChooser();
+    private ArrayList<ProjectImage> projectImages;
+
     public ProjectDetails() {
         initComponents();
+        projectImages = new ArrayList<>();
         plaatjesLayout.setLayout(new WrapLayout());
     }
 
@@ -27,9 +38,53 @@ public class ProjectDetails extends JPanel {
         this.add(new ProjectText(project, ProjectText.ProjectTextType.Text), "cell 0 2, growx");
     }
 
-    private void button1ActionPerformed(ActionEvent e) {
-        this.plaatjesLayout.add(new ProjectImage());
-        this.plaatjesLayout.revalidate();
+    private void button1ActionPerformed(ActionEvent e)  {
+        int selecteer = jFileChooser.showDialog(this, "Selecteer");
+        if(selecteer == JFileChooser.APPROVE_OPTION) {
+            try {
+                File selectedFile = jFileChooser.getSelectedFile();
+                System.out.println(selectedFile.getName());
+
+                Map config = new HashMap();
+                config.put("cloud_name", "bag187");
+                config.put("api_key", "926762486782314");
+                config.put("api_secret", "rG5N5fhVriWEbn1YrqmXCjPnk_A");
+                Cloudinary cloudinary = new Cloudinary(config);
+
+                // om te deleten
+                //cloudinary.uploader().destroy("zombie", ObjectUtils.emptyMap());
+                // cloudinary.uploader().
+
+                System.out.println("Uploading..");
+                Map upload = cloudinary.uploader().upload(selectedFile, ObjectUtils.emptyMap());
+                Object url = upload.get("url");
+                System.out.println(url);
+
+                ProjectImage projectImage = new ProjectImage(this, (String) url);
+                this.projectImages.add(projectImage);
+                this.plaatjesLayout.add(projectImage);
+                this.plaatjesLayout.revalidate();
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(this, ex.toString());
+            }
+        }
+    }
+
+    public void removePlaatje(String url){
+        ProjectImage toRemove = null;
+        for (ProjectImage projectImage : projectImages) {
+            if(projectImage.getUrl().equalsIgnoreCase(url)){
+                this.plaatjesLayout.remove(projectImage);
+                this.plaatjesLayout.revalidate();
+                this.plaatjesLayout.repaint();
+                this.revalidate();
+                toRemove = projectImage;
+            }
+        }
+
+        if(toRemove != null)
+            this.projectImages.remove(toRemove);
     }
 
     private void initComponents() {

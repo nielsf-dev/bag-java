@@ -15,8 +15,14 @@ import net.miginfocom.swing.*;
 public class ProjectImage extends JPanel {
     private Boolean frontpageSelected;
     private Boolean bannerselected;
-    public ProjectImage() {
+    private String url;
+    private ProjectDetails projectDetails;
+
+    public ProjectImage(ProjectDetails projectDetails, String url) throws Exception {
         initComponents();
+        this.url = url;
+        this.projectDetails = projectDetails;
+        this.imageDrawer1.setUrl(url);
         frontpageSelected = false;
         bannerselected = false;
     }
@@ -63,6 +69,18 @@ public class ProjectImage extends JPanel {
         return checkBox.isSelected();
     }
 
+    private void btDeleteActionPerformed(ActionEvent e) {
+        projectDetails.removePlaatje(url);
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public ProjectDetails getProjectDetails() {
+        return projectDetails;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Niels
@@ -70,6 +88,7 @@ public class ProjectImage extends JPanel {
         frontpage = new JCheckBox();
         banner = new JCheckBox();
         hidden = new JCheckBox();
+        btDelete = new JButton();
 
         //======== this ========
 
@@ -88,6 +107,7 @@ public class ProjectImage extends JPanel {
             "[100!]" +
             "[min!]" +
             "[]" +
+            "[]" +
             "[]"));
         add(imageDrawer1, "cell 0 0,grow");
 
@@ -105,6 +125,11 @@ public class ProjectImage extends JPanel {
         hidden.setText("Hidden");
         hidden.setEnabled(false);
         add(hidden, "cell 0 3");
+
+        //---- btDelete ----
+        btDelete.setText("Verwijder");
+        btDelete.addActionListener(e -> btDeleteActionPerformed(e));
+        add(btDelete, "cell 0 4");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -114,5 +139,6 @@ public class ProjectImage extends JPanel {
     private JCheckBox frontpage;
     private JCheckBox banner;
     private JCheckBox hidden;
+    private JButton btDelete;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

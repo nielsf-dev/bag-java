@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "fill,hidemode 3"
 			"$columnConstraints": "[min!]"
-			"$rowConstraints": "[100!][min!][][]"
+			"$rowConstraints": "[100!][min!][][][]"
 		} ) {
 			name: "this"
 			add( new FormComponent( "org.bag.ImageDrawer" ) {
@@ -35,9 +35,16 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3"
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btDelete"
+				"text": "Verwijder"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btDeleteActionPerformed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 4"
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 100, 200 )
+			"size": new java.awt.Dimension( 100, 215 )
 		} )
 	}
 }
