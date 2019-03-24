@@ -17,6 +17,9 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
+import org.bag.dto.UpdaterProject;
+import org.bag.dto.UpdaterProjectImage;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author Niels
@@ -25,6 +28,10 @@ public class ProjectDetails extends JPanel {
 
     final JFileChooser jFileChooser = new JFileChooser();
     private ArrayList<ProjectImage> projectImages;
+    private ProjectText titleControl;
+    private ProjectText locationControl;
+    private ProjectText textControl;
+    private UpdaterProject updaterProject;
 
     public ProjectDetails() {
         initComponents();
@@ -32,10 +39,57 @@ public class ProjectDetails extends JPanel {
         plaatjesLayout.setLayout(new WrapLayout());
     }
 
-    public void setProject(Project project){
-        this.add(new ProjectText(project, ProjectText.ProjectTextType.Title),"cell 0 0, growx");
-        this.add(new ProjectText(project, ProjectText.ProjectTextType.Location), "cell 0 1, growx");
-        this.add(new ProjectText(project, ProjectText.ProjectTextType.Text), "cell 0 2, growx");
+    public void setProject(int projectId){
+
+        if(projectId > 0) {
+            RestTemplate restTemplate = new RestTemplate();
+            updaterProject = restTemplate.getForObject("https://bag-java.herokuapp.com/updaterProject/" + projectId, UpdaterProject.class);
+            if(updaterProject == null) {
+                JOptionPane.showMessageDialog(this,"Niet gelukt project op te halen");
+                return;
+            }
+        }
+        else{
+            updaterProject = new UpdaterProject();
+        }
+
+        if(titleControl != null)
+            this.remove(titleControl);
+
+        if(locationControl != null)
+            this.remove(locationControl);
+
+        if(textControl != null)
+            this.remove(textControl);
+        this.revalidate();
+        this.repaint();
+
+        titleControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Title);
+        this.add(titleControl,"cell 0 0, growx");
+
+        locationControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Location);
+        this.add(locationControl, "cell 0 1, growx");
+
+        textControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Text);
+        this.add(textControl, "cell 0 2, growx");
+
+        this.plaatjesLayout.removeAll();
+        for(UpdaterProjectImage updaterProjectImage : updaterProject.getImages()){
+            ProjectImage projectImage = null;
+            try {
+                projectImage = new ProjectImage(this, updaterProjectImage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            this.projectImages.add(projectImage);
+            this.plaatjesLayout.add(projectImage);
+        }
+        this.plaatjesLayout.revalidate();
+        this.plaatjesLayout.repaint();
+
+        this.revalidate();
+        this.repaint();
+
     }
 
     private void button1ActionPerformed(ActionEvent e)  {
@@ -60,7 +114,10 @@ public class ProjectDetails extends JPanel {
                 Object url = upload.get("url");
                 System.out.println(url);
 
-                ProjectImage projectImage = new ProjectImage(this, (String) url);
+                UpdaterProjectImage updaterProjectImage = new UpdaterProjectImage(0,(String)url,false,false);
+                updaterProject.getImages().add(updaterProjectImage);
+
+                ProjectImage projectImage = new ProjectImage(this, updaterProjectImage);
                 this.projectImages.add(projectImage);
                 this.plaatjesLayout.add(projectImage);
                 this.plaatjesLayout.revalidate();
@@ -71,10 +128,10 @@ public class ProjectDetails extends JPanel {
         }
     }
 
-    public void removePlaatje(String url){
+    public void removePlaatje(UpdaterProjectImage image){
         ProjectImage toRemove = null;
         for (ProjectImage projectImage : projectImages) {
-            if(projectImage.getUrl().equalsIgnoreCase(url)){
+            if(projectImage.getUrl().equalsIgnoreCase(image.getUrl())){
                 this.plaatjesLayout.remove(projectImage);
                 this.plaatjesLayout.revalidate();
                 this.plaatjesLayout.repaint();
@@ -83,8 +140,21 @@ public class ProjectDetails extends JPanel {
             }
         }
 
-        if(toRemove != null)
+        if(toRemove != null) {
             this.projectImages.remove(toRemove);
+        }
+
+        updaterProject.getImages().remove(image);
+    }
+
+    private void btOpslaanActionPerformed(ActionEvent e) {
+        this.titleControl.bindToProject();
+        this.locationControl.bindToProject();
+        this.textControl.bindToProject();
+
+        RestTemplate restTemplate = new RestTemplate();
+        //restTemplate.put("https://bag-java.herokuapp.com/updaterProject",updaterProject,UpdaterProject.class);
+        restTemplate.put("https://bag-java.herokuapp.com/updaterProject",updaterProject,UpdaterProject.class);
     }
 
     private void initComponents() {
@@ -94,7 +164,7 @@ public class ProjectDetails extends JPanel {
         separator1 = new JSeparator();
         plaatjesLayout = new JPanel();
         button1 = new JButton();
-        button2 = new JButton();
+        btOpslaan = new JButton();
         button3 = new JButton();
 
         //======== this ========
@@ -102,22 +172,22 @@ public class ProjectDetails extends JPanel {
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
-            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new MigLayout(
-            "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 0",
-            // columns
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[grow]" +
-            "[]"));
+                "fillx,insets 0,novisualpadding,hidemode 3,align left top,gap 0 0",
+                // columns
+                "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[grow]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("Plaatjes");
@@ -139,9 +209,10 @@ public class ProjectDetails extends JPanel {
         button1.addActionListener(e -> button1ActionPerformed(e));
         add(button1, "cell 0 5,alignx left,growx 0");
 
-        //---- button2 ----
-        button2.setText("Opslaan");
-        add(button2, "cell 0 5");
+        //---- btOpslaan ----
+        btOpslaan.setText("Opslaan");
+        btOpslaan.addActionListener(e -> btOpslaanActionPerformed(e));
+        add(btOpslaan, "cell 0 5");
 
         //---- button3 ----
         button3.setText("Annuleren");
@@ -155,7 +226,7 @@ public class ProjectDetails extends JPanel {
     private JSeparator separator1;
     private JPanel plaatjesLayout;
     private JButton button1;
-    private JButton button2;
+    private JButton btOpslaan;
     private JButton button3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

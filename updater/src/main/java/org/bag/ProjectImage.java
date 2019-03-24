@@ -8,33 +8,37 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import net.miginfocom.swing.*;
+import org.bag.dto.UpdaterProjectImage;
 
 /**
  * @author Niels
  */
 public class ProjectImage extends JPanel {
-    private Boolean frontpageSelected;
-    private Boolean bannerselected;
-    private String url;
+    private UpdaterProjectImage updaterProjectImage;
     private ProjectDetails projectDetails;
 
-    public ProjectImage(ProjectDetails projectDetails, String url) throws Exception {
+    public ProjectImage(ProjectDetails projectDetails, UpdaterProjectImage updaterProjectImage) throws Exception {
         initComponents();
-        this.url = url;
+        this.updaterProjectImage = updaterProjectImage;
         this.projectDetails = projectDetails;
-        this.imageDrawer1.setUrl(url);
-        frontpageSelected = false;
-        bannerselected = false;
+        this.imageDrawer1.setUrl(updaterProjectImage.getUrl());
+
+        if(updaterProjectImage.isFrontend()) {
+            frontpage.setSelected(true);
+        }
+        if(updaterProjectImage.isBanner()) {
+            banner.setSelected(true);
+        }
     }
 
     private void frontpageActionPerformed(ActionEvent e) {
         if(isSelected(e)){
-            frontpageSelected = true;
+            updaterProjectImage.setFrontend(true);
             hidden.setEnabled(true);
         }
         else {
-            frontpageSelected = false;
-            if(!bannerselected)
+            updaterProjectImage.setFrontend(false);
+            if(!updaterProjectImage.isBanner())
                 hidden.setEnabled(false);
         }
     }
@@ -53,12 +57,12 @@ public class ProjectImage extends JPanel {
 
     private void bannerActionPerformed(ActionEvent e) {
         if(isSelected(e)){
-            bannerselected = true;
+            updaterProjectImage.setBanner(true);
             hidden.setEnabled(true);
         }
         else {
-            bannerselected = false;
-            if(!frontpageSelected)
+            updaterProjectImage.setBanner(false);
+            if(!updaterProjectImage.isFrontend())
                 hidden.setEnabled(false);
         }
     }
@@ -70,11 +74,11 @@ public class ProjectImage extends JPanel {
     }
 
     private void btDeleteActionPerformed(ActionEvent e) {
-        projectDetails.removePlaatje(url);
+        projectDetails.removePlaatje(updaterProjectImage);
     }
 
     public String getUrl() {
-        return url;
+        return updaterProjectImage.getUrl();
     }
 
     public ProjectDetails getProjectDetails() {

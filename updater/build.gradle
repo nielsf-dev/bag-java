@@ -2,10 +2,15 @@ buildscript {
     repositories {
         mavenCentral()
     }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
 }
 
 apply plugin: 'java'
-
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 // 60, 63, 65
 // border 108, 108, 108
@@ -17,14 +22,18 @@ repositories {
         dirs 'libs'
     }
 }
+sourceCompatibility = 1.8
 
 dependencies {
     compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
     compile project (':domain')
     compile (name:'darcula', ext:'jar')
     compile (name:'jfd-annotations', ext:'jar')
-    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.5.RELEASE'
 
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework:spring-web")
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin'
 
     compile 'com.cloudinary:cloudinary-http44:1.22.1'
 }

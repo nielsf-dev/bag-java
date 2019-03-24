@@ -6,36 +6,30 @@ package org.bag;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.*;
 import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
+import org.bag.dto.UpdaterProjectListItem;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
-class ProjectListItem{
-    public int ID;
-    public String Text;
 
-    public ProjectListItem(int ID, String text) {
-        this.ID = ID;
-        Text = text;
-    }
-
-    @Override
-    public String toString() {
-        return Text;
-    }
-}
 /**
  * @author Niels
  */
 public class ProjectList extends JPanel {
 
-    private DefaultListModel<ProjectListItem> items = new DefaultListModel<>();
+    private final UpdaterApp updaterApp;
+    private DefaultListModel<UpdaterProjectListItem> items = new DefaultListModel<>();
 
-    public ProjectList() {
+    public ProjectList(UpdaterApp updaterApp) {
         initComponents();
-
-        items.addElement(new ProjectListItem(1,"Test"));
+        this.updaterApp = updaterApp;
         list1.setModel(items);
     }
 
@@ -44,13 +38,35 @@ public class ProjectList extends JPanel {
 
     }
 
-    public void refresh(){
-        String url = "https://bag-java.herokuapp.com/updaterProjectList";
+    public UpdaterProjectListItem refresh(){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<UpdaterProjectListItem>> response = restTemplate.exchange(
+                "https://bag-java.herokuapp.com/updaterProjectList",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<UpdaterProjectListItem>>(){});
+
+        items.clear();
+        List<UpdaterProjectListItem> updaterProjectListItems = response.getBody();
+        for (UpdaterProjectListItem updaterProjectListItem : updaterProjectListItems) {
+            items.addElement(updaterProjectListItem);
+        }
+
+        if(items.size() > 0)
+            return items.get(0);
+        else
+            return null;
 
     }
 
     private void btProjectToevoegenActionPerformed(ActionEvent e) {
-        items.addElement(new ProjectListItem(1,"Test2"));
+        items.addElement(new UpdaterProjectListItem(1,"Test2"));
+    }
+
+    private void list1ValueChanged(ListSelectionEvent e) {
+        int selectedIndex = list1.getSelectedIndex();
+        UpdaterProjectListItem updaterProjectListItem = items.get(selectedIndex);
+        updaterApp.viewProject(updaterProjectListItem);
     }
 
     private void initComponents() {
@@ -96,6 +112,7 @@ public class ProjectList extends JPanel {
 
             //---- list1 ----
             list1.setBorder(null);
+            list1.addListSelectionListener(e -> list1ValueChanged(e));
             scrollPane1.setViewportView(list1);
         }
         add(scrollPane1, "cell 0 2,grow");

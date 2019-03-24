@@ -51,7 +51,7 @@ public class JacksonTest {
         System.out.println(forObject.getTitel_nl());
     }
 
-  //  @Test
+    @Test
     public void restTestList(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<UpdaterProjectListItem>> response = restTemplate.exchange(

@@ -7,6 +7,7 @@ import net.miginfocom.swing.MigLayout;
 import com.bulenkov.darcula.DarculaLaf;
 import org.bag.domain.Image;
 import org.bag.domain.Project;
+import org.bag.dto.UpdaterProjectListItem;
 import org.springframework.web.client.RestTemplate;
 
 import javax.imageio.ImageIO;
@@ -22,9 +23,9 @@ import java.util.Map;
 
 public class UpdaterApp
 {
-    public static void main(String[] args) throws Exception {
-        //uploadImageToCloudinary();
+    private static ProjectDetails projectDetails;
 
+    public void run() throws Exception {
         // Looks
         Icon icon = IconLoader.getIcon("/com/bulenkov/darcula/icons/treeNodeCollapsed.png");
         UIManager.setLookAndFeel(new DarculaLaf());
@@ -35,12 +36,15 @@ public class UpdaterApp
                 "[min!][fill]",
                 "[]");
         JPanel mainPanel = new JPanel(migLayout);
-        mainPanel.add(new ProjectList(),"growy, gapright 0");
+        ProjectList projectList = new ProjectList(this);
+        mainPanel.add(projectList,"growy, gapright 0");
+        UpdaterProjectListItem firstProject = projectList.refresh();
 
         // Project details scrollable
-        ProjectDetails projectDetails = new ProjectDetails();
-        Project project = new Project(0,"detitel", "tekst", "", createImages(), 0,1);
-        projectDetails.setProject(project);
+        projectDetails = new ProjectDetails();
+
+        if(firstProject != null)
+            projectDetails.setProject(firstProject.getId());
 
         JScrollPane scrollPane = new JScrollPane(projectDetails);
         scrollPane.setBorder(null);
@@ -55,6 +59,12 @@ public class UpdaterApp
         jFrame.setResizable(false);
 
         jFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) throws Exception {
+        //uploadImageToCloudinary();
+        UpdaterApp updaterApp = new UpdaterApp();
+        updaterApp.run();
     }
 
     private static void uploadImageToCloudinary() {
@@ -99,5 +109,9 @@ public class UpdaterApp
             if (value instanceof javax.swing.plaf.FontUIResource)
                 UIManager.put (key, f);
         }
+    }
+
+    public void viewProject(UpdaterProjectListItem updaterProjectListItem) {
+        projectDetails.setProject(updaterProjectListItem.getId());
     }
 }

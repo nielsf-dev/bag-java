@@ -5,27 +5,33 @@
 package org.bag;
 
 import java.awt.*;
+import java.beans.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import net.miginfocom.swing.*;
 import org.bag.domain.Project;
+import org.bag.dto.UpdaterProject;
 
 /**
  * @author Niels
  */
 public class ProjectText extends JPanel {
+    private  ProjectDetails projectDetails = null;
+
+
     public enum ProjectTextType{
         Title,
         Location,
         Text
     }
 
-    private Project project;
+    private UpdaterProject project;
     private ProjectTextType projectTextType;
 
-    public ProjectText(Project project, ProjectTextType projectTextType){
+    public ProjectText(ProjectDetails projectDetails, UpdaterProject project, ProjectTextType projectTextType){
         this();
         this.project = project;
+        this.projectDetails = projectDetails;
         this.projectTextType = projectTextType;
         if(projectTextType == ProjectTextType.Title) {
             this.projectTextLabel.setText("Titel");
@@ -47,8 +53,30 @@ public class ProjectText extends JPanel {
         }
     }
 
+    public void bindToProject() {
+        if(projectTextType == ProjectTextType.Title) {
+            project.setTitel_nl(this.textArea1.getText());
+            project.setTitel_en(this.textArea2.getText());
+            project.setTitel_zh(this.textArea3.getText());
+        }
+        else if(projectTextType == ProjectTextType.Location) {
+            project.setLocatie_nl(this.textArea1.getText());
+            project.setLocatie_en(this.textArea2.getText());
+            project.setLocatie_zh(this.textArea3.getText());
+        }
+        else if(projectTextType == ProjectTextType.Text) {
+            project.setText_nl(this.textArea1.getText());
+            project.setText_en(this.textArea2.getText());
+            project.setText_zh(this.textArea3.getText());
+        }
+    }
+
     public ProjectText() {
         initComponents();
+    }
+
+    public UpdaterProject getProject() {
+        return project;
     }
 
     private void initComponents() {

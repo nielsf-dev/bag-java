@@ -1,11 +1,6 @@
 package org.bag.dto
 
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.DeserializationContext
 import java.io.IOException
-import com.fasterxml.jackson.databind.JsonDeserializer
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 // kennelijk als ik ze niet via de constructor doe gaat het fout met jackson?
 class UpdaterProjectImage {
