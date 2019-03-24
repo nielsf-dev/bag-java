@@ -108,7 +108,7 @@ open class UpdaterProjectController @Autowired constructor(
         project.text_zh = updaterProject.text_zh
     }
 
-    @GetMapping("/removeproject/{id}")
+    @GetMapping("/removeProject/{id}")
     open fun removeProject(@PathVariable id: Int) {
         projectRepository.deleteById(id);
     }

@@ -77,6 +77,6 @@ public class JacksonTest {
    // @Test
     public void removeProject(){
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getForObject("http://localhost:5000/removeproject/69",String.class);
+        restTemplate.getForObject("http://localhost:5000/removeProject/69",String.class);
     }
 }
