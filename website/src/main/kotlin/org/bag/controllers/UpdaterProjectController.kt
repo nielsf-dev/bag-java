@@ -137,9 +137,4 @@ open class UpdaterProjectController @Autowired constructor(
         else
             throw Exception("project niet gevonden")
     }
-
-    @GetMapping("/setcomplete")
-    fun setComplete(@RequestBody project: Project) {
-
-    }
 }
