@@ -19,7 +19,7 @@ public class FrontendProjectAssemblerTest {
         images.add(new Image("image1.jpg"));
         images.add(new Image("image2.jpg"));
 
-        Project project = new Project("detitel", "delocatei", "", images, 0,1);
+        Project project = new Project(0,"detitel", "delocatei", "", images, 0,1);
         project.setTitel_en("The title");
 
         FrontendProjectAssembler projectAssembler = new FrontendProjectAssembler(project);

@@ -24,8 +24,8 @@ public class JacksonTest {
                 "  \"images\": [{\"url\": \"www.jemoer.nl\"},{\"url\": \"www.doenogmaar1.nl\"}]\n" +
                 "}";
 
-        UpdaterProject project = new UpdaterProject();
-        project.getImages().add(new UpdaterProjectImage());
+       // UpdaterProject project = new UpdaterProject();
+      //  project.getImages().add(new UpdaterProjectImage());
 
         ObjectMapper mapper = new ObjectMapper();
         try {

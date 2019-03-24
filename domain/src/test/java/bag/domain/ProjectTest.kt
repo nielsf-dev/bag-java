@@ -14,7 +14,7 @@ class ProjectTest {
     fun createProjectGood() {
         val images = createImages()
 
-        val project = Project("detitel", "tekst", "", images, 0, 1)
+        val project = Project(0,"detitel", "tekst", "", images, 0, 1)
         Assert.assertNotNull("Geldige indices", project)
     }
 
@@ -30,7 +30,7 @@ class ProjectTest {
     fun createProjectBad() {
         val images = createImages()
 
-        val project = Project("detitel", "tekst", "delocatei", images, 2, 0)
+        val project = Project(0,"detitel", "tekst", "delocatei", images, 2, 0)
         Assert.assertNotNull(project)
     }
 
@@ -38,13 +38,13 @@ class ProjectTest {
     @Throws(Exception::class)
     fun createProjectBad2() {
         val images = createImages()
-        val project = Project("detitel", "tekst", "delocatei", images, 0, 2)
+        val project = Project(0,"detitel", "tekst", "delocatei", images, 0, 2)
     }
 
     @Test
     @Throws(Exception::class)
     fun getTitle() {
-        val project = Project("nl title", "tekst", "test", createImages(), 0, 0)
+        val project = Project(0,"nl title", "tekst", "test", createImages(), 0, 0)
         project.titel_en = "us title"
 
         Assert.assertEquals("Expect correct title for lang", "us title", project.getTitle("en"))
@@ -55,7 +55,7 @@ class ProjectTest {
     @Test
     @Throws(Exception::class)
     fun getLocatie() {
-        val project = Project("test", "nl locatie", "tekst", createImages(), 0, 0)
+        val project = Project(0,"test", "nl locatie", "tekst", createImages(), 0, 0)
         project.locatie_en = "us locatie"
 
         Assert.assertEquals("Expect correct locatie for lang", "us locatie", project.getLocatie("en"))
@@ -66,7 +66,7 @@ class ProjectTest {
     @Test
     @Throws(Exception::class)
     fun getText() {
-        val project = Project("test", "nl locatie", "tekst", createImages(), 0, 0)
+        val project = Project(0,"test", "nl locatie", "tekst", createImages(), 0, 0)
         project.text_en = "us tekst"
 
         Assert.assertEquals("Expect correct text for lang", "us tekst", project.getText("en"))

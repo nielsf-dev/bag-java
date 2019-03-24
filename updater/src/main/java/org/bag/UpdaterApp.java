@@ -38,7 +38,7 @@ public class UpdaterApp
 
         // Project details scrollable
         ProjectDetails projectDetails = new ProjectDetails();
-        Project project = new Project("detitel", "tekst", "", createImages(), 0,1);
+        Project project = new Project(0,"detitel", "tekst", "", createImages(), 0,1);
         projectDetails.setProject(project);
 
         JScrollPane scrollPane = new JScrollPane(projectDetails);

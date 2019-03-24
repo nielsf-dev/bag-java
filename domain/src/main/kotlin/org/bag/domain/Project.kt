@@ -8,6 +8,10 @@ private val logger = KotlinLogging.logger {}
 /** Project voor de BAG Site */
 @Entity
 class Project(
+        /**
+        * Volgorde van het project
+        */
+        var jemoer: Int,
 
         /** de titel in het nederlands */
         var titel_nl: String,
@@ -21,7 +25,7 @@ class Project(
         /** De lijst met plaatjes */
         @JoinTable
         @OneToMany
-        val images: List<Image>)
+        var images: List<Image>)
 {
 
     /** De image op de banner */
@@ -38,7 +42,7 @@ class Project(
      * Maakt een project aan. De [bannerImageIndex] en [frontPageImageIndex] moeten geldig zijn mbt de [images].
      * @throws Exception Ongeldige index opgegeven
      */
-    constructor(titel: String, locatie: String, text: String, images: List<Image>, bannerImageIndex: Int, frontPageImageIndex: Int) : this(titel, locatie, text, images) {
+    constructor(order: Int, titel: String, locatie: String, text: String, images: ArrayList<Image>, bannerImageIndex: Int, frontPageImageIndex: Int) : this(order, titel, locatie, text, images) {
         setBannerImage(bannerImageIndex)
         setFrontendImage(frontPageImageIndex)
     }
@@ -46,11 +50,6 @@ class Project(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Int = 0
-
-    /**
-     * Volgorde van het project
-     */
-    var order: Int = Int.MAX_VALUE
 
     /** de titel in het engels */
     var titel_en: String = ""
@@ -138,6 +137,12 @@ class Project(
     fun setFrontendImage(imageIndex: Int){
         frontPageImage = validateAndGetFromImages(imageIndex)
         logger.info("Frontpage image set to ${frontPageImage.url} for project '$titel_nl'")
+    }
+
+    fun addImage(image: Image) {
+        val arrayl = ArrayList(images)
+        arrayl.add(image)
+        images = arrayl.toList()
     }
 }
 

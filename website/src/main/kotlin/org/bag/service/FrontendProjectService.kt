@@ -36,7 +36,7 @@ class FrontendProjectService @Autowired constructor (
      */
     fun getAllProjects(locale: Locale): List<FrontendProject> {
         val frontendProjects = ArrayList<FrontendProject>()
-        val projects = projectRepository.findAll(Sort.by("order"))
+        val projects = projectRepository.findAll(Sort.by("jemoer"))
         for (project in projects) {
             val assembler = FrontendProjectAssembler(project)
             frontendProjects.add(assembler.assemble(locale))
