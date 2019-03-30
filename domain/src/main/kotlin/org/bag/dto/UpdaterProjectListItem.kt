@@ -5,6 +5,6 @@ class UpdaterProjectListItem(
         val title: String
 ){
     override fun toString(): String {
-        return title;
+        return title
     }
 }

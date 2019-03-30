@@ -32,69 +32,82 @@ open class UpdaterProjectController @Autowired constructor(
 
     @PutMapping("/updaterProject")
     @Transactional
-    open fun updateProject(@RequestBody updaterProject: UpdaterProject) {
+    open fun putProject(@RequestBody updaterProject: UpdaterProject) {
         if(updaterProject.images.size == 0)
             throw Exception("Empty images")
 
-        var project: Project
         if(updaterProject.id == 0){
-            logger.info { "New project '${updaterProject.titel_nl}'" }
-            val images = ArrayList<Image>()
-            var frontendIndex = -1
-            var bannerIndex = -1
-            for(i in updaterProject.images.indices){
-                val updaterImage = updaterProject.images[i]
-                if(updaterImage.isFrontend)
-                    frontendIndex = i
-                if(updaterImage.isBanner)
-                    bannerIndex = i
-
-                val image = Image(updaterImage.url)
-                imageRepository.save(image)
-                images.add(image)
-            }
-
-            if(bannerIndex == -1 || frontendIndex == -1)
-                throw Exception("Geen banner of frontend image opgegeven")
-
-            val order = projectRepository.findAll().count()+1
-            project = Project(order, updaterProject.titel_nl, updaterProject.locatie_nl, updaterProject.text_nl, images, bannerIndex, frontendIndex)
-            updateLanguageProperties(project, updaterProject)
+            insertProject(updaterProject)
         }
         else {
-            logger.info { "Project update '${updaterProject.titel_nl}'" }
-            val oproject = projectRepository.findById(updaterProject.id)
-            if (!oproject.isPresent)
-                throw Exception()
+            updateProject(updaterProject)
+        }
+    }
 
-            project = oproject.get()
-            project.titel_nl = updaterProject.titel_nl
-            project.locatie_nl = updaterProject.locatie_nl
-            project.text_nl = updaterProject.text_nl
-            updateLanguageProperties(project, updaterProject)
+    /**
+     * [Project] updaten adhv [UpdaterProject]
+     */
+    private fun updateProject(updaterProject: UpdaterProject) {
+        logger.info { "Project update '${updaterProject.titel_nl}'" }
+        val oproject = projectRepository.findById(updaterProject.id)
+        if (!oproject.isPresent)
+            throw Exception()
 
-            var frontendIndex = -1
-            var bannerIndex = -1
-            for(i in updaterProject.images.indices){
-                val updaterImage = updaterProject.images[i]
-                if(updaterImage.isFrontend)
-                    frontendIndex = i
-                if(updaterImage.isBanner)
-                    bannerIndex = i
+        val project = oproject.get()
+        project.titel_nl = updaterProject.titel_nl
+        project.locatie_nl = updaterProject.locatie_nl
+        project.text_nl = updaterProject.text_nl
+        updateLanguageProperties(project, updaterProject)
 
-                if(updaterImage.id == 0) {
-                    val image = Image(updaterImage.url)
-                    imageRepository.save(image)
-                    project.addImage(image)
-                }
+        var frontendIndex = -1
+        var bannerIndex = -1
+        for (i in updaterProject.images.indices) {
+            val updaterImage = updaterProject.images[i]
+            if (updaterImage.isFrontend)
+                frontendIndex = i
+            if (updaterImage.isBanner)
+                bannerIndex = i
+
+            if (updaterImage.id == 0) {
+                val image = Image(updaterImage.url)
+                imageRepository.save(image)
+                project.addImage(image)
             }
-
-            if(bannerIndex == -1 || frontendIndex == -1)
-                throw Exception("Geen banner of frontend image opgegeven")
-            project.setBannerImage(bannerIndex)
-            project.setFrontendImage(frontendIndex)
         }
 
+        if (bannerIndex == -1 || frontendIndex == -1)
+            throw Exception("Geen banner of frontend image opgegeven")
+        project.setBannerImage(bannerIndex)
+        project.setFrontendImage(frontendIndex)
+        projectRepository.save(project)
+    }
+
+    /**
+     * Nieuw project inserten adhv [updaterProject]
+     */
+    private fun insertProject(updaterProject: UpdaterProject) {
+        logger.info { "New project '${updaterProject.titel_nl}'" }
+        val images = ArrayList<Image>()
+        var frontendIndex = -1
+        var bannerIndex = -1
+        for (i in updaterProject.images.indices) {
+            val updaterImage = updaterProject.images[i]
+            if (updaterImage.isFrontend)
+                frontendIndex = i
+            if (updaterImage.isBanner)
+                bannerIndex = i
+
+            val image = Image(updaterImage.url)
+            imageRepository.save(image)
+            images.add(image)
+        }
+
+        if (bannerIndex == -1 || frontendIndex == -1)
+            throw Exception("Geen banner of frontend image opgegeven")
+
+        val order = projectRepository.findAll().count() + 1
+        val project = Project(order, updaterProject.titel_nl, updaterProject.locatie_nl, updaterProject.text_nl, images, bannerIndex, frontendIndex)
+        updateLanguageProperties(project, updaterProject)
         projectRepository.save(project)
     }
 

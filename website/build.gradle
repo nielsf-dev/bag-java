@@ -60,8 +60,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile 'io.github.microutils:kotlin-logging:1.6.24'
-    compile 'org.codehaus.groovy:groovy:2.4.7'
+    compile 'org.codehaus.groovy:groovy:2.5.6'
 
+    testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
     testCompile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
     testCompile 'com.fasterxml.jackson.module:jackson-module-kotlin'
     testCompile("org.springframework.boot:spring-boot-starter-test")
