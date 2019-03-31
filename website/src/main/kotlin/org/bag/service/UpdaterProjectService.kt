@@ -4,9 +4,9 @@ import mu.KotlinLogging
 import org.bag.domain.Image
 import org.bag.domain.Project
 import org.bag.dto.UpdaterProject
+import org.bag.dto.UpdaterProjectImage
 import org.bag.repositories.ImageRepository
 import org.bag.repositories.ProjectRepository
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -62,12 +62,24 @@ class UpdaterProjectService @Autowired constructor(
                 project.addImage(image)
             }
         }
+        removeImagesIfNotPresent(project,updaterProject.images)
 
         if (bannerIndex == -1 || frontendIndex == -1)
             throw Exception("Geen banner of frontend image opgegeven")
         project.setBannerImage(bannerIndex)
         project.setFrontendImage(frontendIndex)
         projectRepository.save(project)
+    }
+
+    /**
+     * Verwijder plaatjes uit [project] als ze niet meer voorkomen tussen [updaterImages]
+     */
+    private fun removeImagesIfNotPresent(project: Project, updaterImages: ArrayList<UpdaterProjectImage>) {
+        val notPresent = project.images.filter { updaterImages.find { updaterProjectImage -> updaterProjectImage.url == it.url } == null }
+        for(image in notPresent) {
+            project.removeImage(image)
+            imageRepository.delete(image)
+        }
     }
 
     /**

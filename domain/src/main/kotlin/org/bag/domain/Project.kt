@@ -145,6 +145,11 @@ class Project(
         arrayl.add(image)
         images = arrayl.toList()
     }
+
+    fun removeImage(image: Image){
+        val arrayl = ArrayList(images)
+        arrayl.remove(image)
+    }
 }
 
 
