@@ -30,6 +30,12 @@ task stage{
 }
 stage.finalizedBy bootJar
 
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 bootJar {
     mainClassName = "org.bag.ApplicationKt"
   //  launchScript()

@@ -57,14 +57,9 @@ public class UpdaterApp
         JPanel mainPanel = new JPanel(migLayout);
         ProjectList projectList = new ProjectList(this);
         mainPanel.add(projectList,"growy, gapright 0");
-        UpdaterProjectListItem firstProject = projectList.refresh();
 
         // Project details scrollable
         projectDetails = new ProjectDetails();
-
-        if(firstProject != null)
-            projectDetails.setProject(firstProject.getId());
-
         JScrollPane scrollPane = new JScrollPane(projectDetails);
         scrollPane.setBorder(null);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -78,6 +73,8 @@ public class UpdaterApp
         jFrame.setResizable(false);
 
         jFrame.setVisible(true);
+
+        projectList.refresh();
     }
 
     public static void main(String[] args) throws Exception {

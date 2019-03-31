@@ -24,7 +24,7 @@ class ProjectOrder{
     }
 
     fun createProjects() {
-        val amstelveen = createProject("City Garden", "Amstelveen", "", 0, 1,
+        createProject("City Garden", "Amstelveen", "", 0, 1,
                 "/upload/portfolio/CityGarden/citygardenavond.jpg",
                 "/upload/portfolio/CityGarden/citygardenkop.jpg",
                 "/upload/portfolio/CityGarden/citygardentuin.jpg")

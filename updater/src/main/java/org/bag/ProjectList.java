@@ -52,8 +52,10 @@ public class ProjectList extends JPanel {
             items.addElement(updaterProjectListItem);
         }
 
-        if(items.size() > 0)
+        if(items.size() > 0) {
+            list1.setSelectedIndex(0);
             return items.get(0);
+        }
         else
             return null;
 

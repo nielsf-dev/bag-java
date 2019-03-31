@@ -38,7 +38,7 @@ class ProjectTest {
     @Throws(Exception::class)
     fun createProjectBad2() {
         val images = createImages()
-        val project = Project(0,"detitel", "tekst", "delocatei", images, 0, 2)
+        Project(0,"detitel", "tekst", "delocatei", images, 0, 2)
     }
 
     @Test
