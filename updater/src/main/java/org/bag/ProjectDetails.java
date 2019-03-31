@@ -74,6 +74,7 @@ public class ProjectDetails extends JPanel {
         this.add(textControl, "cell 0 2, growx");
 
         this.plaatjesLayout.removeAll();
+        this.projectImages.clear();
         for(UpdaterProjectImage updaterProjectImage : updaterProject.getImages()){
             ProjectImage projectImage = null;
             try {
@@ -129,22 +130,21 @@ public class ProjectDetails extends JPanel {
     }
 
     public void removePlaatje(UpdaterProjectImage image){
-        ProjectImage toRemove = null;
-        for (ProjectImage projectImage : projectImages) {
+        int toRemove = -1;
+        for(int i=0; i< projectImages.size(); i++){
+            ProjectImage projectImage = projectImages.get(i);
             if(projectImage.getUrl().equalsIgnoreCase(image.getUrl())){
                 this.plaatjesLayout.remove(projectImage);
                 this.plaatjesLayout.revalidate();
                 this.plaatjesLayout.repaint();
                 this.revalidate();
-                toRemove = projectImage;
+                toRemove = i;
+                break;
             }
         }
 
-        if(toRemove != null) {
-            this.projectImages.remove(toRemove);
-        }
-
-        updaterProject.getImages().remove(image);
+        ProjectImage remove = this.projectImages.remove((int) toRemove);
+        UpdaterProjectImage remove1 = updaterProject.getImages().remove((int) toRemove);
     }
 
     private void btOpslaanActionPerformed(ActionEvent e) {

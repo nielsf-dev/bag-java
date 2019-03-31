@@ -38,22 +38,22 @@ class HelloSpockSpec extends Specification {
     "Scotty" | 6
   }
 
-  def "je moeder ruikt naar rotjes"(){
-    given:
-    def projectRepository = Stub(ProjectRepository.class)
-    projectRepository.findAll(Sort.by("order")) >>
-            [new Project(0,"first","loc","text",[new Image("test")]),
-             new Project(1,"second","loc","text",[new Image("test")])]
-
-    def updaterProjectController = new UpdaterProjectController(projectRepository,Mock(ImageRepository))
-
-    when:
-    def projects = updaterProjectController.listProjects()
-
-    then:
-    projects.size() == 2
-    projects.first().title == "first"
-  }
+//  def "je moeder ruikt naar rotjes"(){
+//    given:
+//    def projectRepository = Stub(ProjectRepository.class)
+//    projectRepository.findAll(Sort.by("order")) >>
+//            [new Project(0,"first","loc","text",[new Image("test")]),
+//             new Project(1,"second","loc","text",[new Image("test")])]
+//
+//    def updaterProjectController = new UpdaterProjectController(projectRepository,Mock(ImageRepository))
+//
+//    when:
+//    def projects = updaterProjectController.listProjects()
+//
+//    then:
+//    projects.size() == 2
+//    projects.first().title == "first"
+//  }
 
   def "de simpele when(stimulus)->then(response) variant"(){
     def lijstje = new ArrayList()
