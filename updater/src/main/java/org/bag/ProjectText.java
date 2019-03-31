@@ -17,7 +17,6 @@ import org.bag.dto.UpdaterProject;
  * @author Niels
  */
 public class ProjectText extends JPanel {
-    private  ProjectDetails projectDetails = null;
 
     public enum ProjectTextType{
         Title,
@@ -28,10 +27,9 @@ public class ProjectText extends JPanel {
     private UpdaterProject project;
     private ProjectTextType projectTextType;
 
-    public ProjectText(ProjectDetails projectDetails, UpdaterProject project, ProjectTextType projectTextType){
+    public ProjectText(UpdaterProject project, ProjectTextType projectTextType){
         this();
         this.project = project;
-        this.projectDetails = projectDetails;
         this.projectTextType = projectTextType;
         if(projectTextType == ProjectTextType.Title) {
             this.projectTextLabel.setText("Titel");

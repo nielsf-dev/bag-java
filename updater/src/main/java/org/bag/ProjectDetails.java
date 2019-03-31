@@ -64,13 +64,13 @@ public class ProjectDetails extends JPanel {
         this.revalidate();
         this.repaint();
 
-        titleControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Title);
+        titleControl = new ProjectText(updaterProject, ProjectText.ProjectTextType.Title);
         this.add(titleControl,"cell 0 0, growx");
 
-        locationControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Location);
+        locationControl = new ProjectText(updaterProject, ProjectText.ProjectTextType.Location);
         this.add(locationControl, "cell 0 1, growx");
 
-        textControl = new ProjectText(this, updaterProject, ProjectText.ProjectTextType.Text);
+        textControl = new ProjectText(updaterProject, ProjectText.ProjectTextType.Text);
         this.add(textControl, "cell 0 2, growx");
 
         this.plaatjesLayout.removeAll();
