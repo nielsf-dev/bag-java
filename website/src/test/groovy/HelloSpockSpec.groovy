@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+
+import org.bag.controllers.UpdaterProjectController
+import org.bag.domain.Image
+import org.bag.domain.Project
+import org.bag.dto.UpdaterProjectListItem
+import org.bag.repositories.ImageRepository
+import org.bag.repositories.ProjectRepository
+import org.springframework.data.domain.Sort
 import spock.lang.Specification
 
 // om te runnen zonder warnings dit toevoegen bij run configuration -> VM Options:
@@ -28,5 +36,32 @@ class HelloSpockSpec extends Specification {
     "Spock"  | 5
     "Kirk"   | 4
     "Scotty" | 6
+  }
+
+  def "je moeder ruikt naar rotjes"(){
+    given:
+    def projectRepository = Stub(ProjectRepository.class)
+    projectRepository.findAll(Sort.by("order")) >>
+            [new Project(0,"first","loc","text",[new Image("test")]),
+             new Project(1,"second","loc","text",[new Image("test")])]
+
+    def updaterProjectController = new UpdaterProjectController(projectRepository,Mock(ImageRepository))
+
+    when:
+    def projects = updaterProjectController.listProjects()
+
+    then:
+    projects.size() == 2
+    projects.first().title == "first"
+  }
+
+  def "de simpele when(stimulus)->then(response) variant"(){
+    def lijstje = new ArrayList()
+    when:
+    lijstje.add(new Image("www.niels.nl"))
+
+    then:
+    lijstje.size() == 1
+    lijstje.find() != null
   }
 }  
