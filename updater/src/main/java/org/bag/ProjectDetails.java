@@ -43,7 +43,7 @@ public class ProjectDetails extends JPanel {
 
         if(projectId > 0) {
             RestTemplate restTemplate = new RestTemplate();
-            updaterProject = restTemplate.getForObject("https://bag-java.herokuapp.com/updaterProject/" + projectId, UpdaterProject.class);
+            updaterProject = restTemplate.getForObject(UpdaterApp.getWebsiteUrl() + "/updaterProject/" + projectId, UpdaterProject.class);
             if(updaterProject == null) {
                 JOptionPane.showMessageDialog(this,"Niet gelukt project op te halen");
                 return;
@@ -154,7 +154,7 @@ public class ProjectDetails extends JPanel {
 
         RestTemplate restTemplate = new RestTemplate();
         //restTemplate.put("https://bag-java.herokuapp.com/updaterProject",updaterProject,UpdaterProject.class);
-        restTemplate.put("https://bag-java.herokuapp.com/updaterProject",updaterProject,UpdaterProject.class);
+        restTemplate.put(UpdaterApp.getWebsiteUrl() + "/updaterProject",updaterProject,UpdaterProject.class);
     }
 
     private void initComponents() {

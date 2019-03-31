@@ -15,15 +15,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class UpdaterApp
 {
     private static ProjectDetails projectDetails;
+
+    public static Properties getAppProperties(){
+        InputStream resourceAsStream = UpdaterApp.class.getClassLoader().getResourceAsStream("app.properties");
+        Properties appProps = new Properties();
+        try {
+            appProps.load(resourceAsStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return appProps;
+    }
+
+    public static String getWebsiteUrl(){
+        Properties appProperties = getAppProperties();
+        return appProperties.getProperty("website");
+    }
 
     public void run() throws Exception {
         // Looks

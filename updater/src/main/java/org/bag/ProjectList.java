@@ -41,7 +41,7 @@ public class ProjectList extends JPanel {
     public UpdaterProjectListItem refresh(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<UpdaterProjectListItem>> response = restTemplate.exchange(
-                "https://bag-java.herokuapp.com/updaterProjectList",
+                UpdaterApp.getWebsiteUrl() + "/updaterProjectList",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<UpdaterProjectListItem>>(){});

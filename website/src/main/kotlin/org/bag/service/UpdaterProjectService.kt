@@ -78,8 +78,8 @@ class UpdaterProjectService @Autowired constructor(
         val notPresent = project.images.filter { updaterImages.find { updaterProjectImage -> updaterProjectImage.url == it.url } == null }
         for(image in notPresent) {
             project.removeImage(image)
-            projectRepository.save(project)
-            imageRepository.delete(image)
+           // projectRepository.save(project)
+          //  imageRepository.delete(image)
         }
     }
 

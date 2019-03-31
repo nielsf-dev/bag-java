@@ -65,7 +65,7 @@ class UpdaterProjectServiceSpec extends Specification{
             updaterProject.images.remove(2)
             updaterProjectService.putProject(updaterProject)
 
-        then: "verwacht dan een delete in de database"
-            1 * imageRepository.delete({it.url == "3.nl"})
+        then: "verwacht dan een delete uit project"
+            project.images.find{i -> i.url == "3.nl"} == null
     }
 }

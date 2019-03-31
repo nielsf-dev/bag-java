@@ -25,8 +25,8 @@ class Project(
 
         /** De lijst met plaatjes */
         @JoinTable
-        @OneToMany
-        var images: List<Image>)
+        @OneToMany(cascade = [CascadeType.ALL])
+        var images: MutableList<Image>)
 {
 
     /** De image op de banner */
@@ -141,14 +141,11 @@ class Project(
     }
 
     fun addImage(image: Image) {
-        val arrayl = ArrayList(images)
-        arrayl.add(image)
-        images = arrayl.toList()
+        images.add(image)
     }
 
     fun removeImage(image: Image){
-        val arrayl = ArrayList(images)
-        arrayl.remove(image)
+        images.remove(image)
     }
 }
 
