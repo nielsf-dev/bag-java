@@ -9,6 +9,7 @@ import org.bag.repositories.ProjectRepository
 import spock.lang.Specification
 
 class UpdaterProjectServiceSpec extends Specification{
+
     def "Project inserten"(){
         given: "Een standaard opzet"
         def updaterProject = new UpdaterProject(0,"titel","loca","text","","","","","","")
