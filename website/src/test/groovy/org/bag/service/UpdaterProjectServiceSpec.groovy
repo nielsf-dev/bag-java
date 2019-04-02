@@ -61,6 +61,7 @@ class UpdaterProjectServiceSpec extends Specification{
         project.frontendImage.url == "1.nl"
         1 * projectRepository.save(project)
         1 * imageRepository.save({it.url == "new.nl"})
+        project.images.find{i -> i.url == "3.nl"} != null
 
         when: "een plaatje word weggelaten vanuit de updater"
         updaterProject.images.remove(2)
@@ -68,5 +69,22 @@ class UpdaterProjectServiceSpec extends Specification{
 
         then: "verwacht een delete uit bijbehorende project"
         project.images.find{i -> i.url == "3.nl"} == null
+
+        when: "alle plaatjes behalve 1 verwijdert"
+        updaterProject.images.remove(0)
+        updaterProject.images.remove(1)
+        updaterProject.images[0].isFrontend = true
+        updaterProject.images[0].isBanner = true
+        updaterProjectService.putProject(updaterProject)
+
+        then: "verwacht same bij bijbehorende project"
+        project.images.size() == 1
+
+        when: "niet bestaand plaatje toevoegen"
+        updaterProject.images.add(new UpdaterProjectImage(187,"",false,false))
+        updaterProjectService.putProject(updaterProject)
+
+        then:
+        thrown(Exception)
     }
 }

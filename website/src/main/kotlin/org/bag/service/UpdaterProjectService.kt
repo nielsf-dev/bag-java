@@ -33,58 +33,67 @@ class UpdaterProjectService @Autowired constructor(
     }
 
     /**
-     * [Project] updaten adhv [updaterProject]
+     * [Project] updaten adhv een [updaterProject]
      */
     private fun updateProject(updaterProject: UpdaterProject) {
         logger.info { "Project update '${updaterProject.titel_nl}'" }
-        val oproject = projectRepository.findById(updaterProject.id)
-        if (!oproject.isPresent)
-            throw Exception()
+        val optional = projectRepository.findById(updaterProject.id)
+        if (!optional.isPresent)
+            throw Exception("Ongeldig project ID: ${updaterProject.id}")
 
-        val project = oproject.get()
+        val project = optional.get()
         project.titel_nl = updaterProject.titel_nl
         project.locatie_nl = updaterProject.locatie_nl
         project.text_nl = updaterProject.text_nl
         updateLanguageProperties(project, updaterProject)
+        updateImages(project, updaterProject)
+        removeImagesIfNotPresent(project,updaterProject.images)
 
-        var frontendIndex = -1
-        var bannerIndex = -1
+        projectRepository.save(project)
+    }
+
+    /**
+     * Update en valideer de plaatjes in [project] adhv [updaterProject].
+     * Insert nieuwe plaatjes
+     */
+    private fun updateImages(project: Project, updaterProject: UpdaterProject) {
         for (i in updaterProject.images.indices) {
             val updaterImage = updaterProject.images[i]
-            if (updaterImage.isFrontend)
-                frontendIndex = i
-            if (updaterImage.isBanner)
-                bannerIndex = i
-
+            // Nieuwe image?
             if (updaterImage.id == 0) {
+                // Ja, opslaan
+                logger.debug { "Nieuwe image opslaan met url: ${updaterImage.url}" }
                 val image = Image(updaterImage.url)
                 imageRepository.save(image)
                 project.addImage(image)
             }
-        }
-        removeImagesIfNotPresent(project,updaterProject.images)
+            // Nee, wel een valide URL?
+            else if (project.images.find { it.url == updaterImage.url } == null) {
+                // Nee, error
+                throw Exception("Ongeldige image URL: ${updaterImage.url}")
+            }
 
-        if (bannerIndex == -1 || frontendIndex == -1)
-            throw Exception("Geen banner of frontend image opgegeven")
-        project.setBannerImage(bannerIndex)
-        project.setFrontendImage(frontendIndex)
-        projectRepository.save(project)
+            if (updaterImage.isFrontend)
+                project.setFrontendImage(i)
+            if (updaterImage.isBanner)
+                project.setBannerImage(i)
+        }
     }
 
     /**
      * Verwijder plaatjes uit [project] als ze niet meer voorkomen tussen [updaterImages]
      */
     private fun removeImagesIfNotPresent(project: Project, updaterImages: ArrayList<UpdaterProjectImage>) {
-        val notPresent = project.images.filter { updaterImages.find { updaterProjectImage -> updaterProjectImage.url == it.url } == null }
-        for(image in notPresent) {
+        val notPresentInUpdaterImages = project.images.filter {
+            updaterImages.find { updaterProjectImage -> updaterProjectImage.url == it.url } == null
+        }
+        for(image in notPresentInUpdaterImages) {
             project.removeImage(image)
-           // projectRepository.save(project)
-          //  imageRepository.delete(image)
         }
     }
 
     /**
-     * Nieuw project inserten adhv [updaterProject]
+     * Nieuw project inserten adhv een [updaterProject]
      */
     private fun insertProject(updaterProject: UpdaterProject) {
         logger.info { "New project '${updaterProject.titel_nl}'" }

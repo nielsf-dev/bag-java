@@ -19,7 +19,6 @@ class Image(val url: String) {
         other as Image
 
         if (url != other.url) return false
-        if (id != other.id) return false
 
         return true
     }
