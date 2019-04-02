@@ -54,7 +54,7 @@ class UpdaterProjectService @Autowired constructor(
 
     /**
      * Update en valideer de plaatjes in [project] adhv [updaterProject].
-     * Insert nieuwe plaatjes
+     * Insert nieuwe plaatjes.
      */
     private fun updateImages(project: Project, updaterProject: UpdaterProject) {
         for (i in updaterProject.images.indices) {
