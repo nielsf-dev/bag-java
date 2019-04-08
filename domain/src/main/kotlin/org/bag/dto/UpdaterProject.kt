@@ -1,5 +1,9 @@
 package org.bag.dto
 
+/**
+ * Representatie van een [Project] tbv de Updater applicatie.
+ * Hierin zijn alle talen aanwezig en kan per plaatje gekozen worden of het de frontend- of bannerimage betreft.
+ */
 class UpdaterProject{
 
         var id: Int = 0

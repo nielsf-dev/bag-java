@@ -36,6 +36,10 @@ test {
     }
 }
 
+bootRun{
+    jvmArgs = ["-Dspring.output.ansi.enabled=ALWAYS"]
+}
+
 bootJar {
     mainClassName = "org.bag.ApplicationKt"
   //  launchScript()

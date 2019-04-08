@@ -47,14 +47,12 @@ class UpdaterProjectService @Autowired constructor(
         project.text_nl = updaterProject.text_nl
         updateLanguageProperties(project, updaterProject)
         updateImages(project, updaterProject)
-        removeImagesIfNotPresent(project,updaterProject.images)
 
         projectRepository.save(project)
     }
 
     /**
-     * Update en valideer de plaatjes in [project] adhv [updaterProject].
-     * Insert nieuwe plaatjes.
+     * Update(insert/delete) de plaatjes in [project] adhv een gevalideerd [updaterProject].
      */
     private fun updateImages(project: Project, updaterProject: UpdaterProject) {
         for (i in updaterProject.images.indices) {
@@ -67,7 +65,7 @@ class UpdaterProjectService @Autowired constructor(
                 imageRepository.save(image)
                 project.addImage(image)
             }
-            // Nee, wel een valide URL?
+            // Nee, wel een valide URL in updater image?
             else if (project.images.find { it.url == updaterImage.url } == null) {
                 // Nee, error
                 throw Exception("Ongeldige image URL: ${updaterImage.url}")
@@ -78,6 +76,8 @@ class UpdaterProjectService @Autowired constructor(
             if (updaterImage.isBanner)
                 project.setBannerImage(i)
         }
+
+        removeImagesIfNotPresent(project,updaterProject.images)
     }
 
     /**
