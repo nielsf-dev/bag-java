@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component
  * [Project] CRUD functionaliteit voor de Updater.
  */
 @Component
-class UpdaterProjectService @Autowired constructor(
+class ProjectUpdater @Autowired constructor(
         private val projectRepository: ProjectRepository,
         private val imageRepository: ImageRepository){
 
@@ -23,7 +23,7 @@ class UpdaterProjectService @Autowired constructor(
     /**
      * Update of insert een [Project] aan de hand van een [updaterProject]
      */
-    fun putProject(updaterProject: UpdaterProject){
+    fun update(updaterProject: UpdaterProject){
         if(updaterProject.id == 0){
             insertProject(updaterProject)
         }
@@ -32,9 +32,6 @@ class UpdaterProjectService @Autowired constructor(
         }
     }
 
-    /**
-     * [Project] updaten adhv een [updaterProject]
-     */
     private fun updateProject(updaterProject: UpdaterProject) {
         logger.info { "Project update '${updaterProject.titel_nl}'" }
         val optional = projectRepository.findById(updaterProject.id)
@@ -47,12 +44,13 @@ class UpdaterProjectService @Autowired constructor(
         project.text_nl = updaterProject.text_nl
         updateLanguageProperties(project, updaterProject)
         updateImages(project, updaterProject)
+        removeImagesIfNotPresent(project, updaterProject.images)
 
         projectRepository.save(project)
     }
 
     /**
-     * Update(insert/delete) de plaatjes in [project] adhv een gevalideerd [updaterProject].
+     * Update en valideer de plaatjes in [project] adhv [updaterProject].
      */
     private fun updateImages(project: Project, updaterProject: UpdaterProject) {
         for (i in updaterProject.images.indices) {
@@ -65,7 +63,7 @@ class UpdaterProjectService @Autowired constructor(
                 imageRepository.save(image)
                 project.addImage(image)
             }
-            // Nee, wel een valide URL in updater image?
+            // Nee, wel een valide URL?
             else if (project.images.find { it.url == updaterImage.url } == null) {
                 // Nee, error
                 throw Exception("Ongeldige image URL: ${updaterImage.url}")
@@ -76,8 +74,6 @@ class UpdaterProjectService @Autowired constructor(
             if (updaterImage.isBanner)
                 project.setBannerImage(i)
         }
-
-        removeImagesIfNotPresent(project,updaterProject.images)
     }
 
     /**
