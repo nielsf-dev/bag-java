@@ -1,14 +1,11 @@
 package org.bag.controllers
 
 import mu.KotlinLogging
-import org.bag.domain.Image
-import org.bag.domain.Project
 import org.bag.dto.UpdaterProject
 import org.bag.dto.UpdaterProjectImage
 import org.bag.dto.UpdaterProjectListItem
-import org.bag.repositories.ImageRepository
 import org.bag.repositories.ProjectRepository
-import org.bag.service.UpdaterProjectService
+import org.bag.service.ProjectUpdater
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Sort
 import org.springframework.transaction.annotation.Transactional
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 open class UpdaterProjectController @Autowired constructor(
         private val projectRepository: ProjectRepository,
-        private val updaterProjectService: UpdaterProjectService){
+        private val projectUpdater: ProjectUpdater){
 
     private val logger = KotlinLogging.logger {  }
 
@@ -36,7 +33,7 @@ open class UpdaterProjectController @Autowired constructor(
     open fun putProject(@RequestBody updaterProject: UpdaterProject) {
         if(updaterProject.images.size == 0)
             throw Exception("Empty images")
-        updaterProjectService.putProject(updaterProject)
+        projectUpdater.update(updaterProject)
     }
 
 

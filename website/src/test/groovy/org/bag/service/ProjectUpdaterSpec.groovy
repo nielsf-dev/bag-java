@@ -8,7 +8,7 @@ import org.bag.repositories.ImageRepository
 import org.bag.repositories.ProjectRepository
 import spock.lang.Specification
 
-class UpdaterProjectServiceSpec extends Specification{
+class ProjectUpdaterSpec extends Specification{
 
     def "Project inserten"(){
         given: "Een standaard opzet"
@@ -16,11 +16,11 @@ class UpdaterProjectServiceSpec extends Specification{
         def projectRepository = Mock(ProjectRepository)
         projectRepository.findAll() >> new ArrayList<Project>()
         def imageRepository = Mock(ImageRepository)
-        def updaterProjectService = new UpdaterProjectService(projectRepository,imageRepository)
+        def updaterProjectService = new ProjectUpdater(projectRepository,imageRepository)
 
         when: "Een normaal project word toegevoegd"
         updaterProject.images.add(new UpdaterProjectImage(1,"www.test.nl",true,true))
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then: "Verwacht database calls"
         1 * projectRepository.save({it.order == 1 && it.titel_nl == "titel"})
@@ -28,7 +28,7 @@ class UpdaterProjectServiceSpec extends Specification{
 
         when: "Geen images worden meegegeven"
         updaterProject.images.clear()
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then: "Verwacht een exception"
         thrown(Exception)
@@ -44,7 +44,7 @@ class UpdaterProjectServiceSpec extends Specification{
         projectRepository.findById(2) >> new Optional<Project>(project)
 
         def imageRepository = Mock(ImageRepository)
-        def updaterProjectService = new UpdaterProjectService(projectRepository, imageRepository)
+        def updaterProjectService = new ProjectUpdater(projectRepository, imageRepository)
 
         def updaterProject = new UpdaterProject(2,"titel-update","loc-update","text-update","","","","","","")
         updaterProject.images = [new UpdaterProjectImage(1,"1.nl",true,false),
@@ -53,7 +53,7 @@ class UpdaterProjectServiceSpec extends Specification{
                                  new UpdaterProjectImage(0,"new.nl",false,false)]
 
         when: "Een update word uitgevoerd"
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then: "Verwacht een update van het bijbehorende project"
         project.titel_nl == "titel-update"
@@ -65,7 +65,7 @@ class UpdaterProjectServiceSpec extends Specification{
 
         when: "een plaatje word weggelaten vanuit de updater"
         updaterProject.images.remove(2)
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then: "verwacht een delete uit bijbehorende project"
         project.images.find{i -> i.url == "3.nl"} == null
@@ -75,14 +75,14 @@ class UpdaterProjectServiceSpec extends Specification{
         updaterProject.images.remove(1)
         updaterProject.images[0].isFrontend = true
         updaterProject.images[0].isBanner = true
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then: "verwacht same bij bijbehorende project"
         project.images.size() == 1
 
         when: "niet bestaand plaatje toevoegen"
         updaterProject.images.add(new UpdaterProjectImage(187,"",false,false))
-        updaterProjectService.putProject(updaterProject)
+        updaterProjectService.update(updaterProject)
 
         then:
         thrown(Exception)

@@ -11,6 +11,9 @@ import java.util.Locale
  */
 class FrontendProjectAssembler(private val project: Project) {
 
+    /**
+     * [FrontendProject] opstellen in de juiste [locale]
+     */
     fun assemble(locale: Locale): FrontendProject {
         val langCode = locale.language
         return FrontendProject(project.id,
