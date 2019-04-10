@@ -7,7 +7,6 @@ allprojects {
 dependencies {
 }
 
-
 task testMe{
     doLast{
         println("print iets")
