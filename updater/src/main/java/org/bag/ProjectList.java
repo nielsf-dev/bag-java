@@ -26,39 +26,61 @@ public class ProjectList extends JPanel {
 
     private final UpdaterApp updaterApp;
     private DefaultListModel<UpdaterProjectListItem> items = new DefaultListModel<>();
+    private JLabel label;
+    private List<UpdaterProjectListItem> updaterProjectListItems;
 
     public ProjectList(UpdaterApp updaterApp) {
         initComponents();
         this.updaterApp = updaterApp;
         list1.setModel(items);
+        label = new JLabel();
+        label.setText("Projecten ophalen..");
     }
 
     private void addButtonMouseClicked(MouseEvent e) {
         // TODO add your code here
-
     }
 
-    public UpdaterProjectListItem refresh(){
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<UpdaterProjectListItem>> response = restTemplate.exchange(
-                UpdaterApp.getWebsiteUrl() + "/updaterProjectList",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<UpdaterProjectListItem>>(){});
+    public UpdaterProjectListItem refresh() throws InterruptedException {
+        Thread t = new Thread(new getUpdaterProjectsThread());
+        t.start();
+
+        JOptionPane.showMessageDialog(updaterApp.projectDetails, label);
+        t.join();
 
         items.clear();
-        List<UpdaterProjectListItem> updaterProjectListItems = response.getBody();
         for (UpdaterProjectListItem updaterProjectListItem : updaterProjectListItems) {
             items.addElement(updaterProjectListItem);
         }
+
+        System.out.println("Thread is klaar");
+        System.out.println(items.size() + " project beschikbaar.");
 
         if(items.size() > 0) {
             list1.setSelectedIndex(0);
             return items.get(0);
         }
-        else
+        else {
             return null;
+        }
+    }
 
+    private class getUpdaterProjectsThread implements Runnable{
+
+        @Override
+        public void run() {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<List<UpdaterProjectListItem>> response = restTemplate.exchange(
+                    UpdaterApp.getWebsiteUrl() + "/updaterProjectList",
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<UpdaterProjectListItem>>(){});
+
+            updaterProjectListItems = response.getBody();
+
+            JDialog dialog = (JDialog) SwingUtilities.getRoot(label);
+            dialog.dispose();
+        }
     }
 
     private void btProjectToevoegenActionPerformed(ActionEvent e) {
@@ -68,7 +90,11 @@ public class ProjectList extends JPanel {
     private void list1ValueChanged(ListSelectionEvent e) {
         int selectedIndex = list1.getSelectedIndex();
         UpdaterProjectListItem updaterProjectListItem = items.get(selectedIndex);
-        updaterApp.viewProject(updaterProjectListItem);
+        try {
+            updaterApp.viewProject(updaterProjectListItem);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
     }
 
     private void initComponents() {
@@ -98,6 +124,7 @@ public class ProjectList extends JPanel {
         btProjectToevoegen.setText("Project toevoegen");
         btProjectToevoegen.setIcon(new ImageIcon(getClass().getResource("/add.png")));
         btProjectToevoegen.addActionListener(e -> btProjectToevoegenActionPerformed(e));
+        btProjectToevoegen.setEnabled(false);
         add(btProjectToevoegen, "cell 0 0,align left top,grow 0 0");
         add(separator1, "cell 0 1,growx");
 

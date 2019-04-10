@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -19,6 +20,10 @@ import net.miginfocom.swing.*;
 import org.bag.domain.Project;
 import org.bag.dto.UpdaterProject;
 import org.bag.dto.UpdaterProjectImage;
+import org.bag.dto.UpdaterProjectListItem;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -39,14 +44,13 @@ public class ProjectDetails extends JPanel {
         plaatjesLayout.setLayout(new WrapLayout());
     }
 
-    public void setProject(int projectId){
+    public void setProject(int projectId) throws InterruptedException {
 
         if(projectId > 0) {
             RestTemplate restTemplate = new RestTemplate();
             updaterProject = restTemplate.getForObject(UpdaterApp.getWebsiteUrl() + "/updaterProject/" + projectId, UpdaterProject.class);
             if(updaterProject == null) {
-                JOptionPane.showMessageDialog(this,"Niet gelukt project op te halen");
-                return;
+                System.out.println("Niet gelukt project op te halen");
             }
         }
         else{
@@ -216,6 +220,7 @@ public class ProjectDetails extends JPanel {
 
             //---- button3 ----
             button3.setText("Annuleren");
+            button3.setEnabled(false);
             panel1.add(button3);
         }
         add(panel1, "cell 0 5");

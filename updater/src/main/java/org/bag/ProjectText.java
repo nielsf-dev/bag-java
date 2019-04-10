@@ -131,6 +131,10 @@ public class ProjectText extends JPanel {
         textArea3.setBorder(new LineBorder(new Color(108, 108, 108)));
         add(textArea3, "cell 0 3 2 1,growx");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+
+        textArea1.setLineWrap(true);
+        textArea2.setLineWrap(true);
+        textArea3.setLineWrap(true);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
