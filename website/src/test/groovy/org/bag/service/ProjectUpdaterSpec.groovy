@@ -62,7 +62,6 @@ class ProjectUpdaterSpec extends Specification{
         project.frontendImage.url == "1.nl"
         1 * projectRepository.save(project)
         1 * imageRepository.save({it.url == "new.nl"})
-        project.images.find{i -> i.url == "3.nl"} != null
 
         when: "een plaatje word weggelaten vanuit de updater"
         updaterProject.images.remove(2)
