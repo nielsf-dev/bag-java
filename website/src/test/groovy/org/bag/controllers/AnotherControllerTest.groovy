@@ -7,7 +7,7 @@ class AnotherControllerTest extends Specification {
         given: "bla"
         def anotherController = new AnotherController()
 
-        expect: "bloe"
+        expect: "bloe WE GAAN NOG FF"
         anotherController.doSomething() == 187
     }
 }
