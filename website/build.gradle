@@ -25,10 +25,10 @@ apply plugin: 'io.spring.dependency-management'
 
 task stage{
     doLast{
-        println("in de stage")
+        println("in de neue stage")
     }
 }
-stage.finalizedBy bootJar
+stage.dependsOn bootJar
 
 test {
     testLogging {
@@ -46,7 +46,9 @@ bootJar {
 }
 //bootJar.mustRunAfter(stage)
 
-
+task websiteTask{
+    println "Im ${project.name}"
+}
 
 sourceCompatibility = 1.8
 repositories { mavenCentral() }
