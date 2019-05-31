@@ -2,8 +2,6 @@ package org.bag
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
@@ -68,6 +66,7 @@ open class Application : WebMvcConfigurer {
 }
 
 fun main(args: Array<String>) {
+    Locale.setDefault(Locale("nl", "NL"))
     SpringApplication.run(Application::class.java, *args)
 }
 

@@ -42,6 +42,7 @@ class ProjectUpdater @Autowired constructor(
         project.titel_nl = updaterProject.titel_nl
         project.locatie_nl = updaterProject.locatie_nl
         project.text_nl = updaterProject.text_nl
+
         updateLanguageProperties(project, updaterProject)
         updateImages(project, updaterProject)
         removeImagesIfNotPresent(project, updaterProject.images)

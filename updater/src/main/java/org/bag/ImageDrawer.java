@@ -19,12 +19,17 @@ public class ImageDrawer extends JComponent {
     }
 
     public void setUrl(URL url) throws Exception {
-        BufferedImage read = ImageIO.read(url);
-        outputImage = new BufferedImage(100, 100, read.getType());
+        try {
+            BufferedImage read = ImageIO.read(url);
+            outputImage = new BufferedImage(100, 100, read.getType());
 
-        Graphics2D g2d = outputImage.createGraphics();
-        g2d.drawImage(read, 0, 0, 100, 100, null);
-        g2d.dispose();
+            Graphics2D g2d = outputImage.createGraphics();
+            g2d.drawImage(read, 0, 0, 100, 100, null);
+            g2d.dispose();
+        }
+        catch(Exception ex){
+            System.out.println("Cant read image from " + url.toString() + " -> " + ex.getMessage());
+        }
     }
 
     public void setUrl2(URL url) throws Exception {

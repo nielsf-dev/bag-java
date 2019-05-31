@@ -64,7 +64,6 @@ dependencies {
     compile 'org.postgresql:postgresql:9.4.1212'
 
     compile 'org.javassist:javassist:3.23.1-GA'
-    //compile("com.h2database:h2")
     
     // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
     compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
