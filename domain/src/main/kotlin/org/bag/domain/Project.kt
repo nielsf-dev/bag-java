@@ -140,6 +140,22 @@ class Project(
         logger.info("Frontpage image set to ${frontPageImage.url} for project '$titel_nl'")
     }
 
+    fun setFrontendImage(imageUrl: String){
+        images.forEach {
+            if(it.url.compareTo(imageUrl,true) == 0){
+                frontPageImage = it
+            }
+        }
+    }
+
+    fun setBannerImage(imageUrl: String){
+    images.forEach {
+        if(it.url.compareTo(imageUrl,true) == 0){
+            bannerImage = it
+        }
+    }
+}
+
     fun addImage(image: Image) {
         images.add(image)
     }

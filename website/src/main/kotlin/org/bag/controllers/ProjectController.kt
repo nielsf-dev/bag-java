@@ -19,6 +19,7 @@ class ProjectController @Autowired constructor(
 
     @GetMapping("/")
     fun index(model: Model, request: HttpServletRequest): String {
+
         val ctx = RequestContext(request)
         val locale = ctx.locale
 
@@ -30,6 +31,7 @@ class ProjectController @Autowired constructor(
 
     @GetMapping("/project")
     fun getProject(@RequestParam(name = "id") id: Int, model: Model, request: HttpServletRequest): String {
+
         val ctx = RequestContext(request)
         val locale = ctx.locale
 
