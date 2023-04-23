@@ -1,4 +1,4 @@
 rootProject.name = 'bag-java'
-include 'updater'
+//include 'updater'
 include 'website'
 include 'domain'

@@ -45,6 +45,8 @@ open class Application : WebMvcConfigurer {
     private fun createHikariConfig(): HikariConfig {
         val config = HikariConfig()
 
+        // some comment to deploy
+
         // Is er een heroku cs?
         val connectionString = System.getenv()["JDBC_DATABASE_URL"]
         if (connectionString == null) {

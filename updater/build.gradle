@@ -25,7 +25,7 @@ repositories {
 sourceCompatibility = 1.8
 
 dependencies {
-    compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
+    //compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
     compile project (':domain')
     compile (name:'darcula', ext:'jar')
     compile (name:'jfd-annotations', ext:'jar')
