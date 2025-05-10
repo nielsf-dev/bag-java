@@ -9,6 +9,6 @@ dependencies {
 
 task testMe{
     doLast{
-        println("print iets")
+        println("print iets dan")
     }
 }
