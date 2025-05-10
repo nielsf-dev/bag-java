@@ -19,7 +19,9 @@ import javax.sql.DataSource
 @SpringBootApplication
 @ComponentScans(
         ComponentScan("org.bag.controllers"),
-        ComponentScan("org.bag.service"))
+        ComponentScan("org.bag.service"),
+        ComponentScan("org.bag.repositories"),
+        ComponentScan("org.bag.security"))
 open class Application : WebMvcConfigurer {
 
     @Bean

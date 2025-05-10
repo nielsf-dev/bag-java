@@ -1,7 +1,7 @@
 package org.bag.domain
 
 import mu.KotlinLogging
-import javax.persistence.*
+import jakarta.persistence.*
 
 private val logger = KotlinLogging.logger {}
 

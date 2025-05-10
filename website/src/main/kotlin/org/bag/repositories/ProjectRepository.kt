@@ -1,6 +1,6 @@
 package org.bag.repositories
 
 import org.bag.domain.Project
-import org.springframework.data.repository.PagingAndSortingRepository
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface ProjectRepository : PagingAndSortingRepository<Project, Int>
+interface ProjectRepository : JpaRepository<Project, Int>
